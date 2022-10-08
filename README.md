@@ -1,6 +1,16 @@
 # NullpointerFront
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.5.
+Versiones de Angular, Node y NPM: 
+
+Angular CLI: 14.2.5
+Package Manager: npm 8.19.2
+
+Debéis tener instalado Node para poder instalar y ejecutar angular.
+
+Para instalar la ultima version del CLI de angular: 
+`npm install -g @angular/cli`
+
+Una vez instalado y dentro del proyecto haced npm install para instalar las librerias y debería funcionr todo correctamente. 
 
 ## Development server
 

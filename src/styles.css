@@ -1,0 +1,28 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  width: 100%;
+  min-height: 100% !important;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+input:focus {
+  outline: none;
+}
+
+.std-input {
+  height: 3em;
+  border-radius: 10px;
+  padding: 5px 10px;
+  border: 1px solid #4d72e0;
+}
+
+.std-input:focus {
+  border: 2px solid red;
+}
+/*# sourceMappingURL=styles.css.map */
