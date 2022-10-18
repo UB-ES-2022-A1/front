@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { RegisterComponent } from '../register/register.component';
 
 @Component({
   selector: 'app-login',
@@ -12,11 +14,12 @@ export class LoginComponent implements OnInit {
     password: ''
   } 
 
-  constructor() { 
-
-  }
+  constructor(private modalService: NgbModal) { }
 
   ngOnInit(): void {
+  }
+  openRegister() {
+    const modalRef = this.modalService.open(RegisterComponent,  { centered: true });
   }
 
   /* checkLogin(){
