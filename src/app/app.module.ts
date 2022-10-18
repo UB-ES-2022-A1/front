@@ -10,6 +10,7 @@ import { MainComponent } from './pages/main/main.component';
 import { HeaderComponent } from './components/header/header.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { CardAnuncioComponent } from './card-anuncio/card-anuncio.component';
+import { RegisterComponent } from './components/register/register.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { CardAnuncioComponent } from './card-anuncio/card-anuncio.component';
     HeaderComponent,
     ProfileComponent,
     CardAnuncioComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
