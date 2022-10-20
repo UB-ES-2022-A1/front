@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
+import { SessionService } from '../session/session.service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ import { HttpClient } from '@angular/common/http';
 export class LoginService {
   baseUrl: string = environment.backurl +'login'
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private sessionService: SessionService) { }
 
   login(email: string, password: string){
       console.log(email, password)
@@ -17,6 +18,15 @@ export class LoginService {
       const body = {email: email, 
                 pwd: password
       }
-      return this.http.get(url);
+      return this.http.post(url, body);
+  }
+  isLogged() {
+
+    if (this.sessionService.get('username') != null && this.sessionService.get('username') != '') {
+      return true;
+    } else {
+      return false;
+    }
+
   }
 }
