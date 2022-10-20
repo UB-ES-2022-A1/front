@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ServiceService } from 'src/app/services/service/service.service';
 
 @Component({
   selector: 'app-main',
@@ -6,10 +7,31 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./main.component.sass']
 })
 export class MainComponent implements OnInit {
+  services: ServiceTO[] = [];
 
-  constructor() { }
-
+  constructor(private serviceService: ServiceService) { }
+   
   ngOnInit(): void {
+    this.loadServices(); 
   }
 
+  loadServices(): void {
+    this.serviceService.getServices().subscribe(res => {
+      res.forEach((service: any) =>{
+        let auxService: ServiceTO = 
+        {
+          title: service.title, 
+          description: service.description,
+          price: service.price 
+        }
+        this.services.push(auxService); 
+      })
+    })
+  }
+}
+
+export interface ServiceTO{
+  title: string;
+  description: string; 
+  price: number
 }

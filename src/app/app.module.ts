@@ -11,6 +11,8 @@ import { HeaderComponent } from './components/header/header.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { CardAnuncioComponent } from './card-anuncio/card-anuncio.component';
 import { RegisterComponent } from './components/register/register.component';
+import { FormServiceComponent } from './components/form-service/form-service.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -21,12 +23,15 @@ import { RegisterComponent } from './components/register/register.component';
     ProfileComponent,
     CardAnuncioComponent,
     RegisterComponent,
+    FormServiceComponent,
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
+
     AppRoutingModule,
     FormsModule,
-    NgbModule
+    NgbModule,
 
   ],
   providers: [],
