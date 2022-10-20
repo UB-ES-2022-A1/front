@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { LoginService } from 'src/app/services/login/login.service';
+import { SessionService } from 'src/app/services/session/session.service';
 import { RegisterComponent } from '../register/register.component';
 
 @Component({
@@ -14,7 +16,7 @@ export class LoginComponent implements OnInit {
     password: ''
   } 
 
-  constructor(private modalService: NgbModal) { }
+  constructor(private modalService: NgbModal, private loginService: LoginService, private sessionService: SessionService) { }
 
   ngOnInit(): void {
   }
@@ -22,20 +24,16 @@ export class LoginComponent implements OnInit {
     const modalRef = this.modalService.open(RegisterComponent,  { centered: true });
   }
 
-  /* checkLogin(){
+   checkLogin(){
     this.loginService.login(this.userLogin.username, this.userLogin.password).subscribe((data: any) => {
-      if(data!=null){
-        this.sessionService.set('username', data.username);
-        this.sessionService.set('token',  data.token); 
-        this.router.navigate(['/activities']);
-
-      }
+      this.sessionService.set('username', data.Name);
+      this.modalService.dismissAll(); 
     },
-    (error) =>{
+    ((error: any) =>{
       this.error=true; 
       console.error('error caught in component')
-    });
-  } */
+    }));
+  } 
 
 }
 export interface UserLogin{

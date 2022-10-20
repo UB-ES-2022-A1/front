@@ -12,11 +12,9 @@ export class ServiceService {
 
 
   getServices(): Observable<any> {
-    const url = this.baseUrl
-    return this.http.get(url);
+    return this.http.get(this.baseUrl);
   }
   postService(title: string, description: string, price: number, user: string,): Observable<any> {
-    const url = this.baseUrl
     console.log("holi")
     const body: any = {
       title: title,
@@ -24,7 +22,7 @@ export class ServiceService {
       description: description, 
       price: price
     };
-      return this.http.post(url, body);
+      return this.http.post(this.baseUrl, body);
     }
   }
 
