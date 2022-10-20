@@ -1,7 +1,7 @@
 <div class="service-form">
   <input [(ngModel)]="this.title" class="std-input" name="title" type="text" placeholder="Title" />
   <input [(ngModel)]="this.description" class="std-input" placeholder="Description"/>
-  <input [(ngModel)]="this.price" class="std-input" placeholder="Price"/>
+  <input (ngModel)="this.price" class="std-input" placeholder="Price"/>
 
   <button (click)="onSubmit()" class="service-btn">Submit</button>
 

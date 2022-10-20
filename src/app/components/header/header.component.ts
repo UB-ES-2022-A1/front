@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { LoginService } from 'src/app/services/login/login.service';
+import { SessionService } from 'src/app/services/session/session.service';
 import { FormServiceComponent } from '../form-service/form-service.component';
 import { LoginComponent } from '../login/login.component';
 
@@ -10,7 +12,7 @@ import { LoginComponent } from '../login/login.component';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private modalService: NgbModal) { }
+  constructor(private modalService: NgbModal, protected loginService: LoginService, protected sessionService: SessionService) { }
 
   ngOnInit(): void {
   }

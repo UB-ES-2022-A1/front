@@ -27,7 +27,13 @@ export class RegisterComponent implements OnInit {
   postUser() {
     this.userService.postUser(this.userLogin.username, this.userLogin.email, this.userLogin.password).subscribe(res => {
       console.log(res)
-    })
+      this.modalService.dismissAll(); 
+      
+    },
+    ((error: any) =>{
+      this.error=true; 
+      console.error('error caught in component')
+    }));
   }
 
   ngOnInit(): void {
