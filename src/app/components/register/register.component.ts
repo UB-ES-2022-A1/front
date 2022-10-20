@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginComponent } from '../login/login.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
   selector: 'app-register',
@@ -17,10 +18,16 @@ export class RegisterComponent implements OnInit {
   } 
 
 
-  constructor(private modalService: NgbModal) { }
+  constructor(private modalService: NgbModal, private userService: UserService) { }
 
   openLogin() {
     const modalRef = this.modalService.open(LoginComponent,  { centered: true });
+  }
+
+  postUser() {
+    this.userService.postUser(this.userLogin.username, this.userLogin.email, this.userLogin.password).subscribe(res => {
+      console.log(res)
+    })
   }
 
   ngOnInit(): void {
