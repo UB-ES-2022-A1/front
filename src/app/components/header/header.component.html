@@ -1,9 +1,13 @@
 <header>
-    <h1 class="col-8 web-name">@urservice</h1>
-    <div *ngIf="!this.loginService.isLogged()" class="col-1 d-flex justify-content-center gap-4">
+    <h1 class="col-3 d-flex flex-row justify-content-center web-name">@urservice</h1>
+    <form class="col-6 form d-flex flex-row justify-content-center">
+      <input type="text" placeholder="Search for service...">
+      <input type="submit" value="Search">
+    </form>
+    <div *ngIf="!this.loginService.isLogged()" class="col-3 d-flex justify-content-center">
       <button class="login-btn" (click)="openLogin()">Login</button>
     </div>
-    <div *ngIf="this.loginService.isLogged()" class= "col-3 d-flex justify-content-around align-items-center">
+    <div *ngIf="this.loginService.isLogged()" class= "d-flex justify-content-around align-items-center">
       <h4  class="username" >Welcome {{this.sessionService.get("username")}}! </h4>
       <button  class="login-btn" (click)="openCreateService()">New service</button>
     </div>
