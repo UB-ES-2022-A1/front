@@ -23,4 +23,7 @@ export class HeaderComponent implements OnInit {
     const modalRef = this.modalService.open(FormServiceComponent,  { centered: true });
 
   }
+  
+  sortPrice():void{
+  }
 }

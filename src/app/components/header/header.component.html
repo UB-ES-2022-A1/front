@@ -1,14 +1,15 @@
 <header>
     <h1 class="col-3 d-flex flex-row justify-content-center web-name">@urservice</h1>
     <form class="col-6 form d-flex flex-row justify-content-center">
-      <input type="text" placeholder="Search for service...">
-      <input type="submit" value="Search">
+        <input type="text" placeholder="Search for service...">
+        <input type="submit" value="Search">
+        <button (click)="sortPrice()" style="text-decoration:none;font-weight:bold;background:none;border:none;color:var(--main-accent-color);padding:5px">Price ↓</button>
     </form>
     <div *ngIf="!this.loginService.isLogged()" class="col-3 d-flex justify-content-center">
-      <button class="login-btn" (click)="openLogin()">Login</button>
+        <button class="login-btn" (click)="openLogin()">Login</button>
     </div>
-    <div *ngIf="this.loginService.isLogged()" class= "d-flex justify-content-around align-items-center">
-      <h4  class="username" >Welcome {{this.sessionService.get("username")}}! </h4>
-      <button  class="login-btn" (click)="openCreateService()">New service</button>
+    <div *ngIf="this.loginService.isLogged()" class="d-flex justify-content-around align-items-center">
+        <h4 class="username">Welcome {{this.sessionService.get("username")}}! </h4>
+        <button class="login-btn" (click)="openCreateService()">New service</button>
     </div>
 </header>
