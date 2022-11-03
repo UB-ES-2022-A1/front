@@ -1,17 +1,16 @@
-<div class="main-page">
-    <div class="d-flex flex-column">
-      <img  src="assets/img/6340.png"/>
-    </div>
-    <div class="anuncio-wrapper d-flex flex-row gap-4 flex-wrap justify-content-center">
-      <app-card-anuncio *ngFor="let a of [0,1,2,3,4,5,6,7,8,9]" 
-      [title]="'Game design'" 
-      [description]="'Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias, ducimus iste ut omnis commodi eveniet'" 
-      [price]="50"></app-card-anuncio>
-      <app-card-anuncio *ngFor="let service of this.services"
-      [title]="service.title" 
-      [description]="service.description" 
-      [price]="service.price"></app-card-anuncio>
-    </div>
+<div>
+    <app-header (searchTextChanged)="onSearchTextEntered($event)"></app-header>
+</div>
+<div>
+    <div class="main-page">
+        <div class="d-flex flex-column">
+            <img src="assets/img/6340.png" />
+        </div>
+        <div class="anuncio-wrapper d-flex flex-row gap-4 flex-wrap justify-content-center" *ngFor="let service of this.services">
+            <!--  <app-card-anuncio *ngFor="let a of [0,1,2,3,4,5,6,7,8,9]" [title]="'Game design'" [description]="'Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias, ducimus iste ut omnis commodi eveniet'" [price]="50"></app-card-anuncio> -->
+            <app-card-anuncio *ngIf="searchText === '' || service.title.toLowerCase().includes(searchText) " [title]="service.title" [description]="service.description" [price]="service.price"></app-card-anuncio>
+        </div>
 
 
+    </div>
 </div>

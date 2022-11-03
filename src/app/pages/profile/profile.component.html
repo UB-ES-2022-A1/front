@@ -1,3 +1,4 @@
+<app-header></app-header>
 <div class="vertical-center">
     <div class="container mt-8">
         <div class="row gutters">
@@ -9,8 +10,8 @@
                                 <div class="user-avatar">
                                     <img src="https://cdn-icons-png.flaticon.com/512/1053/1053244.png?w=360" alt="Generic placeholder image" class="img-fluid img-thumbnail mt-4 mb-2" style="width: 150px; z-index: 1">
                                 </div>
-                                <h5 class="full_name">abc</h5>
-                                <h6 class="email">abc@email.org</h6>
+                                <h5 class="full_name"> {{this.sessionService.get("username")}}</h5>
+                                <h6 class="email">{{this.sessionService.get("email")}}</h6>
                             </div>
                         </div>
                     </div>
@@ -42,7 +43,7 @@
                             </div>
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                 <div class="form-group">
-                                    <label for="number">Phone number(Optional):</label>
+                                    <label for="number">Phone number(Optional): {{this.sessionService.get("phone")}}</label>
                                     <div *ngIf="this.isEditable">
                                         <input type="text" ng-disabled="this.isEditable" class="form-control" id="gsm_number" placeholder="Telefon">
                                         <p></p>
@@ -51,7 +52,7 @@
                             </div>
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                 <div class="form-group">
-                                    <label for="wallet">My wallet:</label>
+                                    <label for="wallet">My wallet: {{this.sessionService.get("wallet")}}</label>
                                     <div *ngIf="this.isEditable">
                                         <input type="text" class="form-control" id="gsm_number" placeholder="Value">
                                         <p></p>

@@ -8,6 +8,7 @@ import { ServiceService } from 'src/app/services/service/service.service';
 })
 export class MainComponent implements OnInit {
   services: ServiceTO[] = [];
+  searchText: string = '';
 
   constructor(private serviceService: ServiceService) { }
    
@@ -27,6 +28,11 @@ export class MainComponent implements OnInit {
         this.services.push(auxService); 
       })
     })
+  }
+
+  onSearchTextEntered(searchValue: string){
+    this.searchText = searchValue;
+    console.log(this.searchText)
   }
 }
 
