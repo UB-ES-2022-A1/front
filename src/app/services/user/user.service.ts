@@ -15,6 +15,12 @@ export class UserService {
     const url = this.baseUrl
     return this.http.get(url);
   }
+
+  getUser(email: string): Observable<any> {
+    const url = this.baseUrl+'/'+email
+    return this.http.get(url);
+  }
+
   postUser(name: string, email: string, pwd: string): Observable<any> {
     const url = this.baseUrl
     

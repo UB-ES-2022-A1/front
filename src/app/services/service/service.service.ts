@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { SessionService } from '../session/session.service';
 @Injectable({
   providedIn: 'root'
 })
 export class ServiceService {
   baseUrl: string = environment.backurl +'services'
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private sessionService: SessionService) { }
 
 
   getServices(): Observable<any> {
@@ -16,6 +17,12 @@ export class ServiceService {
   }
   postService(title: string, description: string, price: number, user: string,): Observable<any> {
     console.log("holi")
+    const tokenString = this.sessionService.get('token') +':'+ this.sessionService.get('email');
+
+    const authToken: any = `Basic ${tokenString}`
+    let headers =  new HttpHeaders({
+      Authorization: 'my-auth-token'
+    })
     const body: any = {
       title: title,
       user: user,
