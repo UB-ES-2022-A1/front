@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { LoginService } from 'src/app/services/login/login.service';
 import { SessionService } from 'src/app/services/session/session.service';
@@ -11,6 +11,7 @@ import { LoginComponent } from '../login/login.component';
   styleUrls: ['./header.component.sass']
 })
 export class HeaderComponent implements OnInit {
+  enteredSearchValue: string = '';
 
   constructor(private modalService: NgbModal, protected loginService: LoginService, protected sessionService: SessionService) { }
 
@@ -23,7 +24,14 @@ export class HeaderComponent implements OnInit {
     const modalRef = this.modalService.open(FormServiceComponent,  { centered: true });
 
   }
-  
+
   sortPrice():void{
+  }
+
+  @Output()
+  searchTextChanged: EventEmitter<string> = new EventEmitter<string>();
+
+  onSearchTextChanged(){
+    this.searchTextChanged.emit(this.enteredSearchValue)
   }
 }
