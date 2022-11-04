@@ -1,7 +1,7 @@
 <header>
     <h1 (click)="goHome()" class="logo col-3 d-flex flex-row justify-content-center web-name">@urservice</h1>
     <form class="col-6 form d-flex flex-row justify-content-center">
-        <input type="text" [(ngModel)]="this.enteredSearchValue" (input)="onSearchTextChanged()" name="searchText" placeholder="Search for service...">
+        <input type="text" [(ngModel)]="this.enteredSearchValue"  name="searchText" placeholder="Search for service...">
         <input type="submit" value="Search">
         <button (click)="sortPrice()" style="text-decoration:none;font-weight:bold;background:none;border:none;color:var(--main-accent-color);padding:5px">Price ↓</button>
     </form>
