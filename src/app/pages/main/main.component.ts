@@ -20,6 +20,7 @@ export class MainComponent implements OnInit {
       res.forEach((service: any) =>{
         let auxService: ServiceTO = 
         {
+          id: service.id,
           title: service.title, 
           description: service.description,
           price: service.price 
@@ -31,6 +32,7 @@ export class MainComponent implements OnInit {
 }
 
 export interface ServiceTO{
+  id: number; 
   title: string;
   description: string; 
   price: number

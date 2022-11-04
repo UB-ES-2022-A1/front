@@ -17,11 +17,11 @@ export class ServiceService {
   }
   postService(title: string, description: string, price: number, user: string,): Observable<any> {
     console.log("holi")
-    const tokenString = this.sessionService.get('token') +':'+ this.sessionService.get('email');
+    const tokenString = btoa(this.sessionService.get('token') +':'+ this.sessionService.get('email'));
 
     const authToken: any = `Basic ${tokenString}`
     let headers =  new HttpHeaders({
-      Authorization: 'my-auth-token'
+      Authorization: authToken
     })
     const body: any = {
       title: title,
@@ -29,7 +29,7 @@ export class ServiceService {
       description: description, 
       price: price
     };
-      return this.http.post(this.baseUrl, body);
+      return this.http.post(this.baseUrl, body, {headers});
     }
   }
 

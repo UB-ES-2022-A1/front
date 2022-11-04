@@ -3,11 +3,13 @@ import { RouterModule, Routes } from '@angular/router';
 import { HeaderComponent } from './components/header/header.component';
 import { MainComponent } from './pages/main/main.component';
 import { ProfileComponent } from './pages/profile/profile.component';
+import { ServiceDetailComponent } from './pages/service-detail/service-detail.component';
 
 const routes: Routes = [
   { path: '', component: MainComponent},
   { path: '', component: HeaderComponent, outlet:'secondary' },
-  { path: "profile", component: ProfileComponent }
+  { path: "profile", component: ProfileComponent },
+  { path: "service/:id", component: ServiceDetailComponent }
 ];
 
 @NgModule({
