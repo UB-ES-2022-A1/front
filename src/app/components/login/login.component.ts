@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { LoginService } from 'src/app/services/login/login.service';
 import { SessionService } from 'src/app/services/session/session.service';
+import { UserService } from 'src/app/services/user/user.service';
 import { RegisterComponent } from '../register/register.component';
 
 @Component({
@@ -16,7 +17,7 @@ export class LoginComponent implements OnInit {
     password: ''
   } 
 
-  constructor(private modalService: NgbModal, private loginService: LoginService, private sessionService: SessionService) { }
+  constructor(private modalService: NgbModal, private loginService: LoginService, private sessionService: SessionService, private userService: UserService) { }
 
   ngOnInit(): void {
   }
@@ -26,7 +27,11 @@ export class LoginComponent implements OnInit {
 
    checkLogin(){
     this.loginService.login(this.userLogin.username, this.userLogin.password).subscribe((data: any) => {
-      this.sessionService.set('username', data.Name);
+      this.sessionService.set('email', this.userLogin.username);
+      this.sessionService.set('token', data.token);
+      this.userService.getUser(this.userLogin.username).subscribe(data => {
+        this.sessionService.set('username', data.name);
+      })
       this.modalService.dismissAll(); 
     },
     ((error: any) =>{

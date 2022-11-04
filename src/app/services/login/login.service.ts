@@ -22,11 +22,13 @@ export class LoginService {
   }
   isLogged() {
 
-    if (this.sessionService.get('username') != null && this.sessionService.get('username') != '') {
+    if (this.sessionService.get('token') != null && this.sessionService.get('token') != '') {
       return true;
     } else {
       return false;
     }
-
+  }
+  logout() {
+    this.sessionService.clear();
   }
 }

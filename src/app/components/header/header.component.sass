@@ -1,7 +1,6 @@
 header
   display: flex
   flex-direction: row
-  justify-content: space-around
   align-items: center
   position: fixed
   font-size: 16px
@@ -14,19 +13,45 @@ header
   padding: 0 16px
   border: 0
   border-bottom: 1px solid
-
   background: var(--main-primary-color)
 
+  .icon
+    font-size: 40px
+    width: 40px
+    height: 40px
+.logo
+  cursor: pointer
 .login-btn
   font-size: 16px
   height: 3em
   width: 9em
   background: var(--main-accent-color)
   color: white
-  
+  border: 0
   border-radius: 2em
 
 .web-name
   background: white
   color: var(--main-accent-color)
 
+input
+    &[type="text"]
+      border: 1px
+      background: #f2f2f2
+      color: black
+      padding: 10px 10px
+      
+    &[type="submit"]
+      border: 1px
+      background: grey
+      background-color: var(--main-accent-color)
+      color: #fff
+      float: right
+      padding: 10px
+      border-radius-top-right: 5px
+      -moz-border-radius-top-right: 5px
+      -webkit-border-radius-top-right: 5px
+      border-radius-bottom-right: 5px
+      -moz-border-radius-bottom-right: 5px
+      -webkit-border-radius-bottom-right: 5px
+      cursor: pointer

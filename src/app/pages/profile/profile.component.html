@@ -1,1 +1,78 @@
-<p>profile works!</p>
+<app-header></app-header>
+<div class="vertical-center">
+    <div class="container mt-8">
+        <div class="row gutters">
+            <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <div class="account-settings">
+                            <div class="user-profile">
+                                <div class="user-avatar">
+                                    <img src="https://cdn-icons-png.flaticon.com/512/1053/1053244.png?w=360" alt="Generic placeholder image" class="img-fluid img-thumbnail mt-4 mb-2" style="width: 150px; z-index: 1">
+                                </div>
+                                <h5 class="full_name"> {{this.sessionService.get("username")}}</h5>
+                                <h6 class="email">{{this.sessionService.get("email")}}</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <div class="row gutters">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                <h4 class="mb-2 mt-1" style="color:var(--main-accent-color)">Profile details</h4>
+                            </div>
+
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label for="username">Username: {{this.sessionService.get("username")}}</label>
+                                    <div *ngIf="this.isEditable">
+                                        <input type="text" class="form-control" id="username" placeholder="Username" ng-disabled="this.isEditable">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label for="email">Email:  {{this.sessionService.get("email")}}</label>
+                                    <div *ngIf="this.isEditable">
+                                        <input type="text" ng-disabled="this.isEditable" class="form-control" id="email" placeholder="Email">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label for="number">Phone number(Optional): {{this.sessionService.get("phone")}}</label>
+                                    <div *ngIf="this.isEditable">
+                                        <input type="text" ng-disabled="this.isEditable" class="form-control" id="gsm_number" placeholder="Telefon">
+                                        <p></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label for="wallet">My wallet: {{this.sessionService.get("wallet")}}</label>
+                                    <div *ngIf="this.isEditable">
+                                        <input type="text" class="form-control" id="gsm_number" placeholder="Value">
+                                        <p></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-6 mb-2 text-center" *ngIf="!this.isEditable">
+                                <p></p>
+                                <button (click)="editProfile()" class="btn" style="background-color:var(--main-accent-color);color:white; border:2px solid black">Edit</button>
+                            </div>
+                            <div *ngIf="this.isEditable">
+                                <div class="col-sm-12 mt-6 mb-2 text-center">
+                                    <button class="btn btn-danger btn-md">Cancel</button>&nbsp;
+                                    <button (click)="saveProfile()" class="btn btn-primary btn-md">Save</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

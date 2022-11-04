@@ -9,10 +9,18 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MainComponent } from './pages/main/main.component';
 import { HeaderComponent } from './components/header/header.component';
 import { ProfileComponent } from './pages/profile/profile.component';
-import { CardAnuncioComponent } from './card-anuncio/card-anuncio.component';
+import { InterceptorService } from './services/interceptor/interceptor.service';
+import {MatIconModule} from '@angular/material/icon';
+
+import {
+  HttpClientModule,
+  HttpClient,
+  HTTP_INTERCEPTORS,
+} from '@angular/common/http';
+import { CardAnuncioComponent } from './components/card-anuncio/card-anuncio.component';
 import { RegisterComponent } from './components/register/register.component';
 import { FormServiceComponent } from './components/form-service/form-service.component';
-import { HttpClientModule } from '@angular/common/http';
+import { ServiceDetailComponent } from './pages/service-detail/service-detail.component';
 
 @NgModule({
   declarations: [
@@ -24,11 +32,12 @@ import { HttpClientModule } from '@angular/common/http';
     CardAnuncioComponent,
     RegisterComponent,
     FormServiceComponent,
+    ServiceDetailComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-
+    MatIconModule,
     AppRoutingModule,
     FormsModule,
     NgbModule,

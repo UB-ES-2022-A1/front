@@ -1,21 +1,18 @@
-<div class="main-page">
-    <div class="search">
-        <form class="form d-flex flex-row">
-            <input type="text" placeholder="Search for service...">
-            <input type="submit" value="Search">
-        </form>
-    </div>
-    <img src="assets/main_background.png" style="width:95%;height:95%;" />
-    <div class="anuncio-wrapper d-flex flex-row gap-4 flex-wrap justify-content-center">
-      <app-card-anuncio *ngFor="let a of [0,1,2,3,4,5,6,7,8,9]" 
-      [title]="'Game design'" 
-      [description]="'Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias, ducimus iste ut omnis commodi eveniet'" 
-      [price]="50"></app-card-anuncio>
-      <app-card-anuncio *ngFor="let service of this.services"
-      [title]="service.title" 
-      [description]="service.description" 
-      [price]="service.price"></app-card-anuncio>
-    </div>
+<div class="main-page d-flex flex-column">
+  <img class="main-image" src="assets/img/6340.png"/>
 
-
+  <h2 class="subtitle">Top services</h2>
+  <div class="anuncio-wrapper d-flex flex-row gap-4 flex-wrap justify-content-center">
+   <!--  <app-card-anuncio *ngFor="let a of [0,1,2,3,4,5,6,7,8,9]" 
+    [title]="'Game design'" 
+    [description]="'Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias, ducimus iste ut omnis commodi eveniet'" 
+    [price]="50"></app-card-anuncio> -->
+    
+    <app-card-anuncio *ngFor="let service of this.services"
+    [id]="service.id"
+    [title]="service.title" 
+    [description]="service.description" 
+    [price]="service.price"></app-card-anuncio>
+  </div>
 </div>
+

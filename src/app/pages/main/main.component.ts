@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ServiceTO } from 'src/app/entities/ServiceTO';
 import { ServiceService } from 'src/app/services/service/service.service';
-
+import { ServiceDetailTO } from '../service-detail/service-detail.component';
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
@@ -8,6 +9,7 @@ import { ServiceService } from 'src/app/services/service/service.service';
 })
 export class MainComponent implements OnInit {
   services: ServiceTO[] = [];
+  searchText: string = '';
 
   constructor(private serviceService: ServiceService) { }
    
@@ -20,6 +22,7 @@ export class MainComponent implements OnInit {
       res.forEach((service: any) =>{
         let auxService: ServiceTO = 
         {
+          id: service.id,
           title: service.title, 
           description: service.description,
           price: service.price 
@@ -28,10 +31,11 @@ export class MainComponent implements OnInit {
       })
     })
   }
+
+  onSearchTextEntered(searchValue: string){
+    this.searchText = searchValue;
+    console.log(this.searchText)
+  }
 }
 
-export interface ServiceTO{
-  title: string;
-  description: string; 
-  price: number
-}
+
