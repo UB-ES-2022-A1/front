@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ServiceService } from 'src/app/services/service/service.service';
 import { ServiceTO } from 'src/app/entities/ServiceTO'
+import { ContractedServicesService } from 'src/app/services/contracted-services/contracted-services.service';
+import { SessionService } from 'src/app/services/session/session.service';
 export interface ServiceDetailTO{
   id: string; 
   
@@ -15,7 +17,8 @@ export class ServiceDetailComponent implements OnInit {
   serviceId: string = ''; 
   serviceInfo!: ServiceTO;  
   contractButton: boolean = false; 
-  constructor(public router: Router, private serviceService: ServiceService) { 
+  description: string = ''
+  constructor(public router: Router, private sessionService: SessionService,  private serviceService: ServiceService, private contractService: ContractedServicesService) { 
     this.serviceId = this.router.url.substring(
       this.router.url.lastIndexOf('/') + 1
     );
@@ -36,8 +39,10 @@ export class ServiceDetailComponent implements OnInit {
     
   }
 
-  openForm(){
-    this.contractButton = true; 
+  submitContact(){
+    this.contractService.postContract(this.serviceId, this.sessionService.get('email'), this.description).subscribe(res =>{
+      console.log(res); 
+    })
   }
 
 }
