@@ -14,7 +14,7 @@ export interface ServiceDetailTO{
 export class ServiceDetailComponent implements OnInit {
   serviceId: string = ''; 
   serviceInfo!: ServiceTO;  
-  
+  contractButton: boolean = false; 
   constructor(public router: Router, private serviceService: ServiceService) { 
     this.serviceId = this.router.url.substring(
       this.router.url.lastIndexOf('/') + 1
@@ -34,6 +34,10 @@ export class ServiceDetailComponent implements OnInit {
 
   ngOnInit(): void {
     
+  }
+
+  openForm(){
+    this.contractButton = true; 
   }
 
 }

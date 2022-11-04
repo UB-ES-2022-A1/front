@@ -10,6 +10,7 @@ import { MainComponent } from './pages/main/main.component';
 import { HeaderComponent } from './components/header/header.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { InterceptorService } from './services/interceptor/interceptor.service';
+import {MatIconModule} from '@angular/material/icon';
 
 import {
   HttpClientModule,
@@ -36,7 +37,7 @@ import { ServiceDetailComponent } from './pages/service-detail/service-detail.co
   imports: [
     BrowserModule,
     HttpClientModule,
-
+    MatIconModule,
     AppRoutingModule,
     FormsModule,
     NgbModule,
