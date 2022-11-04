@@ -16,7 +16,7 @@ import {
   HttpClient,
   HTTP_INTERCEPTORS,
 } from '@angular/common/http';
-import { CardAnuncioComponent } from './card-anuncio/card-anuncio.component';
+import { CardAnuncioComponent } from './components/card-anuncio/card-anuncio.component';
 import { RegisterComponent } from './components/register/register.component';
 import { FormServiceComponent } from './components/form-service/form-service.component';
 import { ServiceDetailComponent } from './pages/service-detail/service-detail.component';

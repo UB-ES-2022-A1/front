@@ -11,7 +11,10 @@ export class ServiceService {
 
   constructor(private http: HttpClient, private sessionService: SessionService) { }
 
-
+  getService(id: string): Observable<any>{
+    const url = this.baseUrl+'/'+id
+    return this.http.get(url);
+  }
   getServices(): Observable<any> {
     return this.http.get(this.baseUrl);
   }

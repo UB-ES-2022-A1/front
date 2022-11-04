@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ServiceTO } from 'src/app/entities/ServiceTO';
 import { ServiceService } from 'src/app/services/service/service.service';
-
+import { ServiceDetailTO } from '../service-detail/service-detail.component';
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
@@ -31,9 +32,4 @@ export class MainComponent implements OnInit {
   }
 }
 
-export interface ServiceTO{
-  id: number; 
-  title: string;
-  description: string; 
-  price: number
-}
+
