@@ -8,6 +8,7 @@
       [description]="'Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias, ducimus iste ut omnis commodi eveniet'" 
       [price]="50"></app-card-anuncio>
       <app-card-anuncio *ngFor="let service of this.services"
+      [id]="service.id"
       [title]="service.title" 
       [description]="service.description" 
       [price]="service.price"></app-card-anuncio>

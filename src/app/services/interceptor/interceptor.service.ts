@@ -26,10 +26,10 @@ export class InterceptorService implements HttpInterceptor {
   ): Observable<HttpEvent<any>> {
     this.totalRequests++;
    
-    /* RETURNS MOCKS */
+    /** RETURNS MOCKS */
       if (this.sessionService.get('token')!==null) {
       //Get Auth Token from Service which we want to pass thr service call
-      const tokenString = this.sessionService.get('token') +':'+ this.sessionService.get('email');
+      const tokenString = btoa(this.sessionService.get('token') +':'+ this.sessionService.get('email'));
       
       const authToken: any = `Basic ${tokenString}`
         
@@ -44,7 +44,7 @@ export class InterceptorService implements HttpInterceptor {
           }
         })
       );
-      /* ELSE */
+      /** ELSE */
     } else {
       return next.handle(req).pipe(
         // @ts-ignore
