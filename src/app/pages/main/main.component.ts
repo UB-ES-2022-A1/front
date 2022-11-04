@@ -9,6 +9,7 @@ import { ServiceDetailTO } from '../service-detail/service-detail.component';
 })
 export class MainComponent implements OnInit {
   services: ServiceTO[] = [];
+  searchText: string = '';
 
   constructor(private serviceService: ServiceService) { }
    
@@ -29,6 +30,11 @@ export class MainComponent implements OnInit {
         this.services.push(auxService); 
       })
     })
+  }
+
+  onSearchTextEntered(searchValue: string){
+    this.searchText = searchValue;
+    console.log(this.searchText)
   }
 }
 

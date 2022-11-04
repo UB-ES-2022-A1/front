@@ -12,6 +12,7 @@ import { LoginComponent } from '../login/login.component';
   styleUrls: ['./header.component.sass']
 })
 export class HeaderComponent implements OnInit {
+  enteredSearchValue: string = '';
 
   constructor(private modalService: NgbModal, protected loginService: LoginService, protected sessionService: SessionService, public router: Router) { }
 
@@ -24,7 +25,7 @@ export class HeaderComponent implements OnInit {
     const modalRef = this.modalService.open(FormServiceComponent,  { centered: true });
 
   }
-  
+
   sortPrice():void{
   }
 
@@ -40,5 +41,6 @@ export class HeaderComponent implements OnInit {
   logout(){
     this.loginService.logout(); 
     window.location.reload(); 
+
   }
 }
