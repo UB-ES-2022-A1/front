@@ -27,6 +27,8 @@ export class LoginService {
     } else {
       return false;
     }
-
+  }
+  logout() {
+    this.sessionService.clear();
   }
 }
