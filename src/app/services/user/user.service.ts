@@ -31,5 +31,16 @@ export class UserService {
     };
       return this.http.post(url, body);
     }
+
+  putUser(name: string, email: string, phone: number): Observable<any> {
+    const url = this.baseUrl+'/'+email
+      
+    const body: any = {
+      name: name,
+      email: email,
+      phone: phone
+    };
+        return this.http.post(url, body);
+      }
   }
 
