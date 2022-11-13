@@ -1,4 +1,5 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { LoginService } from 'src/app/services/login/login.service';
 import { SessionService } from 'src/app/services/session/session.service';
@@ -13,7 +14,7 @@ import { LoginComponent } from '../login/login.component';
 export class HeaderComponent implements OnInit {
   enteredSearchValue: string = '';
 
-  constructor(private modalService: NgbModal, protected loginService: LoginService, protected sessionService: SessionService) { }
+  constructor(private modalService: NgbModal, protected loginService: LoginService, protected sessionService: SessionService, public router: Router) { }
 
   ngOnInit(): void {
   }
@@ -31,7 +32,15 @@ export class HeaderComponent implements OnInit {
   @Output()
   searchTextChanged: EventEmitter<string> = new EventEmitter<string>();
 
-  onSearchTextChanged(){
+  /* onSearchTextChanged(){
     this.searchTextChanged.emit(this.enteredSearchValue)
+  } */
+  goHome(){
+    this.router.navigate([`/`]);
+  }
+  logout(){
+    this.loginService.logout(); 
+    window.location.reload(); 
+
   }
 }

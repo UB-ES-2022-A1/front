@@ -44,5 +44,5 @@ export class ServiceDetailComponent implements OnInit {
       console.log(res); 
     })
   }
-
+  
 }
