@@ -8,8 +8,8 @@ import {
 import { catchError, finalize } from 'rxjs/operators';
 import { Observable, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { SessionService } from '../session/session.service'; 
-import { LoginService } from '../login/login.service'; 
+import { SessionService } from '../session/session.service';
+import { LoginService } from '../login/login.service';
 
 @Injectable()
 export class InterceptorService implements HttpInterceptor {
@@ -17,7 +17,7 @@ export class InterceptorService implements HttpInterceptor {
 
   constructor(
     private sessionService: SessionService,
-    private loginService: LoginService,
+    private loginService: LoginService
   ) {}
 
   intercept(
@@ -25,16 +25,19 @@ export class InterceptorService implements HttpInterceptor {
     next: { handle: any }
   ): Observable<HttpEvent<any>> {
     this.totalRequests++;
-   
+
     /** RETURNS MOCKS */
-      if (this.sessionService.get('token')!==null) {
+    if (this.sessionService.get('token') !== null) {
       //Get Auth Token from Service which we want to pass thr service call
-      const tokenString = btoa(this.sessionService.get('token') +':'+ this.sessionService.get('email'));
-      
-      const authToken: any = `Basic ${tokenString}`
-        
-      const authReq = req.clone({ setHeaders: { Authorization: authToken }});
-      console.log(authReq)
+      const tokenString = btoa(
+        this.sessionService.get('token') +
+          ':' +
+          this.sessionService.get('email')
+      );
+
+      const authToken: any = `Basic ${tokenString}`;
+
+      const authReq = req.clone({ setHeaders: { Authorization: authToken } });
       return next.handle(authReq).pipe(
         // @ts-ignore
         catchError((error) => this.handleError(error)),
@@ -81,8 +84,4 @@ export class InterceptorService implements HttpInterceptor {
       return throwError(errorMessage);
     }
   }
-
-  
-
-  
 }
