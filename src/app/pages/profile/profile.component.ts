@@ -4,6 +4,9 @@ import { SessionService } from 'src/app/services/session/session.service';
 import { FormServiceComponent } from 'src/app/components/form-service/form-service.component';
 import { UserService } from 'src/app/services/user/user.service';
 import { formatCurrency } from '@angular/common';
+import { ServiceTO } from 'src/app/entities/ServiceTO';
+import { ServiceService } from 'src/app/services/service/service.service';
+import { ContractedServicesService } from 'src/app/services/contracted-services/contracted-services.service';
 
 @Component({
   selector: 'app-profile',
@@ -19,9 +22,13 @@ export class ProfileComponent implements OnInit {
   }
   newName: string = '';
   newPhone: any = null;
+  offers: ServiceTO[] = [];
+  contracts: ServiceTO[] = [];
 
 
-  constructor(private modalService: NgbModal, protected sessionService: SessionService, private userService: UserService) { }
+
+
+  constructor(private modalService: NgbModal, protected sessionService: SessionService, private userService: UserService,private serviceService: ServiceService, private contractedService: ContractedServicesService) { }
   ngOnInit(): void {
     this.userService.getUser(this.sessionService.get('email')).subscribe((data: any) =>{
       this.user.username = data.name
@@ -48,6 +55,36 @@ export class ProfileComponent implements OnInit {
     this.userService.putUser(this.newName,this.user.email,this.newPhone).subscribe(res =>{
       console.log(res); 
       //this.sessionService.set('username', this.user.username);
+    })
+  }
+
+  loadOffers(): void {
+    this.serviceService.getUserServices(this.user.email).subscribe(res => {
+      res.forEach((service: any) =>{
+        let auxService: ServiceTO = 
+        {
+          id: service.id,
+          title: service.title, 
+          description: service.description,
+          price: service.price 
+        }
+        this.offers.push(auxService); 
+      })
+    })
+  }
+
+  loadContracts(): void {
+    this.contractedService.getUserContract(this.user.email).subscribe(res => {
+      res.forEach((service: any) =>{
+        let auxService: ServiceTO = 
+        {
+          id: service.id,
+          title: service.title, 
+          description: service.description,
+          price: service.price 
+        }
+        this.contracts.push(auxService); 
+      })
     })
   }
 }

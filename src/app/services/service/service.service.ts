@@ -34,5 +34,15 @@ export class ServiceService {
     };
       return this.http.post(this.baseUrl, body, {headers});
     }
+
+    getUserServices(email: string): Observable<any> {
+      const tokenString = btoa(this.sessionService.get('token') +':'+ this.sessionService.get('email'));
+      const authToken: any = `Basic ${tokenString}`
+      let headers =  new HttpHeaders({
+        Authorization: authToken
+      })  
+      const url = this.baseUrl+'/'+email+'/service'
+      return this.http.get(this.baseUrl,{headers})
+    }
   }
 
