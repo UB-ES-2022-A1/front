@@ -1,18 +1,13 @@
 <div class="main-page d-flex flex-column">
-  <img class="main-image" src="assets/img/6340.png"/>
+    <img class="main-image" src="assets/img/6340.png" />
 
-  <h2 class="subtitle">Top services</h2>
-  <div class="anuncio-wrapper d-flex flex-row gap-4 flex-wrap justify-content-center">
-   <!--  <app-card-anuncio *ngFor="let a of [0,1,2,3,4,5,6,7,8,9]" 
+    <h2 class="subtitle">Top services</h2>
+    <div class="anuncio-wrapper d-flex flex-row gap-4 flex-wrap justify-content-center">
+        <!--  <app-card-anuncio *ngFor="let a of [0,1,2,3,4,5,6,7,8,9]" 
     [title]="'Game design'" 
     [description]="'Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias, ducimus iste ut omnis commodi eveniet'" 
     [price]="50"></app-card-anuncio> -->
-    
-    <app-card-anuncio *ngFor="let service of this.services"
-    [id]="service.id"
-    [title]="service.title" 
-    [description]="service.description" 
-    [price]="service.price"></app-card-anuncio>
-  </div>
-</div>
 
+        <app-card-anuncio *ngFor="let service of this.services" [id]="service.id" [title]="service.title" [description]="service.description" [price]="service.price"></app-card-anuncio>
+    </div>
+</div>

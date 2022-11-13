@@ -28,47 +28,54 @@
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                 <div class="form-group">
                                     <label for="username">Username: {{this.sessionService.get("username")}}</label>
-                                    <div *ngIf="this.isEditable">
-                                        <input type="text" class="form-control" id="username" placeholder="Username" ng-disabled="this.isEditable">
-                                    </div>
+                                    <input [(ngModel)]="this.newName" type="text" class="form-control" id="username" placeholder="Username" [disabled]="!this.isEditable">
                                 </div>
                             </div>
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                 <div class="form-group">
                                     <label for="email">Email:  {{this.sessionService.get("email")}}</label>
-                                    <div *ngIf="this.isEditable">
-                                        <input type="text" ng-disabled="this.isEditable" class="form-control" id="email" placeholder="Email">
-                                    </div>
+                                    <input type="text" [disabled]=true class="form-control" id="email" placeholder="Email">
                                 </div>
                             </div>
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                 <div class="form-group">
                                     <label for="number">Phone number(Optional): {{this.sessionService.get("phone")}}</label>
-                                    <div *ngIf="this.isEditable">
-                                        <input type="text" ng-disabled="this.isEditable" class="form-control" id="gsm_number" placeholder="Telefon">
-                                        <p></p>
-                                    </div>
+                                    <input [(ngModel)]="this.newPhone" type="text" [disabled]="!this.isEditable" class="form-control" id="gsm_number" placeholder="Phone">
+                                    <p></p>
                                 </div>
                             </div>
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                 <div class="form-group">
                                     <label for="wallet">My wallet: {{this.sessionService.get("wallet")}}</label>
-                                    <div *ngIf="this.isEditable">
-                                        <input type="text" class="form-control" id="gsm_number" placeholder="Value">
-                                        <p></p>
-                                    </div>
+                                    <input type="text" [disabled]=true class="form-control" id="wallet" placeholder="Value">
                                 </div>
                             </div>
                             <div class="mt-6 mb-2 text-center" *ngIf="!this.isEditable">
                                 <p></p>
-                                <button (click)="editProfile()" class="btn" style="background-color:var(--main-accent-color);color:white; border:2px solid black">Edit</button>
+                                <button (click)="enableEdit()" class="btn" style="background-color:var(--main-accent-color);color:white; border:2px solid black">Edit</button>
                             </div>
                             <div *ngIf="this.isEditable">
                                 <div class="col-sm-12 mt-6 mb-2 text-center">
-                                    <button class="btn btn-danger btn-md">Cancel</button>&nbsp;
+                                    <button (click)="clearEdit()" class="btn btn-danger btn-md">Cancel</button>&nbsp;
                                     <button (click)="saveProfile()" class="btn btn-primary btn-md">Save</button>
                                 </div>
                             </div>
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                <h4 class="mb-3 mt-1" style="color:var(--main-accent-color)">My offers</h4>
+                            </div>
+                            <div class="anuncio-wrapper d-flex flex-row gap-4 flex-wrap justify-content-center">
+                                <app-card-anuncio *ngFor="let a of [0,1,2,3]" [title]="'Game design'" [description]="'Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias, ducimus iste ut omnis commodi eveniet'" [price]="50"></app-card-anuncio>
+                                <app-card-anuncio *ngFor="let service of this.offers" [id]="service.id" [title]="service.title" [description]="service.description" [price]="service.price"></app-card-anuncio>
+                            </div>
+
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                <h4 class="mb-3 mt-5" style="color:var(--main-accent-color)">My contracts</h4>
+                            </div>
+                            <div class="anuncio-wrapper d-flex flex-row gap-4 flex-wrap justify-content-center">
+                                <app-card-anuncio *ngFor="let a of [0,1,2,3]" [title]="'Game design'" [description]="'Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias, ducimus iste ut omnis commodi eveniet'" [price]="50"></app-card-anuncio>
+                                <app-card-anuncio *ngFor="let service of this.contracts" [id]="service.id" [title]="service.title" [description]="service.description" [price]="service.price"></app-card-anuncio>
+                            </div>
+
                         </div>
                     </div>
                 </div>
