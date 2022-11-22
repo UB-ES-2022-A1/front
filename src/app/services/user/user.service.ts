@@ -40,7 +40,7 @@ export class UserService {
       email: email,
       phone: phone
     };
-        return this.http.post(url, body);
+        return this.http.put(url, body);
       }
   }
 

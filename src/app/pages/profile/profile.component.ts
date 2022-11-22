@@ -26,8 +26,6 @@ export class ProfileComponent implements OnInit {
   contracts: ServiceTO[] = [];
 
 
-
-
   constructor(private modalService: NgbModal, protected sessionService: SessionService, private userService: UserService,private serviceService: ServiceService, private contractedService: ContractedServicesService) { }
   ngOnInit(): void {
     this.userService.getUser(this.sessionService.get('email')).subscribe((data: any) =>{
@@ -54,12 +52,14 @@ export class ProfileComponent implements OnInit {
   saveProfile() {
     this.userService.putUser(this.newName,this.user.email,this.newPhone).subscribe(res =>{
       console.log(res); 
+      console.log('saveprofile'); 
       //this.sessionService.set('username', this.user.username);
     })
   }
 
   loadOffers(): void {
     this.serviceService.getUserServices(this.user.email).subscribe(res => {
+      console.log('loading'); 
       res.forEach((service: any) =>{
         let auxService: ServiceTO = 
         {

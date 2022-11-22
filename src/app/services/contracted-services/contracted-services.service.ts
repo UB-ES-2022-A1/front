@@ -27,12 +27,14 @@ export class ContractedServicesService {
     }
 
   getUserContract(email: string): Observable<any> {
+    console.log('Contracts')
     const tokenString = btoa(this.sessionService.get('token') +':'+ this.sessionService.get('email'));
+
     const authToken: any = `Basic ${tokenString}`
     let headers =  new HttpHeaders({
       Authorization: authToken
     })  
-    const url = this.baseUrl+'/'+email+'/contracted_services'
-    return this.http.get(this.baseUrl)
+    const url = this.baseUrl+'/'+email+'/contracted_service'
+    return this.http.get(url, {headers})
   }
   }
