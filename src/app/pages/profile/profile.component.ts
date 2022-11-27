@@ -58,13 +58,11 @@ export class ProfileComponent implements OnInit {
   }
 
   saveProfile() {
-    this.userService
-      .putUser(this.newName, this.user.email, this.newPhone)
-      .subscribe((res) => {
-        console.log(res);
-        console.log('saveprofile');
-        //this.sessionService.set('username', this.user.username);
-      });
+    this.userService.putUser(this.newName,this.user.email,this.newPhone).subscribe(res =>{
+      console.log(res); 
+      console.log('saveprofile'); 
+      this.sessionService.set("username", this.newName);
+    })
   }
 
   loadOffers(): void {
