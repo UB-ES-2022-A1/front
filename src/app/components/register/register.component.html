@@ -1,11 +1,45 @@
-<form class="login-form">
-    <input [(ngModel)]="this.userLogin.username" class="std-input" name="username" type="text" placeholder="Username" />
-    <input [(ngModel)]="this.userLogin.email" class="std-input" name="email" type="text" placeholder="Email" />
-    <input [(ngModel)]="this.userLogin.password" class="std-input" name="password" type="password" placeholder="Password" />
-    <input [(ngModel)]="this.userLogin.confirmPassword" class="std-input" name="password" type="password" placeholder="Repeat password" />
-    <em *ngIf="this.error" class="error">There was an error</em>
+<form class="modal-form">
+  <div class="input-container">
+    <input
+      [(ngModel)]="this.userLogin.username"
+      class="std-input"
+      name="username"
+      type="text"
+      placeholder="Username"
+    />
+  </div>
 
-    <button (click)="postUser()" class="login-btn">Register</button>
+  <div class="input-container">
+    <input
+      [(ngModel)]="this.userLogin.email"
+      class="std-input"
+      name="email"
+      type="text"
+      placeholder="Email"
+    />
+  </div>
 
-    <em>Already have an account? <a href="#" (click)="openLogin()">Login now!</a></em>
+  <div class="input-container">
+    <input
+      [(ngModel)]="this.userLogin.password"
+      class="std-input"
+      name="password"
+      type="password"
+      placeholder="Password"
+    />
+  </div>
+
+  <div class="input-container">
+    <input
+      [(ngModel)]="this.userLogin.confirmPassword"
+      class="std-input"
+      name="password"
+      type="password"
+      placeholder="Repeat password"
+    />
+  </div>
+
+  <em *ngIf="this.error" class="error">There was an error</em>
+
+  <button (click)="postUser()" class="button button--primary">Register</button>
 </form>

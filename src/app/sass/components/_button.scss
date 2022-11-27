@@ -1,0 +1,38 @@
+.button {
+  text-transform: uppercase;
+  transition: all ease 0.3s;
+  outline: none !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  border-width: 2px;
+  padding: 0 12px;
+  cursor: pointer;
+  height: 50px;
+
+  &--primary {
+    background-color: var(--color-accent);
+    border-color: var(--color-accent);
+    color: var(--color-white);
+    &__sm {
+      width: 50px;
+    }
+    &:hover {
+      background-color: var(--color-white);
+      border-color: var(--color-black);
+      color: var(--color-accent);
+    }
+  }
+
+  &--icon {
+    transition: all ease 0.3s;
+    color: var(--color-white);
+    min-width: unset;
+    cursor: pointer;
+
+    &:hover {
+      color: var(--color-white);
+    }
+  }
+}

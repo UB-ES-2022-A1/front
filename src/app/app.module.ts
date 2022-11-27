@@ -9,8 +9,11 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MainComponent } from './pages/main/main.component';
 import { HeaderComponent } from './components/header/header.component';
 import { ProfileComponent } from './pages/profile/profile.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+
 import { InterceptorService } from './services/interceptor/interceptor.service';
-import {MatIconModule} from '@angular/material/icon';
+import { MatIconModule } from '@angular/material/icon';
 
 import {
   HttpClientModule,
@@ -41,9 +44,10 @@ import { ServiceDetailComponent } from './pages/service-detail/service-detail.co
     AppRoutingModule,
     FormsModule,
     NgbModule,
-
+    MatFormFieldModule,
+    MatInputModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

@@ -1,0 +1,15 @@
+.area-input {
+  display: flex;
+  justify-content: start;
+  align-items: start;
+  height: 4em;
+  border-radius: 10px;
+  padding: 5px 10px;
+  border: 1px solid #969696;
+  height: 120px;
+  text-align: start;
+
+  &:focus {
+    border: 1px solid #000000;
+  }
+}
