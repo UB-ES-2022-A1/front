@@ -24,6 +24,7 @@ import { CardAnuncioComponent } from './components/card-anuncio/card-anuncio.com
 import { RegisterComponent } from './components/register/register.component';
 import { FormServiceComponent } from './components/form-service/form-service.component';
 import { ServiceDetailComponent } from './pages/service-detail/service-detail.component';
+import { SpinnerComponent } from './components/spinner/spinner.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { ServiceDetailComponent } from './pages/service-detail/service-detail.co
     RegisterComponent,
     FormServiceComponent,
     ServiceDetailComponent,
+    SpinnerComponent,
   ],
   imports: [
     BrowserModule,
@@ -47,7 +49,9 @@ import { ServiceDetailComponent } from './pages/service-detail/service-detail.co
     MatFormFieldModule,
     MatInputModule,
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
