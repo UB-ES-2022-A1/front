@@ -19,7 +19,7 @@
   </div>
 
   <div class="forgot-wrapper d-flex flex-row justify-content-between">
-    <a class="forgot" href="/login">Forgot password</a>
+    <a class="forgot" (click)="forgot()">Forgot password</a>
     <em *ngIf="this.error" class="error"
       >Your name or password are incorrect.</em
     >

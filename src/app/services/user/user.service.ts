@@ -5,67 +5,88 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { SessionService } from '../session/session.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UserService {
-  baseUrl: string = environment.backurl +'users'
+  baseUrl: string = environment.backurl + 'users';
 
-  constructor(private http: HttpClient, private sessionService: SessionService) { }
-
+  constructor(
+    private http: HttpClient,
+    private sessionService: SessionService
+  ) {}
 
   getUsers(): Observable<any> {
-    const url = this.baseUrl
+    const url = this.baseUrl;
     return this.http.get(url);
   }
 
   getUser(email: string): Observable<any> {
-    const url = this.baseUrl+'/'+email
+    const url = this.baseUrl + '/' + email;
     return this.http.get(url);
   }
 
   postUser(name: string, email: string, pwd: string): Observable<any> {
-    const url = this.baseUrl
-    
+    const url = this.baseUrl;
+
     const body: any = {
       name: name,
       email: email,
-      pwd: pwd
+      pwd: pwd,
     };
-      return this.http.post(url, body);
-    }
+    return this.http.post(url, body);
+  }
+  sendRecoveryMail(email: string) {
+    const url = this.baseUrl + '/forget_pwd/' + email;
+    const body: any = {
+      email: email,
+    };
+    return this.http.post(url, body);
+  }
+  resetPwd(token: string, newPwd: string) {
+    const url = this.baseUrl + '/reset_pwd';
+    const tokenString = btoa(token + ':' + 'aaaa@gmail.com');
+    const authToken: any = `Basic ${tokenString}`;
+    console.log(authToken);
+    let body: any = {
+      pwd: newPwd,
+    };
 
+    let headers = new HttpHeaders({
+      Authorization: authToken,
+    });
+
+    return this.http.post(url, body, { headers });
+  }
   putUser(name: string, email: string, phone: number): Observable<any> {
-    const url = this.baseUrl+'/'+email
-    
-    const tokenString = btoa(this.sessionService.get('token') +':'+ this.sessionService.get('email'));
-    const authToken: any = `Basic ${tokenString}`
-    console.log(authToken)
+    const url = this.baseUrl + '/' + email;
+
+    const tokenString = btoa(
+      this.sessionService.get('token') + ':' + this.sessionService.get('email')
+    );
+    const authToken: any = `Basic ${tokenString}`;
+    console.log(authToken);
     let body: any = {};
 
+    let headers = new HttpHeaders({
+      Authorization: authToken,
+    });
 
-    let headers =  new HttpHeaders({
-      Authorization: authToken
-    })
-    
     if (name) {
       body = {
-        name: name
+        name: name,
       };
-    }
-    else if (phone) {
+    } else if (phone) {
       body = {
-        phone: phone
+        phone: phone,
       };
-    }
-    else{
+    } else {
       body = {
         name: name,
-        phone: phone
+        phone: phone,
       };
     }
-    console.log(body)
-    
-    return this.http.put(url,body, {headers});
-    }
-  }
+    console.log(body);
 
+    return this.http.put(url, body, { headers });
+  }
+}

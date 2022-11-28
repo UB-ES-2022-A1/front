@@ -50,6 +50,13 @@ export class LoginComponent implements OnInit {
         }
       );
   }
+  forgot() {
+    this.userService
+      .sendRecoveryMail(this.userLogin.username)
+      .subscribe((data) => {
+        console.log(data);
+      });
+  }
 }
 export interface UserLogin {
   username: string;
