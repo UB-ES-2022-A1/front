@@ -26,16 +26,13 @@ export class ServiceService {
     sort?: any,
     filters?: any
   ): Observable<any> {
-    let params = new HttpParams().append('search_text', search);
+    const url = this.baseUrl + '/search';
 
-    if (sort != null) {
-      params.set('sort', sort);
-    }
-    if (filters != null) {
-      params.set('filters', filters);
-    }
+    let body = {
+      search_text: search,
+    };
     console.log(search);
-    return this.http.get(this.baseUrl, { params });
+    return this.http.post(this.baseUrl, body);
   }
 
   postService(
