@@ -1,8 +1,23 @@
-<div class="service-form">
-  <input [(ngModel)]="this.title" class="std-input" name="title" type="text" placeholder="Title" />
-  <input [(ngModel)]="this.description" class="std-input" placeholder="Description"/>
-  <input [(ngModel)]="this.price" class="std-input" placeholder="Price"/>
+<div class="modal-form">
+  <div class="input-container">
+    <input
+      [(ngModel)]="this.title"
+      class="std-input"
+      name="title"
+      type="text"
+      placeholder="Title"
+    />
+  </div>
+  <div class="input-container">
+    <input
+      [(ngModel)]="this.description"
+      class="std-input"
+      placeholder="Description"
+    />
+  </div>
+  <div class="input-container">
+    <input [(ngModel)]="this.price" class="std-input" placeholder="Price" />
+  </div>
 
-  <button (click)="onSubmit()" class="service-btn">Submit</button>
-
+  <button (click)="onSubmit()" class="button button--primary">Submit</button>
 </div>

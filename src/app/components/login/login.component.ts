@@ -8,40 +8,50 @@ import { RegisterComponent } from '../register/register.component';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.sass']
 })
 export class LoginComponent implements OnInit {
-  error = false; 
+  error = false;
   userLogin: UserLogin = {
     username: '',
-    password: ''
-  } 
+    password: '',
+  };
 
-  constructor(private modalService: NgbModal, private loginService: LoginService, private sessionService: SessionService, private userService: UserService) { }
+  constructor(
+    private modalService: NgbModal,
+    private loginService: LoginService,
+    private sessionService: SessionService,
+    private userService: UserService
+  ) {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
   openRegister() {
-    const modalRef = this.modalService.open(RegisterComponent,  { centered: true });
+    const modalRef = this.modalService.open(RegisterComponent, {
+      centered: true,
+    });
   }
 
-   checkLogin(){
-    this.loginService.login(this.userLogin.username, this.userLogin.password).subscribe((data: any) => {
-      this.sessionService.set('email', this.userLogin.username);
-      this.sessionService.set('token', data.token);
-      this.userService.getUser(this.userLogin.username).subscribe(data => {
-        this.sessionService.set('username', data.name);
-      })
-      this.modalService.dismissAll(); 
-    },
-    ((error: any) =>{
-      this.error=true; 
-      console.error('error caught in component')
-    }));
-  } 
-
+  checkLogin() {
+    this.loginService
+      .login(this.userLogin.username, this.userLogin.password)
+      .subscribe(
+        (data: any) => {
+          this.sessionService.set('email', this.userLogin.username);
+          this.sessionService.set('token', data.token);
+          this.userService
+            .getUser(this.userLogin.username)
+            .subscribe((data) => {
+              this.sessionService.set('username', data.name);
+            });
+          this.modalService.dismissAll();
+        },
+        (error: any) => {
+          this.error = true;
+          console.error('error caught in component');
+        }
+      );
+  }
 }
-export interface UserLogin{
+export interface UserLogin {
   username: string;
   password: string;
 }
