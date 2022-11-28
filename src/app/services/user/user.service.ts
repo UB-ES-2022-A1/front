@@ -1,14 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { SessionService } from '../session/session.service';
+
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
   baseUrl: string = environment.backurl +'users'
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private sessionService: SessionService) { }
 
 
   getUsers(): Observable<any> {
@@ -34,13 +36,36 @@ export class UserService {
 
   putUser(name: string, email: string, phone: number): Observable<any> {
     const url = this.baseUrl+'/'+email
-      
-    const body: any = {
-      name: name,
-      email: email,
-      phone: phone
-    };
-        return this.http.post(url, body);
-      }
+    
+    const tokenString = btoa(this.sessionService.get('token') +':'+ this.sessionService.get('email'));
+    const authToken: any = `Basic ${tokenString}`
+    console.log(authToken)
+    let body: any = {};
+
+
+    let headers =  new HttpHeaders({
+      Authorization: authToken
+    })
+    
+    if (name) {
+      body = {
+        name: name
+      };
+    }
+    else if (phone) {
+      body = {
+        phone: phone
+      };
+    }
+    else{
+      body = {
+        name: name,
+        phone: phone
+      };
+    }
+    console.log(body)
+    
+    return this.http.put(url,body, {headers});
+    }
   }
 

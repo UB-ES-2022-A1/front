@@ -10,6 +10,7 @@ import { Observable, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { SessionService } from '../session/session.service';
 import { LoginService } from '../login/login.service';
+import { LoaderService } from '../loader/loader.service';
 
 @Injectable()
 export class InterceptorService implements HttpInterceptor {
@@ -17,7 +18,7 @@ export class InterceptorService implements HttpInterceptor {
 
   constructor(
     private sessionService: SessionService,
-    private loginService: LoginService
+    private loadingService: LoaderService
   ) {}
 
   intercept(
@@ -25,7 +26,8 @@ export class InterceptorService implements HttpInterceptor {
     next: { handle: any }
   ): Observable<HttpEvent<any>> {
     this.totalRequests++;
-
+    this.loadingService.setLoading(true);
+    console.log(this.loadingService.getLoading());
     /** RETURNS MOCKS */
     if (this.sessionService.get('token') !== null) {
       //Get Auth Token from Service which we want to pass thr service call
@@ -38,12 +40,14 @@ export class InterceptorService implements HttpInterceptor {
       const authToken: any = `Basic ${tokenString}`;
 
       const authReq = req.clone({ setHeaders: { Authorization: authToken } });
+      console.log(authReq);
       return next.handle(authReq).pipe(
         // @ts-ignore
         catchError((error) => this.handleError(error)),
         finalize(() => {
           this.totalRequests--;
           if (this.totalRequests == 0) {
+            this.loadingService.setLoading(false);
           }
         })
       );
@@ -81,7 +85,7 @@ export class InterceptorService implements HttpInterceptor {
         errorMessage = error.message;
       }
       // return an observable with a user-facing error message
-      return throwError(errorMessage);
+      return new Error(errorMessage);
     }
   }
 }

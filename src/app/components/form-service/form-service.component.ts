@@ -5,7 +5,6 @@ import { ServiceService } from 'src/app/services/service/service.service';
 @Component({
   selector: 'app-form-service',
   templateUrl: './form-service.component.html',
-  styleUrls: ['./form-service.component.sass'],
 })
 export class FormServiceComponent implements OnInit {
   title: string = '';
@@ -21,9 +20,7 @@ export class FormServiceComponent implements OnInit {
   onSubmit() {
     this.serviceService
       .postService(this.title, this.description, this.price, 'prueba@gmail.com')
-      .subscribe((res) => {
-        console.log(res);
-      });
+      .subscribe((res) => {});
     this.modalService.dismissAll();
   }
 }

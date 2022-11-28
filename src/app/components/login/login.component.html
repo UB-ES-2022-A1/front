@@ -1,11 +1,33 @@
-<div class="login-form">
-    <input [(ngModel)]="this.userLogin.username" class="std-input" name="username" type="text" placeholder="Email" />
-    <input [(ngModel)]="userLogin.password" class="std-input" name="password" type="password" placeholder="Password" />
-    <div class="forgot-wrapper d-flex flex-row justify-content-between">
-        <a class="forgot" href="/login">Forgot password</a>
-        <em *ngIf="this.error" class="error">Your name or password are incorrect.</em>
-    </div>
-    <button (click)="checkLogin()" class="login-btn">Proceed</button>
-
-    <em>You don't have an account? <a href="#" (click)="openRegister()">Sign Up!</a></em>
+<div class="modal-form">
+  <div class="input-container">
+    <input
+      [(ngModel)]="this.userLogin.username"
+      class="std-input"
+      name="username"
+      type="text"
+      placeholder="Email"
+    />
   </div>
+  <div class="input-container">
+    <input
+      [(ngModel)]="userLogin.password"
+      class="std-input"
+      name="password"
+      type="password"
+      placeholder="Password"
+    />
+  </div>
+
+  <div class="forgot-wrapper d-flex flex-row justify-content-between">
+    <a class="forgot" href="/login">Forgot password</a>
+    <em *ngIf="this.error" class="error"
+      >Your name or password are incorrect.</em
+    >
+  </div>
+  <button (click)="checkLogin()" class="button button--primary">Proceed</button>
+
+  <em
+    >You don't have an account?
+    <a href="#" (click)="openRegister()">Sign Up!</a></em
+  >
+</div>
