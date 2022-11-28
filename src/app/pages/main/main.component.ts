@@ -20,8 +20,18 @@ export class MainComponent implements OnInit {
     this.loadServices();
     this.searchBarService.currentSearch.subscribe((search) => {
       this.search = search;
+      console.log(search);
       this.serviceService.getServicesFilt(this.search).subscribe((data) => {
-        console.log(data);
+        this.services = [];
+        data.forEach((service: any) => {
+          let auxService: ServiceTO = {
+            id: service.id,
+            title: service.title,
+            description: service.description,
+            price: service.price,
+          };
+          this.services.push(auxService);
+        });
       });
     });
   }

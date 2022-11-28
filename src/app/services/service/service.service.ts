@@ -31,8 +31,7 @@ export class ServiceService {
     let body = {
       search_text: search,
     };
-    console.log(search);
-    return this.http.post(this.baseUrl, body);
+    return this.http.post(url, body);
   }
 
   postService(

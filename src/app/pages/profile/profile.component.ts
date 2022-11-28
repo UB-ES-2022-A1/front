@@ -58,16 +58,15 @@ export class ProfileComponent implements OnInit {
   }
 
   saveProfile() {
-    this.userService.putUser(this.newName,this.user.email,this.newPhone).subscribe(res =>{
-      console.log(res); 
-      console.log('saveprofile'); 
-      this.sessionService.set("username", this.newName);
-    })
+    this.userService
+      .putUser(this.newName, this.user.email, this.newPhone)
+      .subscribe((res) => {
+        this.sessionService.set('username', this.newName);
+      });
   }
 
   loadOffers(): void {
     this.serviceService.getUserServices(this.user.email).subscribe((res) => {
-      console.log('loading');
       res.forEach((service: any) => {
         let auxService: ServiceTO = {
           id: service.id,

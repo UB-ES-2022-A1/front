@@ -39,7 +39,7 @@ export class HeaderComponent implements OnInit {
   sortPrice(): void {}
 
   onSearch() {
-    this.data.changeSearch(this.search);
+    this.data.changeSearch(this.enteredSearchValue);
   }
   goHome() {
     this.router.navigate([`/`]);

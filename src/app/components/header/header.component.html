@@ -1,5 +1,4 @@
 <header class="header">
-  >>>>>>> development
   <h1
     (click)="goHome()"
     class="logo col-3 d-flex flex-row justify-content-center web-name"
@@ -18,7 +17,10 @@
       />
     </div>
 
-    <button class="button button--primary button--primary__sm">
+    <button
+      class="button button--primary button--primary__sm"
+      (click)="onSearch()"
+    >
       <mat-icon>search</mat-icon>
     </button>
     <button class="button button--primary" (click)="sortPrice()">
