@@ -38,7 +38,6 @@ export class InterceptorService implements HttpInterceptor {
           this.sessionService.get('email')
       );
 
-
       const authToken: any = `Basic ${tokenString}`;
 
       const authReq = req.clone({ setHeaders: { Authorization: authToken } });

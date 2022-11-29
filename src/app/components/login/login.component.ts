@@ -4,6 +4,7 @@ import { ForgotModalComponent } from 'src/app/components/forgot-modal/forgot-mod
 import { LoginService } from 'src/app/services/login/login.service';
 import { SessionService } from 'src/app/services/session/session.service';
 import { UserService } from 'src/app/services/user/user.service';
+import { UtilsService } from 'src/app/services/utils/utils.service';
 import { RegisterComponent } from '../register/register.component';
 
 @Component({
@@ -21,7 +22,8 @@ export class LoginComponent implements OnInit {
     private modalService: NgbModal,
     private loginService: LoginService,
     private sessionService: SessionService,
-    private userService: UserService
+    private userService: UserService,
+    private utils: UtilsService
   ) {}
 
   ngOnInit(): void {}
@@ -44,6 +46,7 @@ export class LoginComponent implements OnInit {
               this.sessionService.set('username', data.name);
             });
           this.modalService.dismissAll();
+          this.utils.openSnackBar('Successful login!', '', 0);
         },
         (error: any) => {
           this.error = true;

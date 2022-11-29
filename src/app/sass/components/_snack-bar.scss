@@ -1,0 +1,31 @@
+.mat-snack-bar-container {
+  z-index: -9999;
+  background-color: var(--color-white);
+  border-radius: 8px;
+  color: var(--color-black);
+  button {
+    color: var(--color-accent);
+  }
+}
+.custom-error-snackbar {
+  color: var(--color-white);
+  background-color: var(--color-negative);
+  button {
+    color: var(--color-white);
+  }
+}
+.custom-warning-snackbar {
+  color: var(--color-white);
+  background-color: var(--color-caution);
+  button {
+    color: var(--color-white);
+  }
+}
+
+.custom-success-snackbar {
+  color: var(--color-white);
+  background-color: var(--color-positive);
+  button {
+    color: var(--color-white);
+  }
+}
