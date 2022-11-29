@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ServiceTO } from 'src/app/entities/ServiceTO';
+import { SearchBarService } from 'src/app/services/search-bar/search-bar.service';
 import { ServiceService } from 'src/app/services/service/service.service';
 import { ServiceDetailTO } from '../service-detail/service-detail.component';
 @Component({
@@ -9,11 +10,30 @@ import { ServiceDetailTO } from '../service-detail/service-detail.component';
 export class MainComponent implements OnInit {
   services: ServiceTO[] = [];
   searchText: string = '';
-
-  constructor(private serviceService: ServiceService) {}
+  search: string = '';
+  constructor(
+    private serviceService: ServiceService,
+    private searchBarService: SearchBarService
+  ) {}
 
   ngOnInit(): void {
     this.loadServices();
+    this.searchBarService.currentSearch.subscribe((search) => {
+      this.search = search;
+      console.log(search);
+      this.serviceService.getServicesFilt(this.search).subscribe((data) => {
+        this.services = [];
+        data.forEach((service: any) => {
+          let auxService: ServiceTO = {
+            id: service.id,
+            title: service.title,
+            description: service.description,
+            price: service.price,
+          };
+          this.services.push(auxService);
+        });
+      });
+    });
   }
 
   loadServices(): void {

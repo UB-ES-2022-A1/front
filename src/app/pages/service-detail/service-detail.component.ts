@@ -47,8 +47,6 @@ export class ServiceDetailComponent implements OnInit {
         this.sessionService.get('email'),
         this.description
       )
-      .subscribe((res) => {
-        console.log(res);
-      });
+      .subscribe((res) => {});
   }
 }
