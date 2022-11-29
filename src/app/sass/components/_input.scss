@@ -1,0 +1,15 @@
+.input-container {
+  input {
+    border: 1px solid var(--color-gray-3);
+    transition: all ease 0.3;
+    color: var(--color-gray-5);
+    border-radius: 7px;
+    outline: none;
+    height: 50px;
+    width: 100%;
+    padding: 0 10px;
+    &:focus {
+      outline: none;
+    }
+  }
+}

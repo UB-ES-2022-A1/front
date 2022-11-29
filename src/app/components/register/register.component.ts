@@ -7,41 +7,44 @@ import { SessionService } from 'src/app/services/session/session.service';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.sass']
 })
 export class RegisterComponent implements OnInit {
-  error = false; 
+  error = false;
   userLogin: UserLogin = {
     username: '',
     email: '',
     password: '',
     confirmPassword: '',
-  } 
+  };
 
-
-  constructor(private modalService: NgbModal, private userService: UserService, private sessionService: SessionService) { }
-
-  openLogin() {
-    const modalRef = this.modalService.open(LoginComponent,  { centered: true });
-  }
+  constructor(
+    private modalService: NgbModal,
+    private userService: UserService,
+    private sessionService: SessionService
+  ) {}
 
   postUser() {
-    this.userService.postUser(this.userLogin.username, this.userLogin.email, this.userLogin.password).subscribe(res => {
-      this.sessionService.set('username', this.userLogin.username);
-      this.modalService.dismissAll(); 
-
-    },
-    ((error: any) =>{
-      this.error=true; 
-      console.error('error caught in component')
-    }));
+    this.userService
+      .postUser(
+        this.userLogin.username,
+        this.userLogin.email,
+        this.userLogin.password
+      )
+      .subscribe(
+        (res) => {
+          this.sessionService.set('username', this.userLogin.username);
+          this.modalService.dismissAll();
+        },
+        (error: any) => {
+          this.error = true;
+          console.error('error caught in component');
+        }
+      );
   }
 
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }
-export interface UserLogin{
+export interface UserLogin {
   username: string;
   email: string;
   password: string;

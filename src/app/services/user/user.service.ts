@@ -1,35 +1,87 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { SessionService } from '../session/session.service';
+
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UserService {
-  baseUrl: string = environment.backurl +'users'
+  baseUrl: string = environment.backurl + 'users';
 
-  constructor(private http: HttpClient) { }
-
+  constructor(
+    private http: HttpClient,
+    private sessionService: SessionService
+  ) {}
 
   getUsers(): Observable<any> {
-    const url = this.baseUrl
+    const url = this.baseUrl;
     return this.http.get(url);
   }
 
   getUser(email: string): Observable<any> {
-    const url = this.baseUrl+'/'+email
+    const url = this.baseUrl + '/' + email;
     return this.http.get(url);
   }
 
   postUser(name: string, email: string, pwd: string): Observable<any> {
-    const url = this.baseUrl
-    
+    const url = this.baseUrl;
+
     const body: any = {
       name: name,
       email: email,
-      pwd: pwd
+      pwd: pwd,
     };
-      return this.http.post(url, body);
-    }
+    return this.http.post(url, body);
+  }
+  sendRecoveryMail(email: string) {
+    const url = this.baseUrl + '/forget_pwd/' + email;
+    const body: any = {
+      email: email,
+    };
+    return this.http.post(url, body);
+  }
+  resetPwd(token: string, newPwd: string) {
+    const url = this.baseUrl + '/reset_pwd';
+    const tokenString = btoa(token + ':' + 'aaaa@gmail.com');
+    const authToken: any = `Basic ${tokenString}`;
+    console.log(authToken);
+    let body: any = {
+      pwd: newPwd,
+    };
+    
+    return this.http.post(url, body);
   }
 
+  putUser(name: string, email: string, phone: number): Observable<any> {
+    const url = this.baseUrl + '/' + email;
+
+    const tokenString = btoa(
+      this.sessionService.get('token') + ':' + this.sessionService.get('email')
+    );
+    const authToken: any = `Basic ${tokenString}`;
+    let body: any = {};
+
+    let headers = new HttpHeaders({
+      Authorization: authToken,
+    });
+
+    if (name) {
+      body = {
+        name: name,
+      };
+    } else if (phone) {
+      body = {
+        phone: phone,
+      };
+    } else {
+      body = {
+        name: name,
+        phone: phone,
+      };
+    }
+
+    return this.http.put(url, body, { headers });
+  }
+}

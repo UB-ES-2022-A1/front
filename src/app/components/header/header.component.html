@@ -1,18 +1,53 @@
-<header>
-    <h1 (click)="goHome()" class="logo col-3 d-flex flex-row justify-content-center web-name">@urservice</h1>
-    <form class="col-6 form d-flex flex-row justify-content-center">
-        <input type="text" [(ngModel)]="this.enteredSearchValue"  name="searchText" placeholder="Search for service...">
-        <input type="submit" value="Search">
-        <button (click)="sortPrice()" style="text-decoration:none;font-weight:bold;background:none;border:none;color:var(--main-accent-color);padding:5px">Price ↓</button>
-    </form>
-    <div *ngIf="!this.loginService.isLogged()" class="col-3 d-flex flex-column align-items-center">
-        <button class="login-btn" (click)="openLogin()">Login</button>
+<header class="header">
+  <h1
+    (click)="goHome()"
+    class="logo col-3 d-flex flex-row justify-content-center web-name"
+  >
+    @urservice
+  </h1>
+  <div
+    class="col-6 d-flex flex-row justify-content-center align-items-center gap-1"
+  >
+    <div class="col-4 input-container">
+      <input
+        type="text"
+        [(ngModel)]="this.enteredSearchValue"
+        name="searchText"
+        placeholder="Search for service..."
+      />
     </div>
-    <div *ngIf="this.loginService.isLogged()" class="col-3 d-flex flex-row justify-content-center align-items-center gap-4">
-        <div class="d-flex flex-column align-items-center">
-          <div>Welcome <a href="/profile" class="username" style="text-align: center; text-decoration:none;font-weight:bold;color:var(--main-accent-color)"> {{this.sessionService.get("username")}}! </a></div>
-          <button class="login-btn d-flex justify-content-center align-items-center" (click)="openCreateService()">New service <mat-icon class="ms-2">add </mat-icon></button>
-        </div>
-        <mat-icon (click)="logout()" class="icon">logout</mat-icon>
+
+    <button
+      class="button button--primary button--primary__sm"
+      (click)="onSearch()"
+    >
+      <mat-icon>search</mat-icon>
+    </button>
+    <button class="button button--primary" (click)="sortPrice()">
+      <mat-icon>tune</mat-icon>
+    </button>
+  </div>
+  <div
+    *ngIf="!this.loginService.isLogged()"
+    class="col-3 d-flex flex-column align-items-center"
+  >
+    <button class="button button--primary" (click)="openLogin()">Login</button>
+  </div>
+  <div
+    *ngIf="this.loginService.isLogged()"
+    class="col-3 d-flex flex-row justify-content-center align-items-center gap-4"
+  >
+    <div class="d-flex flex-column align-items-center">
+      <div>
+        Welcome
+        <a href="/profile" class="username">
+          {{ this.sessionService.get("username") }}!
+        </a>
       </div>
+      <button class="button button--primary" (click)="openCreateService()">
+        New service <mat-icon class="ms-2">add </mat-icon>
+      </button>
+    </div>
+    <mat-icon (click)="logout()" class="logout">logout</mat-icon>
+  </div>
 </header>

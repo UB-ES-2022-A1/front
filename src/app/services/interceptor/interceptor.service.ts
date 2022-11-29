@@ -8,8 +8,9 @@ import {
 import { catchError, finalize } from 'rxjs/operators';
 import { Observable, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { SessionService } from '../session/session.service'; 
-import { LoginService } from '../login/login.service'; 
+import { SessionService } from '../session/session.service';
+import { LoginService } from '../login/login.service';
+import { LoaderService } from '../loader/loader.service';
 
 @Injectable()
 export class InterceptorService implements HttpInterceptor {
@@ -17,7 +18,7 @@ export class InterceptorService implements HttpInterceptor {
 
   constructor(
     private sessionService: SessionService,
-    private loginService: LoginService,
+    private loadingService: LoaderService
   ) {}
 
   intercept(
@@ -25,22 +26,30 @@ export class InterceptorService implements HttpInterceptor {
     next: { handle: any }
   ): Observable<HttpEvent<any>> {
     this.totalRequests++;
-   
+    this.loadingService.setLoading(true);
+    console.log(this.sessionService.get('token'));
     /** RETURNS MOCKS */
-      if (this.sessionService.get('token')!==null) {
+    if (this.sessionService.get('token') !== false) {
+      console.log('uwu');
       //Get Auth Token from Service which we want to pass thr service call
-      const tokenString = btoa(this.sessionService.get('token') +':'+ this.sessionService.get('email'));
-      
-      const authToken: any = `Basic ${tokenString}`
-        
-      const authReq = req.clone({ setHeaders: { Authorization: authToken }});
-      console.log(authReq)
+      const tokenString = btoa(
+        this.sessionService.get('token') +
+          ':' +
+          this.sessionService.get('email')
+      );
+
+
+      const authToken: any = `Basic ${tokenString}`;
+
+      const authReq = req.clone({ setHeaders: { Authorization: authToken } });
+
       return next.handle(authReq).pipe(
         // @ts-ignore
         catchError((error) => this.handleError(error)),
         finalize(() => {
           this.totalRequests--;
           if (this.totalRequests == 0) {
+            this.loadingService.setLoading(false);
           }
         })
       );
@@ -52,6 +61,7 @@ export class InterceptorService implements HttpInterceptor {
         finalize(() => {
           this.totalRequests--;
           if (this.totalRequests == 0) {
+            this.loadingService.setLoading(false);
           }
         })
       );
@@ -78,11 +88,7 @@ export class InterceptorService implements HttpInterceptor {
         errorMessage = error.message;
       }
       // return an observable with a user-facing error message
-      return throwError(errorMessage);
+      return new Error(errorMessage);
     }
   }
-
-  
-
-  
 }
