@@ -21,7 +21,6 @@ export class ForgotModalComponent implements OnInit {
   forgot() {
     this.userService.sendRecoveryMail(this.email).subscribe(
       (data) => {
-        console.log(data);
         this.modal.close();
       },
       (error) => {

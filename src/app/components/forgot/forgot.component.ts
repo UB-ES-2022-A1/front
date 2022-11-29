@@ -21,8 +21,6 @@ export class ForgotComponent implements OnInit {
   onSubmit() {
     this.userService
       .resetPwd(this.token, this.newPassword)
-      .subscribe((data) => {
-        console.log(data);
-      });
+      .subscribe((data) => {});
   }
 }

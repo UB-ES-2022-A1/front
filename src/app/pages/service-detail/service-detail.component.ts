@@ -35,7 +35,6 @@ export class ServiceDetailComponent implements OnInit {
         user: data.user,
       };
     });
-    setTimeout(() => console.log(this.serviceInfo), 1000);
   }
 
   ngOnInit(): void {}

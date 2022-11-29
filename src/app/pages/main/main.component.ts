@@ -19,7 +19,6 @@ export class MainComponent implements OnInit {
   ngOnInit(): void {
     this.searchBarService.currentSearch.subscribe((search) => {
       this.search = search;
-      console.log(search);
       this.serviceService.getServicesFilt(this.search).subscribe((data) => {
         this.services = [];
         data.forEach((service: any) => {
