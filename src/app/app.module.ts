@@ -26,6 +26,7 @@ import { FormServiceComponent } from './components/form-service/form-service.com
 import { ServiceDetailComponent } from './pages/service-detail/service-detail.component';
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { ForgotComponent } from './components/forgot/forgot.component';
+import { ForgotModalComponent } from './components/forgot-modal/forgot-modal.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { ForgotComponent } from './components/forgot/forgot.component';
     ServiceDetailComponent,
     SpinnerComponent,
     ForgotComponent,
+    ForgotModalComponent,
   ],
   imports: [
     BrowserModule,

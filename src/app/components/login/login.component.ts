@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ForgotModalComponent } from 'src/app/components/forgot-modal/forgot-modal.component';
 import { LoginService } from 'src/app/services/login/login.service';
 import { SessionService } from 'src/app/services/session/session.service';
 import { UserService } from 'src/app/services/user/user.service';
@@ -50,12 +51,10 @@ export class LoginComponent implements OnInit {
         }
       );
   }
-  forgot() {
-    this.userService
-      .sendRecoveryMail(this.userLogin.username)
-      .subscribe((data) => {
-        console.log(data);
-      });
+  forgotModal() {
+    const modalRef = this.modalService.open(ForgotModalComponent, {
+      centered: true,
+    });
   }
 }
 export interface UserLogin {
