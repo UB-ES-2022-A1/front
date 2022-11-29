@@ -27,9 +27,10 @@ export class InterceptorService implements HttpInterceptor {
   ): Observable<HttpEvent<any>> {
     this.totalRequests++;
     this.loadingService.setLoading(true);
-    console.log(this.loadingService.getLoading());
+    console.log(this.sessionService.get('token'));
     /** RETURNS MOCKS */
-    if (this.sessionService.get('token') !== null) {
+    if (this.sessionService.get('token') !== false) {
+      console.log('uwu');
       //Get Auth Token from Service which we want to pass thr service call
       const tokenString = btoa(
         this.sessionService.get('token') +
@@ -37,8 +38,11 @@ export class InterceptorService implements HttpInterceptor {
           this.sessionService.get('email')
       );
 
-      const authReq = req.clone();
-      console.log(authReq);
+
+      const authToken: any = `Basic ${tokenString}`;
+
+      const authReq = req.clone({ setHeaders: { Authorization: authToken } });
+
       return next.handle(authReq).pipe(
         // @ts-ignore
         catchError((error) => this.handleError(error)),
@@ -57,6 +61,7 @@ export class InterceptorService implements HttpInterceptor {
         finalize(() => {
           this.totalRequests--;
           if (this.totalRequests == 0) {
+            this.loadingService.setLoading(false);
           }
         })
       );

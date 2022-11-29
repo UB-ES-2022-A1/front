@@ -50,13 +50,10 @@ export class UserService {
     let body: any = {
       pwd: newPwd,
     };
-
-    let headers = new HttpHeaders({
-      Authorization: authToken,
-    });
-
-    return this.http.post(url, body, { headers });
+    
+    return this.http.post(url, body);
   }
+
   putUser(name: string, email: string, phone: number): Observable<any> {
     const url = this.baseUrl + '/' + email;
 
@@ -64,7 +61,6 @@ export class UserService {
       this.sessionService.get('token') + ':' + this.sessionService.get('email')
     );
     const authToken: any = `Basic ${tokenString}`;
-    console.log(authToken);
     let body: any = {};
 
     let headers = new HttpHeaders({
@@ -85,7 +81,6 @@ export class UserService {
         phone: phone,
       };
     }
-    console.log(body);
 
     return this.http.put(url, body, { headers });
   }

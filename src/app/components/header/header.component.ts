@@ -2,6 +2,7 @@ import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { LoginService } from 'src/app/services/login/login.service';
+import { SearchBarService } from 'src/app/services/search-bar/search-bar.service';
 import { SessionService } from 'src/app/services/session/session.service';
 import { FormServiceComponent } from '../form-service/form-service.component';
 import { LoginComponent } from '../login/login.component';
@@ -17,10 +18,15 @@ export class HeaderComponent implements OnInit {
     private modalService: NgbModal,
     protected loginService: LoginService,
     protected sessionService: SessionService,
-    public router: Router
+    public router: Router,
+    private data: SearchBarService
   ) {}
+  @Output()
+  search: string = '';
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.data.currentSearch.subscribe((search) => (this.search = search));
+  }
   openLogin() {
     const modalRef = this.modalService.open(LoginComponent, { centered: true });
   }
@@ -32,12 +38,9 @@ export class HeaderComponent implements OnInit {
 
   sortPrice(): void {}
 
-  @Output()
-  searchTextChanged: EventEmitter<string> = new EventEmitter<string>();
-
-  /* onSearchTextChanged(){
-    this.searchTextChanged.emit(this.enteredSearchValue)
-  } */
+  onSearch() {
+    this.data.changeSearch(this.enteredSearchValue);
+  }
   goHome() {
     this.router.navigate([`/`]);
   }
