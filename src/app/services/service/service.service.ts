@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { SessionService } from '../session/session.service';
+import { SearchTO } from 'src/app/entities/SearchTO';
 @Injectable({
   providedIn: 'root',
 })
@@ -21,16 +22,22 @@ export class ServiceService {
   getServices(): Observable<any> {
     return this.http.get(this.baseUrl);
   }
-  getServicesFilt(
-    search: string = '',
-    sort?: any,
-    filters?: any
-  ): Observable<any> {
+  getServicesFilt(search?: string, sort?: any, filters?: any): Observable<any> {
     const url = this.baseUrl + '/search';
-
-    let body = {
-      search_text: search,
+    let body: SearchTO = {
+      search_text: undefined,
     };
+    console.log(search);
+    if (search !== undefined && search !== '') {
+      body['search_text'] = search;
+    }
+    if (sort !== undefined) {
+      body['sort'] = sort;
+    }
+    if (filters !== undefined) {
+      body['filters'] = filters;
+    }
+
     return this.http.post(url, body);
   }
 
