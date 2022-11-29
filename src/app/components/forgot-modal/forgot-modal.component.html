@@ -8,6 +8,7 @@
       type="text"
       placeholder="Email"
     />
+    <em *ngIf="this.error" class="error">Email not found</em>
   </div>
   <button (click)="forgot()" class="button button--primary">Submit</button>
 </div>

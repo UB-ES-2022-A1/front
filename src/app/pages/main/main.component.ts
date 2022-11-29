@@ -17,10 +17,8 @@ export class MainComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.loadServices();
     this.searchBarService.currentSearch.subscribe((search) => {
       this.search = search;
-      console.log(search);
       this.serviceService.getServicesFilt(this.search).subscribe((data) => {
         this.services = [];
         data.forEach((service: any) => {
@@ -32,20 +30,6 @@ export class MainComponent implements OnInit {
           };
           this.services.push(auxService);
         });
-      });
-    });
-  }
-
-  loadServices(): void {
-    this.serviceService.getServices().subscribe((res) => {
-      res.forEach((service: any) => {
-        let auxService: ServiceTO = {
-          id: service.id,
-          title: service.title,
-          description: service.description,
-          price: service.price,
-        };
-        this.services.push(auxService);
       });
     });
   }

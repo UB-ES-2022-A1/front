@@ -4,6 +4,7 @@ import { ServiceService } from 'src/app/services/service/service.service';
 import { ServiceTO } from 'src/app/entities/ServiceTO';
 import { ContractedServicesService } from 'src/app/services/contracted-services/contracted-services.service';
 import { SessionService } from 'src/app/services/session/session.service';
+import { UtilsService } from 'src/app/services/utils/utils.service';
 export interface ServiceDetailTO {
   id: string;
 }
@@ -20,7 +21,8 @@ export class ServiceDetailComponent implements OnInit {
     public router: Router,
     private sessionService: SessionService,
     private serviceService: ServiceService,
-    private contractService: ContractedServicesService
+    private contractService: ContractedServicesService,
+    private utils: UtilsService
   ) {
     this.serviceId = this.router.url.substring(
       this.router.url.lastIndexOf('/') + 1
@@ -35,7 +37,6 @@ export class ServiceDetailComponent implements OnInit {
         user: data.user,
       };
     });
-    setTimeout(() => console.log(this.serviceInfo), 1000);
   }
 
   ngOnInit(): void {}
@@ -47,6 +48,12 @@ export class ServiceDetailComponent implements OnInit {
         this.sessionService.get('email'),
         this.description
       )
-      .subscribe((res) => {});
+      .subscribe((res) => {
+        this.utils.openSnackBar(
+          'You just contracted a service, the costumer is currently being notified',
+          'Ok',
+          3
+        );
+      });
   }
 }

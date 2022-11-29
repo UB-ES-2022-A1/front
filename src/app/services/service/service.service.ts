@@ -27,7 +27,6 @@ export class ServiceService {
     let body: SearchTO = {
       search_text: undefined,
     };
-    console.log(search);
     if (search !== undefined && search !== '') {
       body['search_text'] = search;
     }
@@ -47,32 +46,17 @@ export class ServiceService {
     price: number,
     user: string
   ): Observable<any> {
-    const tokenString = btoa(
-      this.sessionService.get('token') + ':' + this.sessionService.get('email')
-    );
-
-    const authToken: any = `Basic ${tokenString}`;
-    let headers = new HttpHeaders({
-      Authorization: authToken,
-    });
     const body: any = {
       title: title,
       user: user,
       description: description,
       price: price,
     };
-    return this.http.post(this.baseUrl, body, { headers });
+    return this.http.post(this.baseUrl, body);
   }
 
   getUserServices(email: string): Observable<any> {
-    const tokenString = btoa(
-      this.sessionService.get('token') + ':' + this.sessionService.get('email')
-    );
-    const authToken: any = `Basic ${tokenString}`;
-    let headers = new HttpHeaders({
-      Authorization: authToken,
-    });
     const url = this.baseUrl + '/' + email + '/service';
-    return this.http.get(this.baseUrl, { headers });
+    return this.http.get(this.baseUrl);
   }
 }

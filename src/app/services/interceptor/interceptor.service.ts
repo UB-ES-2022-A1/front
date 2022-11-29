@@ -27,17 +27,14 @@ export class InterceptorService implements HttpInterceptor {
   ): Observable<HttpEvent<any>> {
     this.totalRequests++;
     this.loadingService.setLoading(true);
-    console.log(this.sessionService.get('token'));
     /** RETURNS MOCKS */
     if (this.sessionService.get('token') !== false) {
-      console.log('uwu');
       //Get Auth Token from Service which we want to pass thr service call
       const tokenString = btoa(
         this.sessionService.get('token') +
           ':' +
           this.sessionService.get('email')
       );
-
 
       const authToken: any = `Basic ${tokenString}`;
 
@@ -88,7 +85,7 @@ export class InterceptorService implements HttpInterceptor {
         errorMessage = error.message;
       }
       // return an observable with a user-facing error message
-      return new Error(errorMessage);
+      return throwError(errorMessage);
     }
   }
 }

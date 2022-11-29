@@ -1,8 +1,6 @@
-<div class="main-page d-flex flex-column">
+<div class="main-page">
   <h2 class="subtitle">Top services</h2>
-  <div
-    class="anuncio-wrapper d-flex flex-row gap-4 flex-wrap justify-content-center"
-  >
+  <div class="card-wrapper">
     <app-card-anuncio
       *ngFor="let service of this.services"
       [id]="service.id"

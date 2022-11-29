@@ -44,28 +44,16 @@ export class UserService {
   }
   resetPwd(token: string, newPwd: string) {
     const url = this.baseUrl + '/reset_pwd';
-    const tokenString = btoa(token + ':' + 'aaaa@gmail.com');
-    const authToken: any = `Basic ${tokenString}`;
-    console.log(authToken);
     let body: any = {
       pwd: newPwd,
     };
-    
     return this.http.post(url, body);
   }
 
   putUser(name: string, email: string, phone: number): Observable<any> {
     const url = this.baseUrl + '/' + email;
 
-    const tokenString = btoa(
-      this.sessionService.get('token') + ':' + this.sessionService.get('email')
-    );
-    const authToken: any = `Basic ${tokenString}`;
     let body: any = {};
-
-    let headers = new HttpHeaders({
-      Authorization: authToken,
-    });
 
     if (name) {
       body = {
@@ -82,6 +70,6 @@ export class UserService {
       };
     }
 
-    return this.http.put(url, body, { headers });
+    return this.http.put(url, body);
   }
 }
