@@ -35,6 +35,24 @@ export class UserService {
     };
     return this.http.post(url, body);
   }
+  sendRecoveryMail(email: string) {
+    const url = this.baseUrl + '/forget_pwd/' + email;
+    const body: any = {
+      email: email,
+    };
+    return this.http.post(url, body);
+  }
+  resetPwd(token: string, newPwd: string) {
+    const url = this.baseUrl + '/reset_pwd';
+    const tokenString = btoa(token + ':' + 'aaaa@gmail.com');
+    const authToken: any = `Basic ${tokenString}`;
+    console.log(authToken);
+    let body: any = {
+      pwd: newPwd,
+    };
+    
+    return this.http.post(url, body);
+  }
 
   putUser(name: string, email: string, phone: number): Observable<any> {
     const url = this.baseUrl + '/' + email;

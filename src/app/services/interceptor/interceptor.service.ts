@@ -38,9 +38,11 @@ export class InterceptorService implements HttpInterceptor {
           this.sessionService.get('email')
       );
 
+
       const authToken: any = `Basic ${tokenString}`;
 
       const authReq = req.clone({ setHeaders: { Authorization: authToken } });
+
       return next.handle(authReq).pipe(
         // @ts-ignore
         catchError((error) => this.handleError(error)),

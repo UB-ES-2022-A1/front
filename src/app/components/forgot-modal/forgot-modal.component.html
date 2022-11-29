@@ -1,0 +1,13 @@
+<div class="modal-form">
+  <h3 class="title-md">Forgot password?</h3>
+  <p>Insert your email below and we'll send you a link to recover it!</p>
+  <div class="input-container mb-2">
+    <input
+      [(ngModel)]="this.email"
+      name="Email"
+      type="text"
+      placeholder="Email"
+    />
+  </div>
+  <button (click)="forgot()" class="button button--primary">Submit</button>
+</div>

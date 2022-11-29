@@ -23,10 +23,6 @@ export class RegisterComponent implements OnInit {
     private sessionService: SessionService
   ) {}
 
-  openLogin() {
-    const modalRef = this.modalService.open(LoginComponent, { centered: true });
-  }
-
   postUser() {
     this.userService
       .postUser(
