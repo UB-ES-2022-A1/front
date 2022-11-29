@@ -85,7 +85,7 @@ export class InterceptorService implements HttpInterceptor {
         errorMessage = error.message;
       }
       // return an observable with a user-facing error message
-      return new Error(errorMessage);
+      return throwError(errorMessage);
     }
   }
 }

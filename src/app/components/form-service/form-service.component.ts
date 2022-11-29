@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ServiceService } from 'src/app/services/service/service.service';
+import { SessionService } from 'src/app/services/session/session.service';
 
 @Component({
   selector: 'app-form-service',
@@ -12,15 +13,29 @@ export class FormServiceComponent implements OnInit {
   price: number = 0;
   constructor(
     private serviceService: ServiceService,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private sessionService: SessionService
   ) {}
 
   ngOnInit(): void {}
 
   onSubmit() {
     this.serviceService
-      .postService(this.title, this.description, this.price, 'prueba@gmail.com')
-      .subscribe((res) => {});
-    this.modalService.dismissAll();
+      .postService(
+        this.title,
+        this.description,
+        this.price,
+        this.sessionService.get('email')
+      )
+      .subscribe(
+        (res: any) => {
+          res.console.log(res);
+          window.location.reload();
+          this.modalService.dismissAll();
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
   }
 }
