@@ -24,7 +24,7 @@ export class ContractedServicesService {
   }
 
   getUserContract(email: string): Observable<any> {
-    const url = this.baseUrl + '/' + email + '/contracted_services';
+    const url = this.baseUrl + '/client/' + email;
 
     return this.http.get(url);
   }
