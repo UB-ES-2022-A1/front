@@ -10,9 +10,9 @@
                                 <img src="https://cdn-icons-png.flaticon.com/512/1053/1053244.png?w=360" alt="Generic placeholder image" class="img-fluid img-thumbnail mt-4 mb-2" />
                             </div>
                             <h5 class="full_name">
-                                {{ this.sessionService.get("username") }}
+                                {{ this.user.username }}
                             </h5>
-                            <h6 class="email">{{ this.sessionService.get("email") }}</h6>
+                            <h6 class="email">{{ this.user.email }}</h6>
                             <button class="button button--primary" (click)="forgotModal()"> Change password </button>
                         </div>
                     </div>
@@ -26,7 +26,7 @@
 
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                         <div class="form-group">
-                            <label for="username">Username: {{ this.sessionService.get("username") }}</label
+                            <label for="username">Username: {{ this.user.username }}</label
               >
               <input
                 [(ngModel)]="this.newName"
@@ -41,7 +41,7 @@
           <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
             <div class="form-group">
               <label for="email"
-                >Email: {{ this.sessionService.get("email") }}</label
+                >Email: {{ this.user.email }}</label
               >
               <input
                 type="text"
@@ -55,8 +55,8 @@
           <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
             <div class="form-group">
               <label for="number"
-                >Phone number(Optional):
-                {{ this.sessionService.get("phone") }}</label
+                >Phone number:
+                {{ this.user.phone }}</label
               >
               <input
                 [(ngModel)]="this.newPhone"
@@ -72,7 +72,7 @@
           <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
             <div class="form-group">
               <label for="wallet"
-                >My wallet: {{ this.sessionService.get("wallet") }}</label
+                >My wallet: {{ this.user.wallet }}</label
               >
               <input
                 type="text"

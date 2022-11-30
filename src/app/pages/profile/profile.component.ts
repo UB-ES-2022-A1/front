@@ -11,6 +11,7 @@ import { ForgotModalComponent } from 'src/app/components/forgot-modal/forgot-mod
 import { UtilsService } from 'src/app/services/utils/utils.service';
 
 
+
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -21,6 +22,7 @@ export class ProfileComponent implements OnInit {
     username: '',
     email: '',
     phone: null,
+    wallet: null,
   };
   newName: string = '';
   newPhone: any = null;
@@ -35,8 +37,14 @@ export class ProfileComponent implements OnInit {
     private contractedService: ContractedServicesService,
     private utils: UtilsService
   ) {}
+
   ngOnInit(): void {
-    this.user.email = this.sessionService.get("email");
+    this.userService.getUser(this.sessionService.get('email')).subscribe((data: any) =>{
+      this.user.username = data.name
+      this.user.email = data.email
+      this.user.phone = data.phone
+      this.user.wallet = data.wallet
+    });
     this.loadContracts();
     this.loadOffers();
   }
@@ -62,6 +70,7 @@ export class ProfileComponent implements OnInit {
       .putUser(this.newName, this.user.email, this.newPhone)
       .subscribe((res) => {
         this.utils.openSnackBar('Change saved!', '', 0);
+        this.sessionService.set('username', this.newName);
       });
   }
 
@@ -70,6 +79,7 @@ export class ProfileComponent implements OnInit {
       centered: true,
     });
   }
+
 
   loadOffers(): void {
     console.log(this.user.email);

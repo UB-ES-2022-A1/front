@@ -55,13 +55,13 @@ export class UserService {
 
     let body: any = {};
 
-    if (name) {
-      body = {
-        name: name,
-      };
-    } else if (phone) {
+    if (!name) {
       body = {
         phone: phone,
+      };
+    } else if (!phone) {
+      body = {
+        name: name,
       };
     } else {
       body = {
