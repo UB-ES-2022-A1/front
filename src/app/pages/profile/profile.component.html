@@ -1,38 +1,32 @@
 <app-header></app-header>
 <div class="vertical-center">
-  <div class="container mt-8">
-    <div class="row gutters">
-      <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
-        <div class="card h-100">
-          <div class="card-body">
-            <div class="account-settings">
-              <div class="user-profile">
-                <div class="user-avatar">
-                  <img
-                    src="https://cdn-icons-png.flaticon.com/512/1053/1053244.png?w=360"
-                    alt="Generic placeholder image"
-                    class="img-fluid img-thumbnail mt-4 mb-2"
-                  />
-                </div>
-                <h5 class="full_name">
-                  {{ this.sessionService.get("username") }}
-                </h5>
-                <h6 class="email">{{ this.sessionService.get("email") }}</h6>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
+    <div class="container mt-8">
         <div class="row gutters">
-          <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-            <h4 class="mb-2 mt-1">Profile details</h4>
-          </div>
+            <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
+                <div class="card-body">
+                    <div class="account-settings">
+                        <div class="user-profile">
+                            <div class="user-avatar">
+                                <img src="https://cdn-icons-png.flaticon.com/512/1053/1053244.png?w=360" alt="Generic placeholder image" class="img-fluid img-thumbnail mt-4 mb-2" />
+                            </div>
+                            <h5 class="full_name">
+                                {{ this.sessionService.get("username") }}
+                            </h5>
+                            <h6 class="email">{{ this.sessionService.get("email") }}</h6>
+                            <button class="button button--primary" (click)="forgotModal()"> Change password </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
+                <div class="row gutters">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        <h4 class="mb-2 mt-4">Profile details</h4>
+                    </div>
 
-          <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-            <div class="form-group">
-              <label for="username"
-                >Username: {{ this.sessionService.get("username") }}</label
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label for="username">Username: {{ this.sessionService.get("username") }}</label
               >
               <input
                 [(ngModel)]="this.newName"
@@ -133,6 +127,18 @@
               [description]="service.description"
               [price]="service.price"
             ></app-card-anuncio>
+            <!-- Switch -->
+            <div class="form-check form-switch">
+              <input
+                mdbCheckbox
+                class="form-check-input"
+                type="checkbox"
+                id="flexSwitchCheckDefault"
+              />
+              <label class="form-check-label" for="flexSwitchCheckDefault"
+                >Activate</label
+              >
+            </div>
           </div>
         </div>
       </div>

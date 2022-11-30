@@ -7,6 +7,9 @@ import { formatCurrency } from '@angular/common';
 import { ServiceTO } from 'src/app/entities/ServiceTO';
 import { ServiceService } from 'src/app/services/service/service.service';
 import { ContractedServicesService } from 'src/app/services/contracted-services/contracted-services.service';
+import { ForgotModalComponent } from 'src/app/components/forgot-modal/forgot-modal.component';
+import { UtilsService } from 'src/app/services/utils/utils.service';
+
 
 @Component({
   selector: 'app-profile',
@@ -29,16 +32,13 @@ export class ProfileComponent implements OnInit {
     protected sessionService: SessionService,
     private userService: UserService,
     private serviceService: ServiceService,
-    private contractedService: ContractedServicesService
+    private contractedService: ContractedServicesService,
+    private utils: UtilsService
   ) {}
   ngOnInit(): void {
-    this.userService
-      .getUser(this.sessionService.get('email'))
-      .subscribe((data: any) => {
-        this.user.username = data.name;
-        this.user.email = data.email;
-        this.user.phone = data.phone;
-      });
+    this.user.email = this.sessionService.get("email");
+    this.loadContracts();
+    this.loadOffers();
   }
 
   enableEdit() {
@@ -61,11 +61,18 @@ export class ProfileComponent implements OnInit {
     this.userService
       .putUser(this.newName, this.user.email, this.newPhone)
       .subscribe((res) => {
-        this.sessionService.set('username', this.newName);
+        this.utils.openSnackBar('Change saved!', '', 0);
       });
   }
 
+  forgotModal() {
+    const modalRef = this.modalService.open(ForgotModalComponent, {
+      centered: true,
+    });
+  }
+
   loadOffers(): void {
+    console.log(this.user.email);
     this.serviceService.getUserServices(this.user.email).subscribe((res) => {
       res.forEach((service: any) => {
         let auxService: ServiceTO = {

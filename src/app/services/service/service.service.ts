@@ -57,6 +57,7 @@ export class ServiceService {
 
   getUserServices(email: string): Observable<any> {
     const url = this.baseUrl + '/' + email + '/service';
-    return this.http.get(this.baseUrl);
+
+    return this.http.get(url);
   }
 }
