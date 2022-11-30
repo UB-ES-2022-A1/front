@@ -53,6 +53,13 @@ export class UserService {
   putUser(name: string, email: string, phone: number): Observable<any> {
     const url = this.baseUrl + '/' + email;
 
+    const tokenString = btoa(this.sessionService.get('token') +':'+ this.sessionService.get('email'));
+    const authToken: any = `Basic ${tokenString}`
+
+    let headers =  new HttpHeaders({
+      Authorization: authToken
+    })
+
     let body: any = {};
 
     if (name) {
@@ -70,6 +77,6 @@ export class UserService {
       };
     }
 
-    return this.http.put(url, body);
+    return this.http.put(url,body, {headers});
   }
 }
