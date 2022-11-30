@@ -25,4 +25,20 @@
     box-sizing: fit-content;
     font-size: 30px;
   }
+  h5 {
+    margin-bottom: 0;
+    cursor: pointer;
+    &:hover {
+      color: var(--color-accent);
+      transition: color 0.3s ease-in-out;
+    }
+  }
+  mat-icon {
+    cursor: pointer;
+
+    &:hover {
+      color: var(--color-accent);
+      transition: color 0.3s ease-in-out;
+    }
+  }
 }

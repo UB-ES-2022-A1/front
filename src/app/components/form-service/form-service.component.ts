@@ -10,7 +10,7 @@ import { SessionService } from 'src/app/services/session/session.service';
 export class FormServiceComponent implements OnInit {
   title: string = '';
   description: string = '';
-  price: number = 0;
+  price: string = '';
   constructor(
     private serviceService: ServiceService,
     private modalService: NgbModal,
@@ -24,12 +24,12 @@ export class FormServiceComponent implements OnInit {
       .postService(
         this.title,
         this.description,
-        this.price,
+        parseInt(this.price),
         this.sessionService.get('email')
       )
       .subscribe(
         (res: any) => {
-          res.console.log(res);
+          console.log(res);
           window.location.reload();
           this.modalService.dismissAll();
         },

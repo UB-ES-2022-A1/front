@@ -1,7 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { FormServiceComponent } from 'src/app/components/form-service/form-service.component';
+import { LoginComponent } from 'src/app/components/login/login.component';
 import { ServiceTO } from 'src/app/entities/ServiceTO';
+import { LoginService } from 'src/app/services/login/login.service';
 import { SearchBarService } from 'src/app/services/search-bar/search-bar.service';
 import { ServiceService } from 'src/app/services/service/service.service';
+import { SessionService } from 'src/app/services/session/session.service';
 import { ServiceDetailTO } from '../service-detail/service-detail.component';
 @Component({
   selector: 'app-main',
@@ -13,11 +18,14 @@ export class MainComponent implements OnInit {
   search: string = '';
   constructor(
     private serviceService: ServiceService,
-    private searchBarService: SearchBarService
+    protected sessionService: SessionService,
+    private modalService: NgbModal,
+    private searchBarService: SearchBarService,
+    protected loginService: LoginService
   ) {}
 
   ngOnInit(): void {
-    this.searchBarService.currentSearch.subscribe((search) => {
+    this.searchBarService.currentSearch.subscribe((search: any) => {
       this.search = search;
       this.serviceService.getServicesFilt(this.search).subscribe((data) => {
         this.services = [];
@@ -36,5 +44,13 @@ export class MainComponent implements OnInit {
 
   onSearchTextEntered(searchValue: string) {
     this.searchText = searchValue;
+  }
+  openCreateService() {
+    const modalRef = this.modalService.open(FormServiceComponent, {
+      centered: true,
+    });
+  }
+  openLogin() {
+    const modalRef = this.modalService.open(LoginComponent, { centered: true });
   }
 }

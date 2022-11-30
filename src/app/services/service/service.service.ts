@@ -52,7 +52,7 @@ export class ServiceService {
       description: description,
       price: price,
     };
-    return this.http.post(this.baseUrl, body);
+    return this.http.post(this.baseUrl, body, { responseType: 'text' });
   }
 
   getUserServices(email: string): Observable<any> {
