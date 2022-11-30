@@ -42,6 +42,12 @@ export class HeaderComponent implements OnInit {
     this.router.navigate([`/`]);
     this.data.changeSearch(this.enteredSearchValue);
   }
+  navigateProfile() {
+    this.router.navigate([`/profile/`]);
+  }
+  navigateOrders() {
+    this.router.navigate([`/orders/`]);
+  }
   goHome() {
     this.router.navigate([`/`]);
   }

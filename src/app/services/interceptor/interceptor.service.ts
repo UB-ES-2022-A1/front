@@ -18,7 +18,8 @@ export class InterceptorService implements HttpInterceptor {
 
   constructor(
     private sessionService: SessionService,
-    private loadingService: LoaderService
+    private loadingService: LoaderService,
+    private loginService: LoginService
   ) {}
 
   intercept(
@@ -28,7 +29,7 @@ export class InterceptorService implements HttpInterceptor {
     this.totalRequests++;
     this.loadingService.setLoading(true);
     /** RETURNS MOCKS */
-    if (this.sessionService.get('token') !== false) {
+    if (this.loginService.isLogged()) {
       //Get Auth Token from Service which we want to pass thr service call
       const tokenString = btoa(
         this.sessionService.get('token') +
