@@ -1,0 +1,18 @@
+.forgot-pwd {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .modal-form {
+    width: 600px;
+    border-radius: 10px;
+    border: 1px solid var(--color-gray-2);
+  }
+}
