@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormServiceComponent } from 'src/app/components/form-service/form-service.component';
 import { LoginComponent } from 'src/app/components/login/login.component';
+import { FiltersTO } from 'src/app/entities/FiltersTO';
 import { ServiceTO } from 'src/app/entities/ServiceTO';
 import { LoginService } from 'src/app/services/login/login.service';
 import { SearchBarService } from 'src/app/services/search-bar/search-bar.service';
@@ -16,7 +17,7 @@ import { ServiceDetailTO } from '../service-detail/service-detail.component';
 export class MainComponent implements OnInit {
   services: ServiceTO[] = [];
   searchText: string = '';
-  search: string = '';
+  filters: FiltersTO;
   constructor(
     private userService: UserService,
     private serviceService: ServiceService,
@@ -27,11 +28,12 @@ export class MainComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.searchBarService.currentSearch.subscribe((search: any) => {
-      this.search = search;
-      this.serviceService.getServicesFilt(this.search).subscribe((data) => {
+    this.searchBarService.currentSearch.subscribe((filters: any) => {
+      this.filters = filters;
+      this.serviceService.getServicesFilt(this.filters).subscribe((data) => {
         this.services = [];
         data.forEach((service: any) => {
+          console.log(service.price);
           let auxService: ServiceTO = {
             id: service.id,
             title: service.title,
@@ -41,20 +43,17 @@ export class MainComponent implements OnInit {
               email: '',
             },
           };
+          this.services.push(auxService);
+
           this.userService.getUser(service.user).subscribe((res: any) => {
             auxService.user = {
               username: res.name,
               email: res.email,
             };
-            this.services.push(auxService);
           });
         });
       });
     });
-  }
-
-  onSearchTextEntered(searchValue: string) {
-    this.searchText = searchValue;
   }
   openCreateService() {
     const modalRef = this.modalService.open(FormServiceComponent, {

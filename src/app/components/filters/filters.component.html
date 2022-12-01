@@ -1,0 +1,48 @@
+<div class="filters">
+  <div class="d-flex w-100 justify-content-between">
+    <h3 class="title-md">Filters</h3>
+    <mat-icon class="filters--reset m-0" (click)="resetFilters()"
+      >filter_alt_off</mat-icon
+    >
+  </div>
+  <div class="filters--filter">
+    <h5 class="mb-0">Price</h5>
+    <div class="order">
+      <mat-icon
+        class="sort-btn"
+        [ngClass]="{ accent: filters.priceOrd === 2 }"
+        (click)="priceOrder(2)"
+        >arrow_upward</mat-icon
+      >
+      <mat-icon
+        class="sort-btn"
+        [ngClass]="{ accent: filters.priceOrd === 3 }"
+        (click)="priceOrder(3)"
+        >arrow_downward</mat-icon
+      >
+    </div>
+    <div class="min-max">
+      <div class="input-container mb-2">
+        <input
+          [(ngModel)]="this.filters.priceMax"
+          name="priceMax"
+          class="sm-input"
+          type="text"
+          placeholder="Max"
+        />
+      </div>
+      <div class="input-container sm-input mb-2">
+        <input
+          [(ngModel)]="this.filters.priceMin"
+          name="priceMin"
+          class="sm-input"
+          type="text"
+          placeholder="Min"
+        />
+      </div>
+    </div>
+  </div>
+  <button class="button button--primary w-100" (click)="onFilter()">
+    Filter
+  </button>
+</div>
