@@ -60,7 +60,7 @@ export class HeaderComponent implements OnInit {
     this.data.changeSearch(this.filters);
   }
   navigateProfile() {
-    this.router.navigate([`/profile/`]);
+    this.router.navigate([`/profile/${this.sessionService.get('email')}`]);
   }
   navigateOrders() {
     this.router.navigate([`/orders/`]);
