@@ -1,9 +1,23 @@
-<div class="col-3 input-container mb-2">
-  <input
-    [(ngModel)]="this.newPassword"
-    name="newPassword"
-    type="text"
-    placeholder="New Password"
-  />
+<div class="forgot-pwd">
+  <div class="modal-form">
+    <h2>Forgot password</h2>
+    <p>Insert your new password below</p>
+    <div class="input-container mb-2">
+      <input
+        [(ngModel)]="this.newPassword"
+        name="newPassword"
+        type="password"
+        placeholder="New Password"
+      />
+    </div>
+    <div class="input-container mb-2">
+      <input
+        [(ngModel)]="this.confirmPassword"
+        name="confirmPassword"
+        type="password"
+        placeholder="Confirm password"
+      />
+    </div>
+    <button (click)="onSubmit()" class="button button--primary">Submit</button>
+  </div>
 </div>
-<button (click)="onSubmit()" class="button button--primary">Submit</button>
