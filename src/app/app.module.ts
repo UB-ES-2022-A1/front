@@ -30,6 +30,7 @@ import { ServiceDetailComponent } from './pages/service-detail/service-detail.co
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { ForgotComponent } from './components/forgot/forgot.component';
 import { ForgotModalComponent } from './components/forgot-modal/forgot-modal.component';
+import { FiltersComponent } from './components/filters/filters.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { ForgotModalComponent } from './components/forgot-modal/forgot-modal.com
     SpinnerComponent,
     ForgotComponent,
     ForgotModalComponent,
+    FiltersComponent,
   ],
   imports: [
     BrowserModule,
