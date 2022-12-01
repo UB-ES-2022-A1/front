@@ -33,7 +33,7 @@ export class UserService {
       email: email,
       pwd: pwd,
     };
-    return this.http.post(url, body, { responseType: 'text' });
+    return this.http.post(url, body);
   }
   sendRecoveryMail(email: string) {
     const url = this.baseUrl + '/forget_pwd/' + email;

@@ -5,7 +5,8 @@
 
 <div class="container mt-5 mb-5">
     <div class="d-flex justify-content-center row">
-        <app-card-contract *ngFor="let service of this.contractsClient" [id]="service.id" [title]="service.title" [description]="service.description" [price]="service.price">
+        <!--  a cambiar a this.contractsClient -->
+        <app-card-contract *ngFor="let service of this.offers" [id]="service.id" [title]="service.title" [description]="service.description" [price]="service.price">
         </app-card-contract>
     </div>
 </div>

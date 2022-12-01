@@ -3,26 +3,26 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { SessionService } from 'src/app/services/session/session.service';
 import { FormServiceComponent } from 'src/app/components/form-service/form-service.component';
 import { UserService } from 'src/app/services/user/user.service';
-import { formatCurrency } from '@angular/common';
 import { ServiceTO } from 'src/app/entities/ServiceTO';
 import { ServiceService } from 'src/app/services/service/service.service';
 import { ContractedServicesService } from 'src/app/services/contracted-services/contracted-services.service';
 import { ForgotModalComponent } from 'src/app/components/forgot-modal/forgot-modal.component';
 import { UtilsService } from 'src/app/services/utils/utils.service';
-
-
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
 })
 export class ProfileComponent implements OnInit {
+  myProfile: boolean = false;
   isEditable: boolean = false;
+  urlEmail: string;
   user: any = {
     username: '',
     email: '',
     phone: null,
-    wallet: null,
+    wallet: '',
   };
   newName: string = '';
   newPhone: any = null;
@@ -35,15 +35,21 @@ export class ProfileComponent implements OnInit {
     private userService: UserService,
     private serviceService: ServiceService,
     private contractedService: ContractedServicesService,
-    private utils: UtilsService
-  ) {}
-
+    private utils: UtilsService,
+    private router: Router
+  ) {
+    this.user.email = this.router.url.substring(
+      this.router.url.lastIndexOf('/') + 1
+    );
+  }
   ngOnInit(): void {
-    this.userService.getUser(this.sessionService.get('email')).subscribe((data: any) =>{
-      this.user.username = data.name
-      this.user.email = data.email
-      this.user.phone = data.phone
-      this.user.wallet = data.wallet
+    this.user.email === this.sessionService.get('email')
+      ? (this.myProfile = true)
+      : null;
+    this.userService.getUser(this.user.email).subscribe((res: any) => {
+      this.user.username = res.name;
+      this.user.phone = res.phone;
+      this.user.wallet = res.wallet;
     });
     this.loadOffers();
   }
@@ -69,7 +75,7 @@ export class ProfileComponent implements OnInit {
       .putUser(this.newName, this.user.email, this.newPhone)
       .subscribe((res) => {
         this.utils.openSnackBar('Change saved!', '', 0);
-        this.sessionService.set('username', this.newName);
+        window.location.reload();
       });
   }
 
@@ -78,7 +84,6 @@ export class ProfileComponent implements OnInit {
       centered: true,
     });
   }
-
 
   loadOffers(): void {
     console.log(this.user.email);
@@ -89,6 +94,10 @@ export class ProfileComponent implements OnInit {
           title: service.title,
           description: service.description,
           price: service.price,
+          user: {
+            email: this.user.email,
+            username: this.user.username,
+          },
         };
         this.offers.push(auxService);
       });
