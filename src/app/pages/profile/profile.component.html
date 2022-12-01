@@ -1,147 +1,126 @@
-<app-header></app-header>
-<div class="vertical-center">
-    <div class="container mt-8">
-        <div class="row gutters">
-            <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
-                <div class="card-body">
-                    <div class="account-settings">
-                        <div class="user-profile">
-                            <div class="user-avatar">
-                                <img src="https://cdn-icons-png.flaticon.com/512/1053/1053244.png?w=360" alt="Generic placeholder image" class="img-fluid img-thumbnail mt-4 mb-2" />
-                            </div>
-                            <h5 class="full_name">
-                                {{ this.sessionService.get("username") }}
-                            </h5>
-                            <h6 class="email">{{ this.sessionService.get("email") }}</h6>
-                            <button class="button button--primary" (click)="forgotModal()"> Change password </button>
-                        </div>
-                    </div>
-                </div>
+<div class="profile">
+  <div class="row gap-4 d-flex flex-wrap">
+    <div class="profile-card col-2">
+      <div class="profile-card--body">
+        <div class="account-settings">
+          <div class="user-profile">
+            <div class="user-avatar">
+              <img
+                src="https://cdn-icons-png.flaticon.com/512/1053/1053244.png?w=360"
+                alt="Generic placeholder image"
+                class="img-fluid img-thumbnail mt-4 mb-2"
+              />
             </div>
-            <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
-                <div class="row gutters">
-                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                        <h4 class="mb-2 mt-4">Profile details</h4>
-                    </div>
+            <div class="user-info">
+              <h5 class="full_name">
+                {{ user.username }}
+              </h5>
+              <h6 class="email">{{ user.email }}</h6>
+            </div>
+          </div>
+          <button
+            *ngIf="myProfile"
+            class="button button--primary"
+            (click)="forgotModal()"
+          >
+            Change password
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="col-9 profile-details">
+      <div class="row gutters">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+          <h4 class="mb-2 mt-4">Profile details</h4>
+        </div>
 
-                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                        <div class="form-group">
-                            <label for="username">Username: {{ this.sessionService.get("username") }}</label
-              >
-              <input
-                [(ngModel)]="this.newName"
-                type="text"
-                class="form-control"
-                id="username"
-                placeholder="Username"
-                [disabled]="!this.isEditable"
-              />
-            </div>
+        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+          <div class="form-group">
+            <label for="username">Username: {{ user.username }}</label>
+            <input
+              [(ngModel)]="this.newName"
+              type="text"
+              class="form-control"
+              id="username"
+              placeholder="Username"
+              [disabled]="!this.isEditable"
+            />
           </div>
-          <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-            <div class="form-group">
-              <label for="email"
-                >Email: {{ this.sessionService.get("email") }}</label
-              >
-              <input
-                type="text"
-                [disabled]="true"
-                class="form-control"
-                id="email"
-                placeholder="Email"
-              />
-            </div>
+        </div>
+        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+          <div class="form-group">
+            <label for="email">Email: {{ user.email }}</label>
+            <input
+              type="text"
+              [disabled]="true"
+              class="form-control"
+              id="email"
+              placeholder="Email"
+            />
           </div>
-          <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-            <div class="form-group">
-              <label for="number"
-                >Phone number(Optional):
-                {{ this.sessionService.get("phone") }}</label
-              >
-              <input
-                [(ngModel)]="this.newPhone"
-                type="text"
-                [disabled]="!this.isEditable"
-                class="form-control"
-                id="gsm_number"
-                placeholder="Phone"
-              />
-              <p></p>
-            </div>
-          </div>
-          <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-            <div class="form-group">
-              <label for="wallet"
-                >My wallet: {{ this.sessionService.get("wallet") }}</label
-              >
-              <input
-                type="text"
-                [disabled]="true"
-                class="form-control"
-                id="wallet"
-                placeholder="Value"
-              />
-            </div>
-          </div>
-          <div class="mt-6 mb-2 text-center" *ngIf="!this.isEditable">
+        </div>
+        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+          <div class="form-group">
+            <label for="number">Phone number(Optional): {{ user.phone }}</label>
+            <input
+              [(ngModel)]="this.newPhone"
+              type="text"
+              [disabled]="!this.isEditable"
+              class="form-control"
+              id="gsm_number"
+              placeholder="Phone"
+            />
             <p></p>
-            <button (click)="enableEdit()" class="button button--primary">
-              Edit
+          </div>
+        </div>
+        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+          <div class="form-group">
+            <label for="wallet">My wallet: {{ user.wallet }}</label>
+            <input
+              type="text"
+              [disabled]="true"
+              class="form-control"
+              id="wallet"
+              placeholder="Value"
+            />
+          </div>
+        </div>
+        <div class="mt-6 mb-2 text-center" *ngIf="!this.isEditable">
+          <p></p>
+          <button
+            *ngIf="myProfile"
+            (click)="enableEdit()"
+            class="button button--primary"
+          >
+            Edit
+          </button>
+        </div>
+        <div *ngIf="this.isEditable">
+          <div class="col-sm-12 mt-6 mb-2 text-center">
+            <button (click)="clearEdit()" class="button button--primary">
+              Cancel</button
+            >&nbsp;
+            <button (click)="saveProfile()" class="button button--primary">
+              Save
             </button>
-          </div>
-          <div *ngIf="this.isEditable">
-            <div class="col-sm-12 mt-6 mb-2 text-center">
-              <button (click)="clearEdit()" class="button button--primary">
-                Cancel</button
-              >&nbsp;
-              <button (click)="saveProfile()" class="button button--primary">
-                Save
-              </button>
-            </div>
-          </div>
-          <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-            <h4 class="mb-3 mt-1">My offers</h4>
-          </div>
-          <div
-            class="anuncio-wrapper d-flex flex-row gap-4 flex-wrap justify-content-center"
-          >
-            <app-card-anuncio
-              *ngFor="let service of this.offers"
-              [id]="service.id"
-              [title]="service.title"
-              [description]="service.description"
-              [price]="service.price"
-            ></app-card-anuncio>
-          </div>
-
-          <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-            <h4 class="mb-3 mt-5">My contracts</h4>
-          </div>
-          <div
-            class="anuncio-wrapper d-flex flex-row gap-4 flex-wrap justify-content-center"
-          >
-            <app-card-anuncio
-              *ngFor="let service of this.contracts"
-              [id]="service.id"
-              [title]="service.title"
-              [description]="service.description"
-              [price]="service.price"
-            ></app-card-anuncio>
-            <!-- Switch -->
-            <div class="form-check form-switch">
-              <input
-                mdbCheckbox
-                class="form-check-input"
-                type="checkbox"
-                id="flexSwitchCheckDefault"
-              />
-              <label class="form-check-label" for="flexSwitchCheckDefault"
-                >Activate</label
-              >
-            </div>
           </div>
         </div>
       </div>
+    </div>
+    <div class="my-offers col-12">
+      <h4 class="mb-3 mt-1">User offers</h4>
+    </div>
+    <div
+      class="anuncio-wrapper d-flex flex-row gap-4 flex-wrap justify-content-center"
+    >
+      <app-card-anuncio
+        *ngFor="let service of this.offers"
+        [id]="service.id"
+        [title]="service.title"
+        [description]="service.description"
+        [price]="service.price"
+        [user]="service.user"
+      ></app-card-anuncio>
     </div>
   </div>
 </div>

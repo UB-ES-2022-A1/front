@@ -67,7 +67,7 @@ export class ServiceService {
       description: description,
       price: price,
     };
-    return this.http.post(this.baseUrl, body, { responseType: 'text' });
+    return this.http.post(this.baseUrl, body);
   }
 
   getUserServices(email: string): Observable<any> {
