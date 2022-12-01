@@ -16,7 +16,7 @@ export class UtilsService {
         panelClass: ['custom-success-snackbar'],
       });
     }
-    // Warning snackbar
+    // error snackbar
     else if (type === 1) {
       this.snackBar.open(message, action, {
         verticalPosition: 'top',

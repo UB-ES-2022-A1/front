@@ -1,4 +1,32 @@
 <div class="main-page">
+  <div class="main-page-header">
+    <div
+      *ngIf="loginService.isLogged()"
+      class="left-header d-flex flex-column justify-content-center align-items-center"
+    >
+      <h3>Welcome!</h3>
+      <h5 class="user">{{ sessionService.get("username") }}</h5>
+      <p>Offer your services or products to others</p>
+      <button class="button button--primary" (click)="openCreateService()">
+        New service <mat-icon class="ms-2">add </mat-icon>
+      </button>
+    </div>
+    <div
+      *ngIf="!loginService.isLogged()"
+      class="left-header d-flex flex-column justify-content-center align-items-center"
+    >
+      <h3>Welcome!</h3>
+      <p>Log In to get full access to the platform</p>
+      <button class="button button--primary" (click)="openLogin()">
+        Login
+      </button>
+    </div>
+    <div class="right-header d-flex justify-content-center align-items-center">
+      <h1>
+        <div class="typing-demo"><h2>Visible en el Sprint 3! 🐱</h2></div>
+      </h1>
+    </div>
+  </div>
   <h2 class="subtitle">Top services</h2>
   <div class="card-wrapper">
     <app-card-anuncio
@@ -7,6 +35,7 @@
       [title]="service.title"
       [description]="service.description"
       [price]="service.price"
+      [user]="service.user"
     ></app-card-anuncio>
   </div>
 </div>

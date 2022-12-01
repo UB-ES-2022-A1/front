@@ -2,13 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { UserService } from 'src/app/services/user/user.service';
 import { SessionService } from 'src/app/services/session/session.service';
+import { UtilsService } from 'src/app/services/utils/utils.service';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
 })
 export class RegisterComponent implements OnInit {
-  error = false;
+  error = '';
   userLogin: UserLogin = {
     username: '',
     email: '',
@@ -19,26 +20,35 @@ export class RegisterComponent implements OnInit {
   constructor(
     private modalService: NgbModal,
     private userService: UserService,
-    private sessionService: SessionService
+    private sessionService: SessionService,
+    private utils: UtilsService
   ) {}
 
   postUser() {
-    this.userService
-      .postUser(
-        this.userLogin.username,
-        this.userLogin.email,
-        this.userLogin.password
-      )
-      .subscribe(
-        (res) => {
-          this.sessionService.set('username', this.userLogin.username);
-          this.modalService.dismissAll();
-        },
-        (error: any) => {
-          this.error = true;
-          console.error('error caught in component');
-        }
-      );
+    if (this.userLogin.password === this.userLogin.confirmPassword) {
+      this.userService
+        .postUser(
+          this.userLogin.username,
+          this.userLogin.email,
+          this.userLogin.password
+        )
+        .subscribe(
+          (res) => {
+            this.utils.openSnackBar(
+              'Please, verify your email before your next login.',
+              'Ok',
+              2
+            );
+            this.modalService.dismissAll();
+          },
+          (error: any) => {
+            this.error = 'Unexpected error';
+            console.log(error);
+          }
+        );
+    } else {
+      this.error = "Passwords don't match";
+    }
   }
 
   ngOnInit(): void {}
