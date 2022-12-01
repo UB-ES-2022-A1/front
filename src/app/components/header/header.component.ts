@@ -23,15 +23,11 @@ export class HeaderComponent implements OnInit {
     public router: Router,
     private data: SearchBarService
   ) {}
-  @Output()
-  search: string = '';
-  filters: FiltersTO = {
-    priceMin: undefined,
-    priceMax: undefined,
-    priceOrd: 1,
-  };
+
+  filters: FiltersTO;
+
   ngOnInit(): void {
-    this.data.currentSearch.subscribe((search) => (this.search = search));
+    this.data.currentSearch.subscribe((filters) => (this.filters = filters));
   }
   openLogin() {
     const modalRef = this.modalService.open(LoginComponent, { centered: true });
@@ -47,16 +43,21 @@ export class HeaderComponent implements OnInit {
       centered: true,
       size: 'sm',
     });
-    modalRef.componentInstance.filters = this.filters;
+    if (this.filters !== undefined) {
+      modalRef.componentInstance.filters = this.filters;
+    }
     modalRef.result.then((result) => {
-      this.filters = result;
-      console.log(this.filters);
+      if (result[0] === 1) {
+        this.filters.search = this.enteredSearchValue;
+        console.log(this.filters);
+      }
     });
   }
 
   onSearch() {
     this.router.navigate([`/`]);
-    this.data.changeSearch(this.enteredSearchValue);
+    this.filters.search = this.enteredSearchValue;
+    this.data.changeSearch(this.filters);
   }
   navigateProfile() {
     this.router.navigate([`/profile/`]);

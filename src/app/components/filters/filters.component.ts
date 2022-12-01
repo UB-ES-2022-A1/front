@@ -30,6 +30,14 @@ export class FiltersComponent implements OnInit {
     }
   }
   onFilter() {
-    this.activeModal.close(this.filters);
+    this.activeModal.close([1, this.filters]);
+  }
+  resetFilters() {
+    this.filters = {
+      search: '',
+      priceMin: undefined,
+      priceMax: undefined,
+      priceOrd: 1,
+    };
   }
 }
