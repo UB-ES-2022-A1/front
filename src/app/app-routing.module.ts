@@ -11,6 +11,8 @@ const routes: Routes = [
   { path: 'update_password/:token', component: ForgotComponent },
 
   { path: 'profile', component: ProfileComponent },
+  { path: 'profile/:email', component: ProfileComponent },
+
   { path: 'service/:id', component: ServiceDetailComponent },
 ];
 

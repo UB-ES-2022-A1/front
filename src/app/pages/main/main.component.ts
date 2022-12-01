@@ -7,6 +7,7 @@ import { LoginService } from 'src/app/services/login/login.service';
 import { SearchBarService } from 'src/app/services/search-bar/search-bar.service';
 import { ServiceService } from 'src/app/services/service/service.service';
 import { SessionService } from 'src/app/services/session/session.service';
+import { UserService } from 'src/app/services/user/user.service';
 import { ServiceDetailTO } from '../service-detail/service-detail.component';
 @Component({
   selector: 'app-main',
@@ -17,6 +18,7 @@ export class MainComponent implements OnInit {
   searchText: string = '';
   search: string = '';
   constructor(
+    private userService: UserService,
     private serviceService: ServiceService,
     protected sessionService: SessionService,
     private modalService: NgbModal,
@@ -35,8 +37,17 @@ export class MainComponent implements OnInit {
             title: service.title,
             description: service.description,
             price: service.price,
+            user: {
+              email: '',
+            },
           };
-          this.services.push(auxService);
+          this.userService.getUser(service.user).subscribe((res: any) => {
+            auxService.user = {
+              username: res.name,
+              email: res.email,
+            };
+            this.services.push(auxService);
+          });
         });
       });
     });
