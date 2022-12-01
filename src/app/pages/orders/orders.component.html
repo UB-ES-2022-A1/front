@@ -1,0 +1,23 @@
+<app-header></app-header>
+<div class="text-center">
+    <h4 class="mb-3 mt-1">My contracted services</h4>
+</div>
+
+<div class="container mt-5 mb-5">
+    <div class="d-flex justify-content-center row">
+        <!--  a cambiar a this.contractsClient -->
+        <app-card-contract *ngFor="let service of this.offers" [id]="service.id" [title]="service.title" [description]="service.description" [price]="service.price">
+        </app-card-contract>
+    </div>
+</div>
+
+<div class="text-center">
+    <h4 class="mb-3 mt-1">My requested services</h4>
+</div>
+
+<div class="container mt-5 mb-5">
+    <div class="d-flex justify-content-center row">
+        <app-card-contract *ngFor="let service of this.contractsConstractor" [id]="service.id" [title]="service.title" [description]="service.description" [price]="service.price">
+        </app-card-contract>
+    </div>
+</div>
