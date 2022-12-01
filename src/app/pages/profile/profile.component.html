@@ -113,33 +113,6 @@
               [price]="service.price"
             ></app-card-anuncio>
           </div>
-
-          <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-            <h4 class="mb-3 mt-5">My contracts</h4>
-          </div>
-          <div
-            class="anuncio-wrapper d-flex flex-row gap-4 flex-wrap justify-content-center"
-          >
-            <app-card-anuncio
-              *ngFor="let service of this.contracts"
-              [id]="service.id"
-              [title]="service.title"
-              [description]="service.description"
-              [price]="service.price"
-            ></app-card-anuncio>
-            <!-- Switch -->
-            <div class="form-check form-switch">
-              <input
-                mdbCheckbox
-                class="form-check-input"
-                type="checkbox"
-                id="flexSwitchCheckDefault"
-              />
-              <label class="form-check-label" for="flexSwitchCheckDefault"
-                >Activate</label
-              >
-            </div>
-          </div>
         </div>
       </div>
     </div>

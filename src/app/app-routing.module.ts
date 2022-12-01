@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ForgotComponent } from './components/forgot/forgot.component';
 import { HeaderComponent } from './components/header/header.component';
 import { MainComponent } from './pages/main/main.component';
+import { OrdersComponent } from './pages/orders/orders.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { ServiceDetailComponent } from './pages/service-detail/service-detail.component';
 
@@ -12,6 +13,8 @@ const routes: Routes = [
 
   { path: 'profile', component: ProfileComponent },
   { path: 'profile/:email', component: ProfileComponent },
+  
+  { path: 'orders', component: OrdersComponent },
 
   { path: 'service/:id', component: ServiceDetailComponent },
 ];

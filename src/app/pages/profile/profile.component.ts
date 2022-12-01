@@ -45,7 +45,6 @@ export class ProfileComponent implements OnInit {
       this.user.phone = data.phone
       this.user.wallet = data.wallet
     });
-    this.loadContracts();
     this.loadOffers();
   }
 
@@ -92,20 +91,6 @@ export class ProfileComponent implements OnInit {
           price: service.price,
         };
         this.offers.push(auxService);
-      });
-    });
-  }
-
-  loadContracts(): void {
-    this.contractedService.getUserContract(this.user.email).subscribe((res) => {
-      res.forEach((service: any) => {
-        let auxService: ServiceTO = {
-          id: service.id,
-          title: service.title,
-          description: service.description,
-          price: service.price,
-        };
-        this.contracts.push(auxService);
       });
     });
   }

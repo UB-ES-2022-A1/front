@@ -1,0 +1,26 @@
+<div>
+    <div class="contract">
+        <div class="row">
+            <div class="col">
+                <img class="contractImg mt-2" (click)="seeDetail()" src="../../assets/img/pexels-ylanite-koppens-776654.jpg" alt="Card image cap">
+            </div>
+
+            <div class="col-6">
+                <h5 class="contract--title mt-4 ml-3">{{ this.title }}</h5>
+                <p class="contract--description mt-4 ml-3">{{ this.description }}</p>
+            </div>
+
+            <div class="col">
+                <h4 class="mt-4">State: sold</h4>
+                <div *ngIf="!this.isActivated">
+                    <button (click)="activateService()" class="button button--primary mt-4">
+                        Activate</button>&nbsp;
+                </div>
+                <div *ngIf="this.isActivated">
+                    <button (click)="activateService()" class="button button--primary mt-4">
+                        Deactivate</button>&nbsp;
+                </div>
+                <h4 class="contract--price">{{ this.price }}$</h4>
+            </div>
+        </div>
+    </div>
