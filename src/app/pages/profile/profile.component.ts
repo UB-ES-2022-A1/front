@@ -75,6 +75,7 @@ export class ProfileComponent implements OnInit {
       .putUser(this.newName, this.user.email, this.newPhone)
       .subscribe((res) => {
         this.utils.openSnackBar('Change saved!', '', 0);
+        window.location.reload();
       });
   }
 
