@@ -82,4 +82,8 @@ export class ServiceDetailComponent implements OnInit {
       price: this.serviceInfo.price,
     };
   }
+  navigateToProfile(event: Event): void {
+    event.stopPropagation();
+    this.router.navigate([`/profile/${this.serviceInfo?.user}`]);
+  }
 }

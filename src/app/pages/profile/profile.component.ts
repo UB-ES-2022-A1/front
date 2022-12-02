@@ -24,8 +24,7 @@ export class ProfileComponent implements OnInit {
     phone: null,
     wallet: '',
   };
-  newName: string = '';
-  newPhone: any = null;
+
   offers: ServiceTO[] = [];
   contracts: ServiceTO[] = [];
 
@@ -60,15 +59,14 @@ export class ProfileComponent implements OnInit {
 
   clearEdit() {
     this.isEditable = !this.isEditable;
-    this.newName = '';
-    this.newPhone = null;
   }
 
   saveProfile() {
     this.userService
-      .putUser(this.newName, this.user.email, this.newPhone)
+      .putUser(this.user.username, this.user.email, this.user.phone)
       .subscribe((res) => {
         this.utils.openSnackBar('Change saved!', '', 0);
+        this.sessionService.set('username', this.user.username);
         window.location.reload();
       });
   }
