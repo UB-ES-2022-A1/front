@@ -45,7 +45,9 @@
           Contact with customer
         </button>
         <div class="contact-info d-flex flex-row justify-content-between">
-          {{ this?.serviceInfo?.user }}
+          <p (click)="navigateToProfile($event)" class="user-email">
+            {{ this?.serviceInfo?.user }}
+          </p>
           <div
             class="icon-wrapper d-flex flex-row justify-content-center align-items-center"
           >
