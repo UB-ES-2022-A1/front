@@ -6,7 +6,10 @@
 <div class="container mt-5 mb-5">
     <div class="d-flex justify-content-center row">
         <!--  a cambiar a this.contractsClient -->
-        <app-card-contract *ngFor="let service of this.offers" [id]="service.id" [title]="service.title" [description]="service.description" [price]="service.price">
+        <div *ngIf="this.noClientService">
+            <h5>Currently you have no contracts...</h5>
+        </div>
+        <app-card-contract *ngFor="let service of this.contractsClient" [id]="service.id" [title]="service.title" [description]="service.description" [price]="service.price">
         </app-card-contract>
     </div>
 </div>
@@ -17,6 +20,9 @@
 
 <div class="container mt-5 mb-5">
     <div class="d-flex justify-content-center row">
+        <div *ngIf="this.noContractorService">
+            <h5>Currently you have no contracts...</h5>
+        </div>
         <app-card-contract *ngFor="let service of this.contractsConstractor" [id]="service.id" [title]="service.title" [description]="service.description" [price]="service.price">
         </app-card-contract>
     </div>

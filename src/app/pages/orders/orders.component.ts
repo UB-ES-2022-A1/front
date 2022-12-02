@@ -13,10 +13,12 @@ import { Router } from '@angular/router';
   templateUrl: './orders.component.html',
 })
 export class OrdersComponent implements OnInit {
-  @Input() id: number;
+  @Input() id: string;
   @Input() title: string;
   @Input() description: string;
   @Input() price: number;
+  noClientService: boolean = false;
+  noContractorService: boolean = false;
 
   user: any = {
     username: '',
@@ -24,9 +26,9 @@ export class OrdersComponent implements OnInit {
     phone: null,
     wallet: null,
   };
+
   contractsClient: ServiceTO[] = [];
   contractsConstractor: ServiceTO[] = [];
-  offers: ServiceTO[] = [];
 
 
   constructor(
@@ -40,7 +42,6 @@ export class OrdersComponent implements OnInit {
   ngOnInit(): void {
     this.loadClientContract();
     this.loadContractorContract();
-    this.loadOffers();
   }
 
   navigateToProfile(event: Event): void {
@@ -63,6 +64,10 @@ export class OrdersComponent implements OnInit {
         this.contractsClient.push(auxService);
       });
     });
+    console.log(this.contractsClient.length)
+    if(this.contractsClient.length == 0){
+      this.noClientService = true
+    }
   }
 
   loadContractorContract(): void {
@@ -73,25 +78,10 @@ export class OrdersComponent implements OnInit {
           title: service.title,
           description: service.description,
           price: service.price,
-        };
+        }; 
+        console.log("ContractorContract: ",auxService)
         this.contractsConstractor.push(auxService);
       });
     });
   }
-
-  loadOffers(): void {
-    console.log(this.user.email);
-    this.serviceService.getUserServices(this.sessionService.get("email")).subscribe((res) => {
-      res.forEach((service: any) => {
-        let auxService: ServiceTO = {
-          id: service.id,
-          title: service.title,
-          description: service.description,
-          price: service.price,
-        };
-        this.offers.push(auxService);
-      });
-    });
-  }
-
 }

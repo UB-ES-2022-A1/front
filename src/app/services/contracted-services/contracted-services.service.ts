@@ -30,4 +30,9 @@ export class ContractedServicesService {
     const url = this.baseUrl + '/contractor/' + email;
     return this.http.get(url);
   }
+
+  getAllContracts(): Observable<any> {
+    return this.http.get(this.baseUrl);
+  }
+
 }

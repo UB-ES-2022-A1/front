@@ -5,8 +5,8 @@
         </div>
 
         <div class="col-6">
-            <h5 class="contract--title mt-4 ml-3">{{ this.title }}</h5>
-            <p class="contract--description mt-4 ml-3">{{ this.description }}</p>
+            <h5 class="contract--title mt-4 ml-3">{{ this.service.title }}</h5>
+            <p class="contract--description mt-4 ml-3">{{ this.service.description }}</p>
         </div>
 
         <div class="col">
@@ -19,7 +19,7 @@
                 <button (click)="activateService()" class="button button--primary mt-4">
                         Deactivate</button>&nbsp;
             </div>
-            <h4 class="contract--price">{{ this.price }}$</h4>
+            <h4 class="contract--price">{{ this.service.price }}$</h4>
         </div>
     </div>
 </div>
