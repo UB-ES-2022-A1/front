@@ -15,30 +15,24 @@ export class ContractedServicesService {
   ) {}
 
   postContract(serviceId: any, user: any, description: any) {
-    const tokenString = btoa(
-      this.sessionService.get('token') + ':' + this.sessionService.get('email')
-    );
-    const authToken: any = `Basic ${tokenString}`;
-    let headers = new HttpHeaders({
-      Authorization: authToken,
-    });
     const body: any = {
       service: serviceId,
-      state: 'active',
-      price: 50,
     };
-    return this.http.post(this.baseUrl, body, { headers });
+    return this.http.post(this.baseUrl, body);
   }
 
-  getUserContract(email: string): Observable<any> {
-    const tokenString = btoa(
-      this.sessionService.get('token') + ':' + this.sessionService.get('email')
-    );
-    const authToken: any = `Basic ${tokenString}`;
-    let headers = new HttpHeaders({
-      Authorization: authToken,
-    });
-    const url = this.baseUrl + '/' + email + '/contracted_services';
+  getClientContract(email: string): Observable<any> {
+    const url = this.baseUrl + '/client/' + email;
+    return this.http.get(url);
+  }
+
+  getContractorContract(email: string): Observable<any> {
+    const url = this.baseUrl + '/contractor/' + email;
+    return this.http.get(url);
+  }
+
+  getAllContracts(): Observable<any> {
     return this.http.get(this.baseUrl);
   }
+
 }

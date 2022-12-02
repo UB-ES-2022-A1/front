@@ -2,21 +2,68 @@
   width: 100%;
   background: var(main-primary-color);
   padding-top: 5px;
-  display: flex;
-  flex-direction: column;
+  &-header {
+    display: flex;
+    flex-direction: row;
+    height: 250px;
+    width: 100%;
+    margin: 25px 0;
+    .left-header {
+      width: 240px;
+      height: 100%;
+      border: solid 1px var(--color-accent);
+      border-radius: 5px;
+      margin-right: 30px;
 
+      .user {
+        color: var(--color-accent);
+      }
+      p {
+        max-width: 220px;
+        text-align: center;
+      }
+    }
+    .right-header {
+      width: calc(100% - 270px);
+      color: var(--color-white);
+      padding: 20px;
+      height: 100%;
+      border-radius: 5px;
+      background-color: var(--color-black);
+      .typing-demo {
+        width: 11ch;
+        animation: typing 2s steps(22), blink 0.5s step-end infinite alternate;
+        white-space: nowrap;
+        overflow: hidden;
+        border-right: 3px solid;
+        font-family: monospace;
+        font-size: 2em;
+        h2 {
+          margin-bottom: 0px;
+        }
+      }
+
+      @keyframes typing {
+        from {
+          width: 0;
+        }
+      }
+
+      @keyframes blink {
+        50% {
+          border-color: transparent;
+        }
+      }
+    }
+  }
   .subtitle {
     margin: auto;
     margin-bottom: 20px;
   }
-  .search {
+  .card-wrapper {
     display: flex;
-    flex-direction: row;
     justify-content: center;
-    align-items: center;
-    height: 80px;
-    top: 120px;
-    width: 100%;
-    z-index: 999;
+    flex-wrap: wrap;
+    gap: 20px;
   }
 }

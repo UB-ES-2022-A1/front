@@ -1,14 +1,20 @@
 <div (click)="seeDetail()" class="card d-flex flex-column">
-  <img
-    class="card--img"
-    src="../../assets/img/pexels-ylanite-koppens-776654.jpg"
-  />
-  <div class="card--body">
-    <p class="card--title">{{ this.title }}</p>
-    <p class="card--description">{{ this.description }}</p>
-    <div class="card--info d-flex flex-row justify-content-between">
-      <p class="card--user">User</p>
-      <p class="card--price">{{ this.price }}$</p>
+    <img class="card--img" src="../../assets/img/pexels-ylanite-koppens-776654.jpg" />
+    <div class="card--body">
+        <p class="card--title">{{ this.title }}</p>
+        <div class="card--rating d-flex align-items-center mb-1">
+            <mat-icon>star</mat-icon>
+            4,7
+        </div>
+        <!--     <p class="card--description">{{ this.description }}</p>-->
+        <div class="card--info d-flex flex-row justify-content-between align-items-center pt-1 pb-2">
+            <div class="card--user-info d-flex flex-row align-items-center gap-2">
+                <img class="card--user-pic" src="https://cdn-icons-png.flaticon.com/512/1053/1053244.png?w=360" />
+                <p (click)="navigateToProfile($event)" class="card--username m-0">
+                    {{ user!.username }}
+                </p>
+            </div>
+            <p class="card--price m-0">{{ this.price }}$</p>
+        </div>
     </div>
-  </div>
 </div>

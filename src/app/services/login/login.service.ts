@@ -23,7 +23,8 @@ export class LoginService {
   isLogged() {
     if (
       this.sessionService.get('token') != null &&
-      this.sessionService.get('token') != ''
+      this.sessionService.get('token') != '' &&
+      this.sessionService.get('token') != false
     ) {
       return true;
     } else {

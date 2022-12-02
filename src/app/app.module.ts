@@ -8,12 +8,15 @@ import { LoginComponent } from './components/login/login.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MainComponent } from './pages/main/main.component';
 import { HeaderComponent } from './components/header/header.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+
 import { ProfileComponent } from './pages/profile/profile.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 
 import { InterceptorService } from './services/interceptor/interceptor.service';
 import { MatIconModule } from '@angular/material/icon';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import {
   HttpClientModule,
@@ -27,6 +30,9 @@ import { ServiceDetailComponent } from './pages/service-detail/service-detail.co
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { ForgotComponent } from './components/forgot/forgot.component';
 import { ForgotModalComponent } from './components/forgot-modal/forgot-modal.component';
+import { OrdersComponent } from './pages/orders/orders.component';
+import { CardContractComponent } from './components/card-contract/card-contract.component';
+import { FiltersComponent } from './components/filters/filters.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +48,9 @@ import { ForgotModalComponent } from './components/forgot-modal/forgot-modal.com
     SpinnerComponent,
     ForgotComponent,
     ForgotModalComponent,
+    OrdersComponent,
+    CardContractComponent,
+    FiltersComponent,
   ],
   imports: [
     BrowserModule,
@@ -52,6 +61,8 @@ import { ForgotModalComponent } from './components/forgot-modal/forgot-modal.com
     NgbModule,
     MatFormFieldModule,
     MatInputModule,
+    MatSnackBarModule,
+    BrowserAnimationsModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true },

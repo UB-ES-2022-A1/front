@@ -1,0 +1,1 @@
+LOG Test Registro - Boton de Login pulsado con exitoLOG Test Registro - Modal de Login cargado con exitoLOG Test Registro - Modal de Registro cargado con exito 

@@ -1,19 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { SessionService } from '../session/session.service';
+import { HttpClient } from '@angular/common/http';
 import { SearchTO } from 'src/app/entities/SearchTO';
+import { FiltersTO } from 'src/app/entities/FiltersTO';
 @Injectable({
   providedIn: 'root',
 })
 export class ServiceService {
   baseUrl: string = environment.backurl + 'services';
 
-  constructor(
-    private http: HttpClient,
-    private sessionService: SessionService
-  ) {}
+  constructor(private http: HttpClient) {}
 
   getService(id: string): Observable<any> {
     const url = this.baseUrl + '/' + id;
@@ -22,22 +19,42 @@ export class ServiceService {
   getServices(): Observable<any> {
     return this.http.get(this.baseUrl);
   }
-  getServicesFilt(search?: string, sort?: any, filters?: any): Observable<any> {
+  deactivateService(id: string): Observable<any> {
+    const url = this.baseUrl + '/' + id;
+    return this.http.delete(url);
+  }
+  putService(
+    id: string,
+    title: string,
+    description: string,
+    price: number,
+    user: string
+  ): Observable<any> {
+    const url = this.baseUrl + '/' + id;
+    const body: any = {
+      title: title,
+      user: user,
+      description: description,
+      price: price,
+    };
+    return this.http.put(url, body);
+  }
+  getServicesFilt(filters: FiltersTO): Observable<any> {
     const url = this.baseUrl + '/search';
     let body: SearchTO = {
       search_text: undefined,
     };
-    console.log(search);
-    if (search !== undefined && search !== '') {
-      body['search_text'] = search;
+    filters?.search ? (body.search_text = filters.search) : null;
+    body.filters = {
+      price: { min: filters?.priceMin, max: filters?.priceMax },
+    };
+    if (filters.priceOrd !== 1) {
+      let reversed = filters.priceOrd === 2;
+      body.sort = {
+        by: 'price',
+        reverse: reversed,
+      };
     }
-    if (sort !== undefined) {
-      body['sort'] = sort;
-    }
-    if (filters !== undefined) {
-      body['filters'] = filters;
-    }
-
     return this.http.post(url, body);
   }
 
@@ -47,32 +64,18 @@ export class ServiceService {
     price: number,
     user: string
   ): Observable<any> {
-    const tokenString = btoa(
-      this.sessionService.get('token') + ':' + this.sessionService.get('email')
-    );
-
-    const authToken: any = `Basic ${tokenString}`;
-    let headers = new HttpHeaders({
-      Authorization: authToken,
-    });
     const body: any = {
       title: title,
       user: user,
       description: description,
       price: price,
     };
-    return this.http.post(this.baseUrl, body, { headers });
+    return this.http.post(this.baseUrl, body);
   }
 
   getUserServices(email: string): Observable<any> {
-    const tokenString = btoa(
-      this.sessionService.get('token') + ':' + this.sessionService.get('email')
-    );
-    const authToken: any = `Basic ${tokenString}`;
-    let headers = new HttpHeaders({
-      Authorization: authToken,
-    });
     const url = this.baseUrl + '/' + email + '/service';
-    return this.http.get(this.baseUrl, { headers });
+
+    return this.http.get(url);
   }
 }

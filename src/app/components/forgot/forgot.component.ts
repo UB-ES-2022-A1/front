@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user/user.service';
+import { UtilsService } from 'src/app/services/utils/utils.service';
 
 @Component({
   selector: 'app-forgot',
@@ -8,9 +9,15 @@ import { UserService } from 'src/app/services/user/user.service';
 })
 export class ForgotComponent implements OnInit {
   newPassword: string = '';
+  confirmPassword: string = '';
+
   token: string = '';
   email: string = '';
-  constructor(private userService: UserService, private router: Router) {
+  constructor(
+    private userService: UserService,
+    private router: Router,
+    private utils: UtilsService
+  ) {
     this.token = this.router.url.substring(
       this.router.url.lastIndexOf('/') + 1
     );
@@ -19,10 +26,12 @@ export class ForgotComponent implements OnInit {
   ngOnInit(): void {}
 
   onSubmit() {
-    this.userService
-      .resetPwd(this.token, this.newPassword)
-      .subscribe((data) => {
-        console.log(data);
-      });
+    if (this.newPassword === this.confirmPassword) {
+      this.userService
+        .resetPwd(this.token, this.newPassword)
+        .subscribe((data) => {});
+    } else {
+      this.utils.openSnackBar("Passwords don't match", 'Ok', 1);
+    }
   }
 }

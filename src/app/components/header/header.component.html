@@ -23,7 +23,7 @@
     >
       <mat-icon>search</mat-icon>
     </button>
-    <button class="button button--primary" (click)="sortPrice()">
+    <button class="button button--primary" (click)="openFilters()">
       <mat-icon>tune</mat-icon>
     </button>
   </div>
@@ -35,9 +35,13 @@
   </div>
   <div
     *ngIf="this.loginService.isLogged()"
-    class="col-3 d-flex flex-row justify-content-center align-items-center gap-4"
+    class="col-3 d-flex flex-row justify-content-around align-items-center gap-4"
   >
-    <div class="d-flex flex-column align-items-center">
+    <div class="d-flex flex-row gap-4">
+      <h5 (click)="navigateProfile()">Profile</h5>
+      <h5 (click)="navigateOrders()">Orders</h5>
+    </div>
+    <!-- <div class="d-flex flex-column align-items-center">
       <div>
         Welcome
         <a href="/profile" class="username">
@@ -47,7 +51,7 @@
       <button class="button button--primary" (click)="openCreateService()">
         New service <mat-icon class="ms-2">add </mat-icon>
       </button>
-    </div>
+    </div> -->
     <mat-icon (click)="logout()" class="logout">logout</mat-icon>
   </div>
 </header>

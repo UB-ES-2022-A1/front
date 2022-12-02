@@ -1,4 +1,6 @@
 <form class="modal-form">
+  <h2>Sign Up</h2>
+
   <div class="input-container">
     <input
       [(ngModel)]="this.userLogin.username"
@@ -39,7 +41,7 @@
     />
   </div>
 
-  <em *ngIf="this.error" class="error">There was an error</em>
+  <em *ngIf="this.error !== ''" class="error">{{ error }}</em>
 
   <button (click)="postUser()" class="button button--primary">Register</button>
 </form>
