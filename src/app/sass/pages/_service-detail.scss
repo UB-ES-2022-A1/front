@@ -16,6 +16,7 @@
     border-radius: 15px;
     cursor: pointer;
   }
+
   .price-info {
     width: 400px;
     gap: 20px;
@@ -41,5 +42,14 @@
   }
   .contract-form {
     display: none;
+  }
+  .buttons-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    button {
+      width: 280px;
+      border-radius: 8px;
+    }
   }
 }

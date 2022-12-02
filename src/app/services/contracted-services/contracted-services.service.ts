@@ -17,8 +17,6 @@ export class ContractedServicesService {
   postContract(serviceId: any, user: any, description: any) {
     const body: any = {
       service: serviceId,
-      state: 'active',
-      price: 50,
     };
     return this.http.post(this.baseUrl, body);
   }

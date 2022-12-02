@@ -25,7 +25,19 @@
       color: var(--color-accent);
     }
   }
-
+  &--warning {
+    background-color: var(--color-negative);
+    border-color: var(--color-accent);
+    color: var(--color-white);
+    &__sm {
+      width: 50px;
+    }
+    &:hover {
+      background-color: var(--color-white);
+      border: 1px solid var(--color-negative);
+      color: var(--color-negative);
+    }
+  }
   &--icon {
     transition: all ease 0.3s;
     color: var(--color-white);
