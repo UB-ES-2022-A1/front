@@ -1,0 +1,3 @@
+LOG Test Edicion Perfil - Boton de Login pulsado con exito 
+LOG Test Edicion Perfil - Modal de Login pulsado con exito 
+LOG Test Edicion Perfil - Test Completado con Exito, Usuario Loggeado 
