@@ -23,7 +23,6 @@ export class CardAnuncioComponent implements OnInit {
     event.stopPropagation();
     if (this.user !== undefined) {
       this.router.navigate([`/profile/${this.user.email}`]);
-      console.log(this.user);
     }
   }
 }

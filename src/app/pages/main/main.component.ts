@@ -33,7 +33,6 @@ export class MainComponent implements OnInit {
       this.serviceService.getServicesFilt(this.filters).subscribe((data) => {
         this.services = [];
         data.forEach((service: any) => {
-          console.log(service.price);
           let auxService: ServiceTO = {
             id: service.id,
             title: service.title,
