@@ -16,13 +16,14 @@ password = "193491482205390"
 driver.get("https://atyourservice-test.onrender.com/")
 
 timeout = 10
-f = open("logTestServicios.txt", mode="wt")
+f = open("logTestBusqueda.txt", mode="wt")
 
 try:
-    element_present = EC.presence_of_element_located((By.XPATH, '/html/body/app-root/div/app-main/div/div[2]/app-card-anuncio[1]/div/img'))
+    element_present = EC.presence_of_element_located((By.XPATH, '/html/body/app-root/div/app-header/header/div[1]/div/input'))
     WebDriverWait(driver, timeout).until(element_present)
-    print(f"LOG Test Servicios - Se muestran los servicios correctamente, conexion correcta con backend")
-    f.write(f"LOG Test Servicios - Se muestran los servicios correctamente, conexion correcta con backend \n")
+    busqueda = driver.find_element(By.XPATH, '/html/body/app-root/div/app-header/header/div[1]/div/input')
+    print(f"LOG Test Busqueda - Se muestran la barra de busqueda correctamente")
+    f.write(f"LOG Test Busqueda - Se muestra la barra de busqueda correctamente \n")
 except:
-    print(f"LOG Test Servicios - No fue posible conectar con la base de datos de servicios")
-    f.write(f"LOG Test Servicios - No fue posible conectar con la base de datos de servicios \n")
+    print(f"LOG Test Busqueda - No se muestra la barra de busqueda correctamente ")
+    f.write(f"LOG Test Busqueda - No se muestra la barra de busqueda correctamente \n")

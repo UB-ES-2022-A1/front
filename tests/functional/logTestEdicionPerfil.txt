@@ -1,3 +1,7 @@
 LOG Test Edicion Perfil - Boton de Login pulsado con exito 
 LOG Test Edicion Perfil - Modal de Login pulsado con exito 
-LOG Test Edicion Perfil - Test Completado con Exito, Usuario Loggeado 
+LOG Test Edicion Perfil - Usuario Loggeado 
+LOG Test Edicion Perfil - Se ha podido acceder al Perfil del usuario correctamente 
+LOG Test Edicion Perfil - Se ha pulsado el boton de edicion correctamente 
+LOG Test Edicion Perfil - El campo de edicion de numero de telefono se ha modificado correctamente 
+LOG Test Edicion Perfil - Boton de guardar pulsado con exito, Test completado correctamente 
