@@ -1,0 +1,8 @@
+LOG Test Crear Servicio - Boton de Login pulsado con exito 
+LOG Test Crear Servicio - Modal de Login pulsado con exito 
+LOG Test Crear Servicio - Usuario Loggeado 
+LOG Test Crear Servicio - Se ha podido acceder al Modal de Crear Servicio
+LOG Test Crear Servicio - El boton de edicion no se ha podido pulsar 
+LOG Test Crear Servicio - No se ha podido introducir un numero de telefono nuevo 
+LOG Test Crear Servicio - No se pudieron introducir los datos del servicio 
+LOG Test Crear Servicio - Boton de guardar servicio pulsado, Test Completado 
