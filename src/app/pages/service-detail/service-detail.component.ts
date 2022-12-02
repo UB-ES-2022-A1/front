@@ -29,7 +29,9 @@ export class ServiceDetailComponent implements OnInit {
     private utils: UtilsService,
     protected loginService: LoginService,
     private modalService: NgbModal
-  ) {
+  ) {}
+
+  ngOnInit(): void {
     this.serviceId = this.router.url.substring(
       this.router.url.lastIndexOf('/') + 1
     );
@@ -47,8 +49,6 @@ export class ServiceDetailComponent implements OnInit {
       }
     });
   }
-
-  ngOnInit(): void {}
 
   submitContact() {
     this.contractService
