@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ServiceService } from 'src/app/services/service/service.service';
 import { SessionService } from 'src/app/services/session/session.service';
@@ -11,31 +11,58 @@ export class FormServiceComponent implements OnInit {
   title: string = '';
   description: string = '';
   price: string = '';
+  @Input() editData: any;
   constructor(
     private serviceService: ServiceService,
     private modalService: NgbModal,
     private sessionService: SessionService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if (this.editData !== undefined) {
+      this.title = this.editData.title;
+      this.description = this.editData.description;
+      this.price = this.editData.price;
+    }
+  }
 
   onSubmit() {
-    this.serviceService
-      .postService(
-        this.title,
-        this.description,
-        parseInt(this.price),
-        this.sessionService.get('email')
-      )
-      .subscribe(
-        (res: any) => {
-          console.log(res);
-          window.location.reload();
-          this.modalService.dismissAll();
-        },
-        (error) => {
-          console.log(error);
-        }
-      );
+    if (this.editData === undefined) {
+      this.serviceService
+        .postService(
+          this.title,
+          this.description,
+          parseInt(this.price),
+          this.sessionService.get('email')
+        )
+        .subscribe(
+          (res: any) => {
+            console.log(res);
+            window.location.reload();
+            this.modalService.dismissAll();
+          },
+          (error) => {
+            console.log(error);
+          }
+        );
+    } else {
+      this.serviceService
+        .putService(
+          this.editData.id,
+          this.title,
+          this.description,
+          parseInt(this.price),
+          this.sessionService.get('email')
+        )
+        .subscribe(
+          (res: any) => {
+            console.log(res);
+            this.modalService.dismissAll();
+          },
+          (error) => {
+            console.log(error);
+          }
+        );
+    }
   }
 }

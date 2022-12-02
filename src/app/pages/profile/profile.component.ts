@@ -64,12 +64,6 @@ export class ProfileComponent implements OnInit {
     this.newPhone = null;
   }
 
-  openCreateService() {
-    const modalRef = this.modalService.open(FormServiceComponent, {
-      centered: true,
-    });
-  }
-
   saveProfile() {
     this.userService
       .putUser(this.newName, this.user.email, this.newPhone)
