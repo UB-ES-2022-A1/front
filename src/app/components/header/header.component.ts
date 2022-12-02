@@ -49,7 +49,6 @@ export class HeaderComponent implements OnInit {
     modalRef.result.then((result) => {
       if (result[0] === 1) {
         this.filters.search = this.enteredSearchValue;
-        console.log(this.filters);
       }
     });
   }

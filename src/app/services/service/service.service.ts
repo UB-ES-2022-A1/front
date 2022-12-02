@@ -41,7 +41,6 @@ export class ServiceService {
   }
   getServicesFilt(filters: FiltersTO): Observable<any> {
     const url = this.baseUrl + '/search';
-    console.log(filters);
     let body: SearchTO = {
       search_text: undefined,
     };

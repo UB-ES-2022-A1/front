@@ -43,7 +43,6 @@ export class RegisterComponent implements OnInit {
           },
           (error: any) => {
             this.error = 'Unexpected error';
-            console.log(error);
           }
         );
     } else {

@@ -18,6 +18,7 @@ export class ProfileComponent implements OnInit {
   myProfile: boolean = false;
   isEditable: boolean = false;
   urlEmail: string;
+  showUsername: string;
   user: any = {
     username: '',
     email: '',
@@ -47,6 +48,7 @@ export class ProfileComponent implements OnInit {
       : null;
     this.userService.getUser(this.user.email).subscribe((res: any) => {
       this.user.username = res.name;
+      this.showUsername = this.user.username;
       this.user.phone = res.phone;
       this.user.wallet = res.wallet;
     });
@@ -78,7 +80,6 @@ export class ProfileComponent implements OnInit {
   }
 
   loadOffers(): void {
-    console.log(this.user.email);
     this.serviceService.getUserServices(this.user.email).subscribe((res) => {
       res.forEach((service: any) => {
         let auxService: ServiceTO = {

@@ -41,13 +41,10 @@ export class FormServiceComponent implements OnInit {
         )
         .subscribe(
           (res: any) => {
-            console.log(res);
             window.location.reload();
             this.modalService.dismissAll();
           },
-          (error) => {
-            console.log(error);
-          }
+          (error) => {}
         );
     } else {
       this.serviceService
@@ -60,7 +57,6 @@ export class FormServiceComponent implements OnInit {
         )
         .subscribe(
           (res) => {
-            console.log(res);
             this.router
               .navigate([`/service/${res.modified_service_id}`])
               .then(() => {
@@ -70,7 +66,6 @@ export class FormServiceComponent implements OnInit {
             this.utils.openSnackBar('Service modified correctly', 'Ok', 0);
           },
           (error) => {
-            console.log(error);
             this.utils.openSnackBar('Error after modifying service', 'Ok', 1);
           }
         );
