@@ -8,6 +8,7 @@ import { UtilsService } from 'src/app/services/utils/utils.service';
 import { LoginService } from 'src/app/services/login/login.service';
 import { FormServiceComponent } from 'src/app/components/form-service/form-service.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ThisReceiver } from '@angular/compiler';
 export interface ServiceDetailTO {
   id: string;
 }
@@ -57,13 +58,22 @@ export class ServiceDetailComponent implements OnInit {
         this.sessionService.get('email'),
         this.description
       )
-      .subscribe((res) => {
-        this.utils.openSnackBar(
-          'You just contracted a service, the costumer is currently being notified',
-          'Ok',
-          3
-        );
-      });
+      .subscribe(
+        (res) => {
+          this.utils.openSnackBar(
+            'You just contracted a service, the costumer is currently being notified',
+            'Ok',
+            3
+          );
+        },
+        (error) => {
+          this.utils.openSnackBar(
+            "You don't have enough money on your wallet.",
+            'OK',
+            1
+          );
+        }
+      );
   }
   deactivate() {
     this.serviceService.deactivateService(this.serviceId).subscribe((data) => {
