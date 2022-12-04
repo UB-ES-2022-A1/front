@@ -76,7 +76,7 @@ export class OrdersComponent implements OnInit {
               };
               auxContract.service = auxService;
             });
-          this.contractsClient.push(auxContract);
+          this.contractsContractor.push(auxContract);
         });
       });
   }
