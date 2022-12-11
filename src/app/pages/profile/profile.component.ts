@@ -74,9 +74,9 @@ export class ProfileComponent implements OnInit {
   }
 
   forgotModal() {
-    const modalRef = this.modalService.open(ForgotModalComponent, {
-      centered: true,
-    });
+    this.router.navigate([
+      `update_password/${this.sessionService.get('token')}`,
+    ]);
   }
 
   loadOffers(): void {
@@ -95,5 +95,9 @@ export class ProfileComponent implements OnInit {
         this.offers.push(auxService);
       });
     });
+  }
+
+  uploadPhoto(): void{
+
   }
 }
