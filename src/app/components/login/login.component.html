@@ -1,4 +1,4 @@
-<div class="modal-form">
+<form class="modal-form">
   <h2>Login</h2>
 
   <div class="input-container">
@@ -15,6 +15,7 @@
       [(ngModel)]="userLogin.password"
       class="std-input"
       name="password"
+      1
       type="password"
       placeholder="Password"
     />
@@ -26,12 +27,10 @@
       >Your name or password are incorrect.</em
     >
   </div>
-  <button (click)="checkLogin()" class="button button--primary" type="submit">
-    Proceed
-  </button>
+  <button (click)="checkLogin()" class="button button--primary">Proceed</button>
 
   <em
     >You don't have an account?
     <a href="#" (click)="openRegister()">Sign Up!</a></em
   >
-</div>
+</form>

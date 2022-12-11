@@ -5,7 +5,7 @@
   >
     @urservice
   </h1>
-  <div
+  <form
     class="col-6 d-flex flex-row justify-content-center align-items-center gap-1"
   >
     <div class="col-4 input-container">
@@ -26,7 +26,7 @@
     <button class="button button--primary" (click)="openFilters()">
       <mat-icon>tune</mat-icon>
     </button>
-  </div>
+  </form>
   <div
     *ngIf="!this.loginService.isLogged()"
     class="col-3 d-flex flex-column align-items-center"
