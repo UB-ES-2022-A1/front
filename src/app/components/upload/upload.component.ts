@@ -1,14 +1,20 @@
 import { Component } from "@angular/core";
+import { Event } from '@angular/router';
+import { UploadService } from 'src/app/services/upload-image/upload.service';
+
 
 @Component({
   selector: "app-upload",
-  templateUrl: "./upload.component.html",
-  styleUrls: ["./upload.component.css"]
+  templateUrl: "./upload.component.html"
 })
 export class UploadComponent {
+  blob = new Array<Blob>();
+  fileupload: File = new File(this.blob, '');
+  imageUrl: string | ArrayBuffer | null = null;
+
   cloudName = "dlr7yyhgk"; // replace with your own cloud name
   uploadPreset = "aoh4fpwm"; // replace with your own upload preset
-  myWidget;
+  myWidget:any;
 
   // Remove the comments from the code below to add
   // additional functionality.
@@ -16,6 +22,11 @@ export class UploadComponent {
   // the full list of possible parameters that you
   // can add see:
   //   https://cloudinary.com/documentation/upload_widget_reference
+
+  constructor(
+
+    public UploadService: UploadService
+    ) { }
 
   ngOnInit() {
     this.myWidget = Cloudinary.createUploadWidget(

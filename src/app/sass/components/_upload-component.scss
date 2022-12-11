@@ -1,0 +1,118 @@
+@import "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css";
+.body-container-wrapper {
+    text-align: center;
+}
+
+.progress-bar-overall {
+    text-align: center;
+    margin: 0px auto;
+}
+
+.selected-image {
+    width: 500px;
+}
+
+.progress-bar {
+    width: 80%;
+    position: relative;
+    height: 4px;
+    .progress {
+        height: 20px;
+        background-color: #ff0000;
+        width: 0;
+    }
+}
+
+#drop {
+    display: inline-grid;
+    row-gap: 20px;
+}
+
+.upload-button {
+    white-space: nowrap;
+    display: inline-block;
+    height: 40px;
+    line-height: 40px;
+    padding: 0 30px;
+    box-shadow: 0 4px 6px rgba(50, 50, 93, .11), 0 1px 3px rgba(0, 0, 0, .08);
+    background: #fff;
+    border-radius: 4px;
+    font-size: 15px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .025em;
+    color: #555;
+    text-decoration: none;
+    -webkit-transition: all .15s ease;
+    transition: all .15s ease;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    &:hover {
+        color: #6e6e6e;
+        transform: translateY(-1px);
+        box-shadow: 0 7px 14px rgba(50, 50, 93, .1), 0 3px 6px rgba(0, 0, 0, .08);
+    }
+    &:active {
+        color: #555;
+        background-color: #f6f9ff;
+        transform: translateY(1px);
+        box-shadow: 0 4px 6px rgba(50, 50, 93, .11), 0 1px 3px rgba(0, 0, 0, .08);
+    }
+}
+
+.upload {
+    padding: 0;
+    background-color: #3498db;
+    background-image: 8121991;
+    background-image: -webkit-linear-gradient(#4aa3df 0%, #258cd1 100%);
+    background-image: -moz-linear-gradient(#4aa3df 0%, #258cd1 100%);
+    background-image: -o-linear-gradient(#4aa3df 0%, #258cd1 100%);
+    background-image: linear-gradient(#4aa3df 0%, #258cd1 100%);
+    -webkit-box-shadow: inset rgba(0, 0, 0, 0.2) 0 0 0 1px, rgba(52, 152, 219, 0.5) 0 0 5px;
+    -moz-box-shadow: inset rgba(0, 0, 0, 0.2) 0 0 0 1px, rgba(52, 152, 219, 0.5) 0 0 5px;
+    box-shadow: inset rgba(0, 0, 0, 0.2) 0 0 0 1px, rgba(52, 152, 219, 0.5) 0 0 5px;
+    -webkit-border-radius: 4px;
+    -webkit-background-clip: padding-box;
+    -moz-border-radius: 4px;
+    -moz-background-clip: padding;
+    border-radius: 4px;
+    background-clip: padding-box;
+    padding: 20px 20px;
+    color: #fff;
+    cursor: pointer;
+    font-weight: 600;
+    font-family: Open Sans;
+    span {
+        text-shadow: rgba(29, 111, 165, 0.9) 0 0 2px;
+        padding: 20px 25px;
+        font: 700 13px Montserrat, Helvetica, Arial, sans-serif;
+        text-transform: uppercase;
+        color: #fff;
+        -webkit-transition: all 350ms ease;
+        -moz-transition: all 350ms ease;
+        -o-transition: all 350ms ease;
+        transition: all 350ms ease;
+    }
+    &:hover {
+        background-color: #4aa3df;
+        background-image: 8121991;
+        background-image: -webkit-linear-gradient(#5faee3 0%, #3498db 100%);
+        background-image: -moz-linear-gradient(#5faee3 0%, #3498db 100%);
+        background-image: -o-linear-gradient(#5faee3 0%, #3498db 100%);
+        background-image: linear-gradient(#5faee3 0%, #3498db 100%);
+        -webkit-box-shadow: inset rgba(0, 0, 0, 0.2) 0 0 0 1px, rgba(74, 163, 223, 0.5) 0 0 5px;
+        -moz-box-shadow: inset rgba(0, 0, 0, 0.2) 0 0 0 1px, rgba(74, 163, 223, 0.5) 0 0 5px;
+        box-shadow: inset rgba(0, 0, 0, 0.2) 0 0 0 1px, rgba(74, 163, 223, 0.5) 0 0 5px;
+        span {
+            text-shadow: rgba(33, 125, 187, 0.9) 0 0 2px;
+        }
+    }
+    &:active {
+        background-color: #258cd1;
+        background-image: 8121991;
+        background-image: -webkit-linear-gradient(#258cd1 0%, #258cd1 100%);
+        background-image: -moz-linear-gradient(#258cd1 0%, #258cd1 100%);
+        background-image: -o-linear-gradient(#258cd1 0%, #258cd1 100%);
+        background-image: linear-gradient(#258cd1 0%, #258cd1 100%);
+    }
+}
