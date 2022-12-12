@@ -9,7 +9,7 @@ export class UploadComponent {
   constructor(
     ) { }
   cloudName = "dvjk7umra"; // replace with your own cloud name
-  uploadPreset = "aoh4fpwm"; // replace with your own upload preset
+  uploadPreset = "angular_cloudinary"; // replace with your own upload preset
 
   myWidget:any;
 
