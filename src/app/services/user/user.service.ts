@@ -72,4 +72,13 @@ export class UserService {
 
     return this.http.put(url, body);
   }
+
+  postUserImage(email: string, image: string): Observable<any> {
+    const url = this.baseUrl + '/' + email +  '/image';
+    let body: any = {
+      image: image,
+    };
+
+    return this.http.post(url, body);
+  }
 }

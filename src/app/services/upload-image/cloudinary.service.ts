@@ -6,7 +6,7 @@ import { FileUploader, FileUploaderOptions, ParsedResponseHeaders } from 'ng2-fi
 @Injectable({
   providedIn: 'root'
 })
-export class UploadService {
+export class CloudinaryService {
   uploaderOptions: FileUploaderOptions = {
     url: `https://api.cloudinary.com/v1_1/${this.cloudinary.config().cloud_name}/upload`,
     autoUpload: false,

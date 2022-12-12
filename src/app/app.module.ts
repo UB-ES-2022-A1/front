@@ -33,6 +33,11 @@ import { ForgotModalComponent } from './components/forgot-modal/forgot-modal.com
 import { OrdersComponent } from './pages/orders/orders.component';
 import { CardContractComponent } from './components/card-contract/card-contract.component';
 import { FiltersComponent } from './components/filters/filters.component';
+import * as Cloudinary from "cloudinary-core";
+import {
+  CloudinaryModule,
+  CloudinaryConfiguration
+} from "@cloudinary/angular-5.x";
 
 @NgModule({
   declarations: [
@@ -63,6 +68,9 @@ import { FiltersComponent } from './components/filters/filters.component';
     MatInputModule,
     MatSnackBarModule,
     BrowserAnimationsModule,
+    CloudinaryModule.forRoot(Cloudinary, {
+      cloud_name: "dvjk7umra" //specify cloud_name
+    } as CloudinaryConfiguration)
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true },

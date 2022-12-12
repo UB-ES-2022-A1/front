@@ -97,7 +97,8 @@ export class ProfileComponent implements OnInit {
     });
   }
 
-  uploadPhoto(): void{
+  uploadPhoto(): void{    
+    this.router.navigate([`/upload/`]);
 
   }
 }
