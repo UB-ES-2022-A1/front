@@ -24,6 +24,7 @@ export class ProfileComponent implements OnInit {
     email: '',
     phone: null,
     wallet: '',
+    image: '',
   };
 
   offers: ServiceTO[] = [];
@@ -51,6 +52,7 @@ export class ProfileComponent implements OnInit {
       this.showUsername = this.user.username;
       this.user.phone = res.phone;
       this.user.wallet = res.wallet;
+      this.user.image = res.image;
     });
     this.loadOffers();
   }
@@ -99,6 +101,5 @@ export class ProfileComponent implements OnInit {
 
   uploadPhoto(): void{    
     this.router.navigate([`/upload/`]);
-
   }
 }
