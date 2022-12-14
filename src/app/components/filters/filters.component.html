@@ -1,4 +1,4 @@
-<div class="filters">
+<form class="filters">
   <div class="d-flex w-100 justify-content-between">
     <h3 class="title-md">Filters</h3>
     <mat-icon class="filters--reset m-0" (click)="resetFilters()"
@@ -42,7 +42,11 @@
       </div>
     </div>
   </div>
-  <button class="button button--primary w-100" (click)="onFilter()">
+  <button
+    class="button button--primary w-100"
+    (click)="onFilter()"
+    type="submit"
+  >
     Filter
   </button>
-</div>
+</form>
