@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MainComponent } from './pages/main/main.component';
+import { AdminViewComponent } from './pages/admin-view/admin-view.component';
 import { HeaderComponent } from './components/header/header.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 
@@ -33,6 +34,7 @@ import { ForgotModalComponent } from './components/forgot-modal/forgot-modal.com
 import { OrdersComponent } from './pages/orders/orders.component';
 import { CardContractComponent } from './components/card-contract/card-contract.component';
 import { FiltersComponent } from './components/filters/filters.component';
+import { CardUserComponent } from './components/card-user/card-user.component';
 
 @NgModule({
   declarations: [
@@ -47,10 +49,12 @@ import { FiltersComponent } from './components/filters/filters.component';
     ServiceDetailComponent,
     SpinnerComponent,
     ForgotComponent,
+    AdminViewComponent,
     ForgotModalComponent,
     OrdersComponent,
     CardContractComponent,
     FiltersComponent,
+    CardUserComponent,
   ],
   imports: [
     BrowserModule,
