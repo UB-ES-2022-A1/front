@@ -43,5 +43,7 @@
 
   <em *ngIf="this.error !== ''" class="error">{{ error }}</em>
 
-  <button (click)="postUser()" class="button button--primary">Register</button>
+  <button (click)="postUser()" class="button button--primary" type="submit">
+    Register
+  </button>
 </form>

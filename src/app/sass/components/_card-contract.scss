@@ -1,28 +1,10 @@
-.contract {
+.card-contract {
     display: flex;
-    flex-direction: column;
-    cursor: pointer;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
-    transition: all 0.6s ease;
-    &--title {
-        font-weight: 700;
-        font-size: 1.2em;
-        height: 7rem;
-        overflow: hidden;
-    }
-    &--rating {
-        mat-icon {
-            color: var(--color-contrast);
-        }
-    }
-    &--description {
-        font-size: 1em;
-        height: 4em;
-        overflow: hidden;
-        font-style: italic;
-    }
-    &--price {
-        color: var(--color-accent);
+    flex-direction: row;
+    width: 100%; 
+    border: 1px solid var(--color-gray-1);
+    &--data {
+        margin: 0; 
     }
 }
 
