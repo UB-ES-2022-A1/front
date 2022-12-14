@@ -1,7 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserTO } from 'src/app/entities/UserTO';
-import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
   selector: 'app-card-anuncio',
@@ -12,6 +11,7 @@ export class CardAnuncioComponent implements OnInit {
   @Input() title: string;
   @Input() description: string;
   @Input() price: number;
+  @Input() grade?: number;
   @Input() user?: UserTO;
   constructor(public router: Router) {}
 

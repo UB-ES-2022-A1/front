@@ -11,6 +11,11 @@
                 class="img-fluid img-thumbnail mt-4 mb-2"
               />
             </div>
+            <div class="card--rating d-flex align-items-center mb-1 gap-1">
+              <mat-icon>star</mat-icon>
+              {{ this.user.grade }}
+            </div>
+
             <div class="user-info">
               <h5 class="full_name">
                 {{ showUsername }}
@@ -108,6 +113,7 @@
         [id]="service.id"
         [title]="service.title"
         [description]="service.description"
+        [grade]="service.grade"
         [price]="service.price"
         [user]="service.user"
       ></app-card-anuncio>

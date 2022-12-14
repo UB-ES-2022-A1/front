@@ -38,18 +38,14 @@ export class MainComponent implements OnInit {
             title: service.title,
             description: service.description,
             price: service.price,
+            grade: service.service_grade,
             user: {
-              email: '',
+              username: service.user_name,
+              email: service.user_email,
+              grade: service.user_grade,
             },
           };
           this.services.push(auxService);
-
-          this.userService.getUser(service.user).subscribe((res: any) => {
-            auxService.user = {
-              username: res.name,
-              email: res.email,
-            };
-          });
         });
       });
     });
