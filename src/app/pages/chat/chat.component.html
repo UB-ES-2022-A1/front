@@ -1,0 +1,31 @@
+<div class="chat">
+  <section class="chat--sessions">
+    <div *ngFor="let session of [0, 1, 2, 3]" class="chat-card">
+      <div class="session-card">
+        <img
+          class="card-pic"
+          src="../../assets/img/pexels-ylanite-koppens-776654.jpg"
+        />
+      </div>
+      <div class="d-flex flex-column justify-content-center">
+        <h5 class="m-0">Title</h5>
+        <p class="m-0">Last message</p>
+      </div>
+    </div>
+  </section>
+  <section class="chat--area p-2">
+    <div class="chat--area-view">
+      <div class="chat--area-view-message" [ngClass]="{ s: true }">Hola!</div>
+      <div class="chat--area-view-message" [ngClass]="{ r: true }">Hola!</div>
+    </div>
+    <div class="chat--area-input d-flex flex-row gap-2">
+      <div class="input-container w-100">
+        <input type="text" />
+      </div>
+
+      <button class="button button--primary button--primary__sm">
+        <mat-icon>search</mat-icon>
+      </button>
+    </div>
+  </section>
+</div>

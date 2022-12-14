@@ -1,0 +1,78 @@
+.chat {
+  display: flex;
+  flex-direction: row;
+  height: fit-content;
+  gap: 4px;
+
+  &-card {
+    padding: 5px;
+    height: 80px;
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border-radius: 5px;
+    border: 1px solid var(--color-gray-3);
+    gap: 10px;
+  }
+  &--sessions {
+    padding: 5px;
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    border: solid 1px var(--color-gray-3);
+    border-radius: 5px;
+  }
+  &--area {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    height: 700px;
+    border: solid 1px var(--color-gray-3);
+    border-radius: 5px;
+
+    &-view {
+      height: 90%;
+      background-color: white;
+      border-radius: 7px;
+      border: solid 1px var(--color-gray-3);
+      border-radius: 5px;
+      display: flex;
+      flex-direction: column;
+      justify-content: end;
+      padding: 30px;
+      &-message {
+        width: fit-content;
+        padding: 5px 20px;
+        max-width: 150px;
+        height: fit-content;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 20px;
+      }
+    }
+    &-input {
+      display: flex;
+      justify-content: end;
+      align-items: center;
+      height: 10%;
+      width: 100%;
+    }
+  }
+  height: 100%;
+}
+.card-pic {
+  width: 70px;
+  height: 70px;
+  border-radius: 50px;
+}
+.s {
+  align-self: end;
+  background-color: antiquewhite;
+}
+.r {
+  align-self: start;
+  background-color: indianred;
+}
