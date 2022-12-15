@@ -34,7 +34,7 @@ export class UploadComponent {
           console.log("Done! Here is the image info: ", result.info);
           this.userImage = result.info.secure_url;
           this.userService.postUserImage(this.sessionService.get('email'),this.userImage).subscribe((res) => {
-            this.utils.openSnackBar('Profile image saved!', '', 0);
+            this.utils.openSnackBar('Image saved!', '', 0);
             this.sessionService.set('image', this.userImage);
             //window.location.reload();
           });

@@ -8,7 +8,7 @@
               <mat-icon>add_a_photo</mat-icon>
             </button>
                         <div class="user-avatar">
-                            <img [src]="this.user.image" alt="Generic placeholder image" class="img-fluid img-thumbnail mt-4 mb-2" />
+                            <img *ngIf="user.image" [src]="this.user.image" onerror="this.onerror=null; this.src='../../assets/img/user-avatar.png'" class="img-fluid img-thumbnail mt-4 mb-2" />
                         </div>
                         <div class="card--rating d-flex align-items-center mb-1 gap-1">
                             <mat-icon>star</mat-icon>
