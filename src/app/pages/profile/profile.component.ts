@@ -51,6 +51,7 @@ export class ProfileComponent implements OnInit {
       this.showUsername = this.user.username;
       this.user.phone = res.phone;
       this.user.wallet = res.wallet;
+      this.user.grade = res.user_grade;
     });
     this.loadOffers();
   }
@@ -87,9 +88,12 @@ export class ProfileComponent implements OnInit {
           title: service.title,
           description: service.description,
           price: service.price,
+          grade: service.service_grade,
+
           user: {
             email: this.user.email,
             username: this.user.username,
+            grade: this.user.grade,
           },
         };
         this.offers.push(auxService);

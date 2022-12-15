@@ -35,6 +35,7 @@ import { OrdersComponent } from './pages/orders/orders.component';
 import { CardContractComponent } from './components/card-contract/card-contract.component';
 import { FiltersComponent } from './components/filters/filters.component';
 import { CardUserComponent } from './components/card-user/card-user.component';
+import { ChatComponent } from './pages/chat/chat.component';
 
 @NgModule({
   declarations: [
@@ -55,6 +56,7 @@ import { CardUserComponent } from './components/card-user/card-user.component';
     CardContractComponent,
     FiltersComponent,
     CardUserComponent,
+    ChatComponent,
   ],
   imports: [
     BrowserModule,
