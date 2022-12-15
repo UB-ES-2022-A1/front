@@ -45,15 +45,9 @@ export class ServiceService {
       search_text: undefined,
     };
     filters?.search ? (body.search_text = filters.search) : null;
-    body.filters = {
-      price: { min: filters?.priceMin, max: filters?.priceMax },
-    };
-    if (filters.priceOrd !== 1) {
-      let reversed = filters.priceOrd === 2;
-      body.sort = {
-        by: 'price',
-        reverse: reversed,
-      };
+    body.filters = filters.filters;
+    if (filters.sort_by != ''){
+      body.sort = {'by': filters.sort_by, 'reverse': filters.reverse}
     }
     return this.http.post(url, body);
   }
