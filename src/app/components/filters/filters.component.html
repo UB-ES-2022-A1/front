@@ -22,16 +22,7 @@
       >
     </div>
     <div class="min-max">
-      <div class="input-container mb-2">
-        <input
-          (change)="createFilter(item.value, 'max', $event)"
-          [(ngModel)]="getModel(item.value).max"
-          name={{item.value}}Max
-          class="sm-input"
-          type="text"
-          placeholder="Max"
-        />
-      </div>
+      
       <div class="input-container sm-input mb-2">
         <input
           (change)="createFilter(item.value, 'min', $event)"
@@ -42,6 +33,18 @@
           placeholder="Min"
         />
       </div>
+
+      <div class="input-container mb-2">
+        <input
+          (change)="createFilter(item.value, 'max', $event)"
+          [(ngModel)]="getModel(item.value).max"
+          name={{item.value}}Max
+          class="sm-input"
+          type="text"
+          placeholder="Max"
+        />
+      </div>
+
     </div>
   </div>
   <button
