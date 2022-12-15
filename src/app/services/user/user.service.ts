@@ -19,7 +19,17 @@ export class UserService {
     const url = this.baseUrl;
     return this.http.get(url);
   }
-
+  addMoney(email: string, money?: number): Observable<any> {
+    const url = this.baseUrl + '/' + email + '/wallet';
+    const body: any = {
+      money: money,
+    };
+    return this.http.put(url, body);
+  }
+  setAccess(email: string, access?: number): Observable<any> {
+    const url = this.baseUrl + '/' + email + '/privileges/' + access;
+    return this.http.put(url, {});
+  }
   getUser(email: string): Observable<any> {
     const url = this.baseUrl + '/' + email;
     return this.http.get(url);
