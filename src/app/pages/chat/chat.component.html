@@ -1,7 +1,11 @@
 <div class="chat">
   <section class="chat--sessions">
-    <div *ngFor="let room of rooms" class="chat-card">
-      <div class="session-card" (click)="changeRoom(room.room_id)">
+    <div
+      (click)="changeRoom(room.room_id)"
+      *ngFor="let room of rooms"
+      class="chat-card"
+    >
+      <div class="session-card">
         <img
           class="card-pic"
           src="../../assets/img/pexels-ylanite-koppens-776654.jpg"
@@ -10,13 +14,17 @@
       <div class="d-flex flex-column justify-content-center">
         <h5 class="m-0" *ngIf="room.seller">{{ room.customer_email }}</h5>
         <h5 class="m-0" *ngIf="!room.seller">{{ room.seller_email }}</h5>
-
         <p class="m-0">Last message</p>
       </div>
     </div>
   </section>
   <section class="chat--area p-2">
     <div class="chat--area-view">
+      <h5 *ngIf="currentRoom === -1">Select a room!</h5>
+      <h5 *ngIf="currentRoom !== -1 && messages.length === 0">
+        There are currently no messages in this room
+      </h5>
+
       <div
         *ngFor="let message of messages"
         class="chat--area-view-message"
@@ -28,9 +36,13 @@
         {{ message.text }}
       </div>
     </div>
-    <div class="chat--area-input d-flex flex-row gap-2 align-items-end">
+    <form class="chat--area-input d-flex flex-row gap-2 align-items-end">
       <div class="input-container w-100">
-        <input type="text" [(ngModel)]="messageToSend" />
+        <input
+          [ngModelOptions]="{ standalone: true }"
+          type="text"
+          [(ngModel)]="messageToSend"
+        />
       </div>
 
       <button
@@ -39,6 +51,6 @@
       >
         <mat-icon>send</mat-icon>
       </button>
-    </div>
+    </form>
   </section>
 </div>

@@ -13,7 +13,7 @@ export class ChatComponent implements OnInit {
     private chatService: ChatService,
     private sessionService: SessionService
   ) {}
-  currentRoom: number = 1;
+  currentRoom: number = -1;
   messages: MessageTO[] = [];
   messageToSend: string;
   rooms: RoomTO[] = [];
@@ -42,7 +42,9 @@ export class ChatComponent implements OnInit {
       .postMessage(this.currentRoom, this.messageToSend)
       .subscribe((res: any) => {
         console.log(res);
+        this.getSessionMessages();
       });
+    this.messageToSend = '';
   }
   getSessionMessages() {
     this.messages = [];
