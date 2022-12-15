@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ChatComponent } from './pages/chat/chat.component';
 import { ForgotComponent } from './components/forgot/forgot.component';
 import { HeaderComponent } from './components/header/header.component';
+import { AdminViewComponent } from './pages/admin-view/admin-view.component';
 import { MainComponent } from './pages/main/main.component';
 import { OrdersComponent } from './pages/orders/orders.component';
 import { ProfileComponent } from './pages/profile/profile.component';
@@ -12,6 +13,7 @@ const routes: Routes = [
   { path: '', component: MainComponent },
   { path: 'update_password/:token', component: ForgotComponent },
   { path: 'profile/:email', component: ProfileComponent },
+  { path: 'admin', component: AdminViewComponent },
 
   { path: 'orders', component: OrdersComponent },
   { path: 'chat', component: ChatComponent },
