@@ -1,6 +1,6 @@
 <form class="filters">
   <div class="d-flex w-100 justify-content-between">
-    <h3 class="title-md">Filters</h3>
+    <h3 class="title-md">Filter and Order</h3>
     <mat-icon class="filters--reset m-0" (click)="resetFilters()"
       >filter_alt_off</mat-icon
     >
@@ -23,24 +23,24 @@
     </div>
     <div class="min-max">
       
-      <div class="input-container sm-input mb-2">
+      <div class="input-container sm-input mb-2" type="number">
         <input
           (change)="createFilter(item.value, 'min', $event)"
           [(ngModel)]="getModel(item.value).min"
           name={{item.value}}Min
           class="sm-input"
-          type="text"
+          type="number" min="0"
           placeholder="Min"
         />
       </div>
 
-      <div class="input-container mb-2">
-        <input
+      <div class="input-container sm-input mb-2">
+        <input type="number"
           (change)="createFilter(item.value, 'max', $event)"
           [(ngModel)]="getModel(item.value).max"
           name={{item.value}}Max
           class="sm-input"
-          type="text"
+          type="number" min="0"
           placeholder="Max"
         />
       </div>

@@ -47,6 +47,14 @@ export class FiltersComponent implements OnInit {
     if(!this.filters.filters.hasOwnProperty(filter)){
       this.filters.filters[filter] = {}
       this.filters.filters[filter][edited] = event.target.value
+    }else if(this.filters.filters[filter][edited] === null){
+
+      const { [edited]: foo, ...rest } = this.filters.filters[filter]
+      this.filters.filters[filter] = rest
+    }
+    if (Object.keys(this.filters.filters[filter]).length === 0){
+      const { [filter]: foo, ...rest } = this.filters.filters
+      this.filters.filters = rest
     }
   }
 
