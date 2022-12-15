@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ChatComponent } from './pages/chat/chat.component';
 import { ForgotComponent } from './components/forgot/forgot.component';
 import { HeaderComponent } from './components/header/header.component';
 import { MainComponent } from './pages/main/main.component';
@@ -11,9 +12,9 @@ const routes: Routes = [
   { path: '', component: MainComponent },
   { path: 'update_password/:token', component: ForgotComponent },
   { path: 'profile/:email', component: ProfileComponent },
-  
-  { path: 'orders', component: OrdersComponent },
 
+  { path: 'orders', component: OrdersComponent },
+  { path: 'chat', component: ChatComponent },
   { path: 'service/:id', component: ServiceDetailComponent },
 ];
 
