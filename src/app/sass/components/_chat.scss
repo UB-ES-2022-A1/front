@@ -31,7 +31,7 @@
     height: 700px;
     border: solid 1px var(--color-gray-3);
     border-radius: 5px;
-
+    justify-content: space-between;
     &-view {
       height: 90%;
       background-color: white;
@@ -39,7 +39,7 @@
       border: solid 1px var(--color-gray-3);
       border-radius: 5px;
       display: flex;
-      flex-direction: column;
+      flex-direction: column-reverse;
       justify-content: end;
       padding: 30px;
       &-message {

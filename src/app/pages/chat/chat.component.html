@@ -1,30 +1,43 @@
 <div class="chat">
   <section class="chat--sessions">
-    <div *ngFor="let session of [0, 1, 2, 3]" class="chat-card">
-      <div class="session-card">
+    <div *ngFor="let room of rooms" class="chat-card">
+      <div class="session-card" (click)="changeRoom(room.room_id)">
         <img
           class="card-pic"
           src="../../assets/img/pexels-ylanite-koppens-776654.jpg"
         />
       </div>
       <div class="d-flex flex-column justify-content-center">
-        <h5 class="m-0">Title</h5>
+        <h5 class="m-0" *ngIf="room.seller">{{ room.customer_email }}</h5>
+        <h5 class="m-0" *ngIf="!room.seller">{{ room.seller_email }}</h5>
+
         <p class="m-0">Last message</p>
       </div>
     </div>
   </section>
   <section class="chat--area p-2">
     <div class="chat--area-view">
-      <div class="chat--area-view-message" [ngClass]="{ s: true }">Hola!</div>
-      <div class="chat--area-view-message" [ngClass]="{ r: true }">Hola!</div>
+      <div
+        *ngFor="let message of messages"
+        class="chat--area-view-message"
+        [ngClass]="{
+          s: currentUserEmail === message.user,
+          r: currentUserEmail !== message.user
+        }"
+      >
+        {{ message.text }}
+      </div>
     </div>
-    <div class="chat--area-input d-flex flex-row gap-2">
+    <div class="chat--area-input d-flex flex-row gap-2 align-items-end">
       <div class="input-container w-100">
-        <input type="text" />
+        <input type="text" [(ngModel)]="messageToSend" />
       </div>
 
-      <button class="button button--primary button--primary__sm">
-        <mat-icon>search</mat-icon>
+      <button
+        class="button button--primary button--primary__sm"
+        (click)="sendMessage()"
+      >
+        <mat-icon>send</mat-icon>
       </button>
     </div>
   </section>
