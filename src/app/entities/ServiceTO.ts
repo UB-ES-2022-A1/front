@@ -7,4 +7,5 @@ export interface ServiceTO {
   price: number;
   requiresPlace?: boolean;
   user?: UserTO;
+  grade?: number;
 }

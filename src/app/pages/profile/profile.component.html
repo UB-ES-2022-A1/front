@@ -10,6 +10,11 @@
                         <div class="user-avatar">
                             <img [src]="this.user.image" alt="Generic placeholder image" class="img-fluid img-thumbnail mt-4 mb-2" />
                         </div>
+                        <div class="card--rating d-flex align-items-center mb-1 gap-1">
+                            <mat-icon>star</mat-icon>
+                            {{ this.user.grade }}
+                        </div>
+
                         <div class="user-info">
                             <h5 class="full_name">
                                 {{ showUsername }}
@@ -90,7 +95,7 @@
             <h4 class="mb-3 mt-1">User offers</h4>
         </div>
         <div class="anuncio-wrapper d-flex flex-row gap-4 flex-wrap justify-content-center">
-            <app-card-anuncio *ngFor="let service of this.offers" [id]="service.id" [title]="service.title" [description]="service.description" [price]="service.price" [user]="service.user"></app-card-anuncio>
+            <app-card-anuncio *ngFor="let service of this.offers" [id]="service.id" [title]="service.title" [description]="service.description" [grade]="service.grade" [price]="service.price" [user]="service.user"></app-card-anuncio>
         </div>
     </div>
 </div>

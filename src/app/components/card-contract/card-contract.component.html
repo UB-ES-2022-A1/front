@@ -1,25 +1,34 @@
-<div class="contract">
-    <div class="row">
-        <div class="col">
-            <img class="contractImg mt-2" (click)="seeDetail()" src="../../assets/img/pexels-ylanite-koppens-776654.jpg" alt="Card image cap">
-        </div>
+<div class="card-contract">
+  <img
+    class="contractImg"
+    src="../../assets/img/pexels-ylanite-koppens-776654.jpg"
+    alt="Card image cap"
+  />
 
-        <div class="col-6">
-            <h5 class="contract--title mt-4 ml-3">{{ this.service.title }}</h5>
-            <p class="contract--description mt-4 ml-3">{{ this.service.description }}</p>
-        </div>
+  <div class="col-6 d-flex flex-column justify-content-between p-4">
+    <h5 class="card-contract--data">
+      {{ this.contract.service?.title }}
+    </h5>
+    <p class="card-contract--data">
+      {{ this.contract.service?.description }}
+    </p>
+    <p class="card-contract--data">Seller: {{ this.contract.service?.user }}</p>
+    <p class="card-contract--data">Costumer: {{ this.contract.user }}</p>
+  </div>
 
-        <div class="col">
-            <h4 class="mt-4">State: sold</h4>
-            <div *ngIf="!this.isActivated">
-                <button (click)="activateService()" class="button button--primary mt-4">
-                        Activate</button>&nbsp;
-            </div>
-            <div *ngIf="this.isActivated">
-                <button (click)="activateService()" class="button button--primary mt-4">
-                        Deactivate</button>&nbsp;
-            </div>
-            <h4 class="contract--price">{{ this.service.price }}$</h4>
-        </div>
+  <div class="d-flex flex-column p-2 justify-content-center">
+    <h4>{{ this.contract.status }}</h4>
+    <h4>{{ this.contract.service?.price }}$</h4>
+
+    <!-- <div *ngIf="!this.isActivated">
+      <button (click)="activateService()" class="button button--primary mt-4">
+        Activate</button
+      >&nbsp;
     </div>
+    <div *ngIf="this.isActivated">
+      <button (click)="activateService()" class="button button--primary mt-4">
+        Deactivate</button
+      >&nbsp;
+    </div> -->
+  </div>
 </div>

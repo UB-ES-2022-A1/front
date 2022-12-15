@@ -52,6 +52,7 @@ export class ProfileComponent implements OnInit {
       this.showUsername = this.user.username;
       this.user.phone = res.phone;
       this.user.wallet = res.wallet;
+      this.user.grade = res.user_grade;
       this.user.image = res.image;
     });
     this.loadOffers();
@@ -79,6 +80,9 @@ export class ProfileComponent implements OnInit {
     this.router.navigate([
       `update_password/${this.sessionService.get('token')}`,
     ]);
+    this.router.navigate([
+      `update_password/${this.sessionService.get('token')}`,
+    ]);
   }
 
   loadOffers(): void {
@@ -89,9 +93,12 @@ export class ProfileComponent implements OnInit {
           title: service.title,
           description: service.description,
           price: service.price,
+          grade: service.service_grade,
+
           user: {
             email: this.user.email,
             username: this.user.username,
+            grade: this.user.grade,
           },
         };
         this.offers.push(auxService);

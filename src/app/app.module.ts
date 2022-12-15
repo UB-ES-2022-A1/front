@@ -33,6 +33,7 @@ import { ForgotModalComponent } from './components/forgot-modal/forgot-modal.com
 import { OrdersComponent } from './pages/orders/orders.component';
 import { CardContractComponent } from './components/card-contract/card-contract.component';
 import { FiltersComponent } from './components/filters/filters.component';
+import { ChatComponent } from './pages/chat/chat.component';
 import * as Cloudinary from "cloudinary-core";
 import {
   CloudinaryModule,
@@ -56,6 +57,7 @@ import {
     OrdersComponent,
     CardContractComponent,
     FiltersComponent,
+    ChatComponent,
   ],
   imports: [
     BrowserModule,

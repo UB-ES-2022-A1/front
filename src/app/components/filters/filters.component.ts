@@ -8,9 +8,12 @@ import { Order } from 'src/app/entities/Order';
   templateUrl: './filters.component.html',
 })
 export class FiltersComponent implements OnInit {
-  @Input() filters: FiltersTO;
-
-  constructor(public activeModal: NgbActiveModal) {}
+  @Input() filtersToCp: FiltersTO;
+  filters: FiltersTO;
+  constructor(public activeModal: NgbActiveModal) {
+    console.log('uwu');
+    this.filters = this.filtersToCp;
+  }
 
   ngOnInit(): void {}
   priceOrder(order: Order) {
@@ -40,4 +43,5 @@ export class FiltersComponent implements OnInit {
       priceOrd: 1,
     };
   }
+  beforeDismiss() {}
 }
