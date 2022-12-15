@@ -36,6 +36,11 @@ import { CardContractComponent } from './components/card-contract/card-contract.
 import { FiltersComponent } from './components/filters/filters.component';
 import { CardUserComponent } from './components/card-user/card-user.component';
 import { ChatComponent } from './pages/chat/chat.component';
+import * as Cloudinary from "cloudinary-core";
+import {
+  CloudinaryModule,
+  CloudinaryConfiguration
+} from "@cloudinary/angular-5.x";
 
 @NgModule({
   declarations: [
@@ -69,6 +74,9 @@ import { ChatComponent } from './pages/chat/chat.component';
     MatInputModule,
     MatSnackBarModule,
     BrowserAnimationsModule,
+    CloudinaryModule.forRoot(Cloudinary, {
+      cloud_name: "dvjk7umra" //specify cloud_name
+    } as CloudinaryConfiguration)
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true },
