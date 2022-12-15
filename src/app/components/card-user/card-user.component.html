@@ -13,11 +13,12 @@
   >
     <div *ngIf="editMode" class="input-container sm-input mb-2">
       <input
-        [(ngModel)]="this.user.wallet"
+        [(ngModel)]="this.user.moneyAdded"
         name="wallet"
         class="sm-input"
         type="text"
         placeholder="Min"
+        (ngModelChange)="this.user.edited = true"
       />
     </div>
     <div class="input-container sm-input mb-2">
@@ -26,6 +27,7 @@
         class="select-input"
         [(ngModel)]="this.user.access"
         type="select"
+        (ngModelChange)="this.user.edited = true"
       >
         <option *ngFor="let number of [1, 2, 3, 4, 5, 6, 7, 8, 9]">
           {{ number }}

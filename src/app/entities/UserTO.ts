@@ -5,4 +5,6 @@ export interface UserTO {
   grade?: number;
   wallet?: number;
   access?: number;
+  edited?: boolean;
+  moneyAdded?: number;
 }
