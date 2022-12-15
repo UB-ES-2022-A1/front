@@ -5,10 +5,8 @@
       >filter_alt_off</mat-icon
     >
   </div>
-  <div class="filters--filter">
-    <div *ngFor="let item of kinds | keyvalue">
-
-      <h5 class="mb-0">{{item.key}}</h5>
+  <div class="filters--filter" *ngFor="let item of kinds | keyvalue">
+    <h5 class="mb-0">{{item.key}}</h5>
     <div class="order">
       <mat-icon
         class="sort-btn"
@@ -27,7 +25,7 @@
       <div class="input-container mb-2">
         <input
           (change)="createFilter(item.value, 'max', $event)"
-          [(ngModel)]="this.filters.filters?.[item.value].max"
+          [(ngModel)]="getModel(item.value).max"
           name={{item.value}}Max
           class="sm-input"
           type="text"
@@ -37,7 +35,7 @@
       <div class="input-container sm-input mb-2">
         <input
           (change)="createFilter(item.value, 'min', $event)"
-          [(ngModel)]="this.filters.filters?.[item.value].min"
+          [(ngModel)]="getModel(item.value).min"
           name={{item.value}}Min
           class="sm-input"
           type="text"
@@ -45,9 +43,6 @@
         />
       </div>
     </div>
-
-    </div>
-    
   </div>
   <button
     class="button button--primary w-100"

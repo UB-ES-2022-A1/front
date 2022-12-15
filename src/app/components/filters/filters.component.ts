@@ -13,8 +13,8 @@ export class FiltersComponent implements OnInit {
   kinds: { [key: string]: string } =
   {
     'Price': 'price',
-    'Completed contracts': 'popularity',
-    'Average Rating': 'rating'
+    'Popularity': 'popularity',
+    'Rating': 'rating'
   };
   constructor(public activeModal: NgbActiveModal) {
     console.log('uwu');
@@ -22,6 +22,14 @@ export class FiltersComponent implements OnInit {
   }
 
   ngOnInit(): void {}
+
+  getModel(filter: string){
+    if(this.filters.filters.hasOwnProperty(filter)){
+      return this.filters.filters[filter]
+    }else{
+      return {}
+    }
+  }
 
   setOrder(by: string, reverse: boolean) {
 
