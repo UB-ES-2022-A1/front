@@ -35,6 +35,7 @@
   <div class="card-wrapper">
     <app-card-anuncio
       *ngFor="let service of this.services"
+      [image]="service.image"
       [id]="service.id"
       [title]="service.title"
       [description]="service.description"
