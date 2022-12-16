@@ -1,47 +1,75 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { FiltersTO } from 'src/app/entities/FiltersTO';
-import { Order } from 'src/app/entities/Order';
 
 @Component({
   selector: 'app-filters',
   templateUrl: './filters.component.html',
 })
+
 export class FiltersComponent implements OnInit {
   @Input() filtersToCp: FiltersTO;
   filters: FiltersTO;
+  kinds: { [key: string]: string } =
+  {
+    'Price': 'price',
+    'Popularity': 'popularity',
+    'Rating': 'rating'
+  };
   constructor(public activeModal: NgbActiveModal) {
     console.log('uwu');
     this.filters = this.filtersToCp;
   }
 
   ngOnInit(): void {}
-  priceOrder(order: Order) {
-    if (order == Order.Up) {
-      if (this.filters.priceOrd !== Order.Up) {
-        this.filters.priceOrd = Order.Up;
-      } else {
-        this.filters.priceOrd = Order.None;
-      }
-    }
-    if (order == Order.Down) {
-      if (this.filters.priceOrd !== Order.Down) {
-        this.filters.priceOrd = Order.Down;
-      } else {
-        this.filters.priceOrd = Order.None;
-      }
+
+  getModel(filter: string){
+    if(this.filters.filters.hasOwnProperty(filter)){
+      return this.filters.filters[filter]
+    }else{
+      return {}
     }
   }
+
+  setOrder(by: string, reverse: boolean) {
+
+    if(this.filters.sort_by == by && this.filters.reverse == reverse){
+      this.filters.sort_by = ''
+    }
+    else{
+      this.filters.sort_by = by
+      this.filters.reverse = reverse
+
+    }
+  }
+
+  createFilter(filter: string, edited:string, event:any){
+    if(!this.filters.filters.hasOwnProperty(filter)){
+      this.filters.filters[filter] = {}
+      this.filters.filters[filter][edited] = event.target.value
+    }else if(this.filters.filters[filter][edited] === null){
+
+      const { [edited]: foo, ...rest } = this.filters.filters[filter]
+      this.filters.filters[filter] = rest
+    }
+    if (Object.keys(this.filters.filters[filter]).length === 0){
+      const { [filter]: foo, ...rest } = this.filters.filters
+      this.filters.filters = rest
+    }
+  }
+
   onFilter() {
     this.activeModal.close([1, this.filters]);
   }
+
   resetFilters() {
     this.filters = {
       search: '',
-      priceMin: undefined,
-      priceMax: undefined,
-      priceOrd: 1,
+      filters: {},
+      sort_by: '',
+      reverse: false
     };
   }
+
   beforeDismiss() {}
 }
