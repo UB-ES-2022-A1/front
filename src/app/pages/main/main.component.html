@@ -22,10 +22,11 @@
       </button>
     </div>
     <div class="right-header d-flex justify-content-center align-items-center">
+      <h1>Popular #hashtags</h1>
       
-      <h1>
+      <h1 class="card-wrapper">
         <div *ngFor="let item of hashtags;let indice=index">
-          <h1 class = typing-demo>{{item}}</h1>
+          <h1 class="hashtag">{{item}}</h1>
         </div>
       </h1>
     </div>
