@@ -44,6 +44,7 @@ export class MainComponent implements OnInit {
             description: service.description,
             price: service.price,
             grade: service.service_grade,
+            state: service.state,
             user: {
               username: service.user_name,
               email: service.user_email,

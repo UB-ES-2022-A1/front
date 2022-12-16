@@ -8,4 +8,5 @@ export interface ServiceTO {
   requiresPlace?: boolean;
   user?: UserTO;
   grade?: number;
+  state: number;
 }

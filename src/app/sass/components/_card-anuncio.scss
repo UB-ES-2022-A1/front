@@ -15,10 +15,8 @@
     &--img {
         height: 8em;
     }
-    &--body {
-        padding: 10px 10px 0;
-    }
     &--title {
+        
         font-weight: 700;
         font-size: 0.8em;
         height: 4rem;
@@ -54,4 +52,15 @@
             text-decoration: underline;
         }
     }
+}
+.cardBody {
+    padding: 10px 10px 0;
+}
+.cardBodyRed {
+    padding: 10px 10px 0;
+    background-color: rgb(255, 190, 190);
+}
+.cardBodyYellow {
+    padding: 10px 10px 0;
+    background-color: rgb(255, 255, 180);
 }

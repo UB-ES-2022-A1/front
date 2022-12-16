@@ -95,7 +95,7 @@
             <h4 class="mb-3 mt-1">User offers</h4>
         </div>
         <div class="anuncio-wrapper d-flex flex-row gap-4 flex-wrap justify-content-center">
-            <app-card-anuncio *ngFor="let service of this.offers" [id]="service.id" [title]="service.title" [description]="service.description" [grade]="service.grade" [price]="service.price" [user]="service.user"></app-card-anuncio>
+            <app-card-anuncio *ngFor="let service of this.offers" [id]="service.id" [title]="service.title" [description]="service.description" [grade]="service.grade" [price]="service.price" [user]="service.user" [state]="service.state"></app-card-anuncio>
         </div>
     </div>
 </div>

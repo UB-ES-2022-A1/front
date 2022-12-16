@@ -31,12 +31,19 @@
         Accept</button
       >&nbsp;
       <button
-        *ngIf="this.contract.status === 1"
+        *ngIf="this.contract.status === 1 && ((this.contract.seller === userEmail && this.contract.validate_s === 0) || (this.contract.seller !== userEmail && this.contract.validate_c === 0))"
         (click)="validateService()"
         class="button button--primary mt-4"
       >
-        Validate</button
-      >&nbsp;
+        Validate</button>
+        &nbsp;
+      <button
+      *ngIf="this.contract.status === 1"
+      (click)="cancelService()"
+      class="button button--warning mt-4"
+    >
+      Cancel</button>
+      &nbsp;
     </div>
   </div>
 </div>

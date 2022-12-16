@@ -27,8 +27,26 @@
     </div>
     <div class="d-flex flex-column align-items-center">
         <div class="buttons-wrapper mb-4">
-            <button *ngIf="myService" class="button button--warning" (click)="deactivate()">
+          <button
+        *ngIf="myService"
+        class="button button--warning"
+        (click)="delete()"
+      >
+        Delete service
+      </button>
+      <button
+        *ngIf="myService && serviceInfo.state == 0"
+        class="button button--warning"
+        (click)="deactivate()"
+      >
         Deactivate service
+      </button>
+      <button
+        *ngIf="myService && serviceInfo.state == 1"
+        class="button button--primary"
+        (click)="deactivate()"
+      >
+        Activate service
       </button>
             <button *ngIf="myService" class="button button--primary" (click)="openEditService()">
         Edit service

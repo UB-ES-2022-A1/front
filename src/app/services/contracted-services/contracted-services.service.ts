@@ -42,4 +42,8 @@ export class ContractedServicesService {
     const url = this.baseUrl + '/' + contractId + `/validate`;
     return this.http.post(url, {});
   }
+  cancelContract(contractId: number): Observable<any> {
+    const url = this.baseUrl + '/' + contractId;
+    return this.http.delete(url);
+  }
 }

@@ -19,9 +19,15 @@ export class ServiceService {
   getServices(): Observable<any> {
     return this.http.get(this.baseUrl);
   }
-  deactivateService(id: string): Observable<any> {
+
+  deleteService(id: string): Observable<any> {
     const url = this.baseUrl + '/' + id;
     return this.http.delete(url);
+  }
+
+  deactivateService(id: string): Observable<any> {
+    const url = this.baseUrl + '/' + id;
+    return this.http.post(url, {});
   }
   putService(
     id: string,
