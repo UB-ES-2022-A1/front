@@ -27,6 +27,13 @@ export class ServiceDetailComponent implements OnInit {
   title: string = '';
   review: string = '';
   reviews: any[] = [];
+  showUpload: boolean = false;
+  image1: string ;
+  image2: string ;
+  image3: string ;
+  image4: string ;
+  image5: string ;
+  images: string[]=[];
   constructor(
     public router: Router,
     private sessionService: SessionService,
@@ -66,7 +73,31 @@ export class ServiceDetailComponent implements OnInit {
         this.reviews.push(newReview);
       });
     });
+
+    this.serviceService.getService(this.serviceId).subscribe((data: any) => {
+      this.image1 = data.image1;
+      this.images.push(data.image1);
+
+      this.image2 = data.image2;
+      this.images.push(data.image2);
+
+      this.image3 = data.image3;
+      this.images.push(data.image3);
+
+      this.image4 = data.image4;
+      this.images.push(data.image4);
+
+      this.image5 = data.image5;
+      this.images.push(data.image5);
+
+      console.log(data);
+    });
   }
+
+  countChangedHandler(count: number) {
+    console.log(count);
+  }
+
 
   submitContact() {
     this.contractService
@@ -135,5 +166,9 @@ export class ServiceDetailComponent implements OnInit {
           );
         }
       );
+  }
+
+  openWidget(): void{
+    this.showUpload = true;
   }
 }
