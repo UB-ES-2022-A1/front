@@ -2,9 +2,9 @@ name: Selenium Functional Testing
 
 on:
   push:
-    branches: [ production ]
+    branches: [ main ]
   pull_request:
-    branches: [ production ]
+    branches: [ main ]
 
 jobs:
   build:
@@ -31,7 +31,4 @@ jobs:
         pip install selenium
     - name: Test selenium
       run: |
-        python tests/functional/testServicios.py
-        python tests/functional/testRegistro.py
-        python tests/functional/testLogin.py
-        python tests/functional/testForgotPassword.py
+        python tests/functional
