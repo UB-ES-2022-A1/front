@@ -22,8 +22,11 @@
       </button>
     </div>
     <div class="right-header d-flex justify-content-center align-items-center">
+      
       <h1>
-        <div class="typing-demo"><h2>Visible en el Sprint 3! 🐱</h2></div>
+        <div *ngFor="let item of hashtags;let indice=index">
+          <h1 class = typing-demo>{{item}}</h1>
+        </div>
       </h1>
     </div>
   </div>
