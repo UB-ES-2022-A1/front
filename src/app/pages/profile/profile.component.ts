@@ -24,6 +24,7 @@ export class ProfileComponent implements OnInit {
     email: '',
     phone: null,
     wallet: '',
+    image: '',
   };
 
   offers: ServiceTO[] = [];
@@ -51,6 +52,8 @@ export class ProfileComponent implements OnInit {
       this.showUsername = this.user.username;
       this.user.phone = res.phone;
       this.user.wallet = res.wallet;
+      this.user.grade = res.user_grade;
+      this.user.image = res.image;
     });
     this.loadOffers();
   }
@@ -74,9 +77,12 @@ export class ProfileComponent implements OnInit {
   }
 
   forgotModal() {
-    const modalRef = this.modalService.open(ForgotModalComponent, {
-      centered: true,
-    });
+    this.router.navigate([
+      `update_password/${this.sessionService.get('token')}`,
+    ]);
+    this.router.navigate([
+      `update_password/${this.sessionService.get('token')}`,
+    ]);
   }
 
   loadOffers(): void {
@@ -87,13 +93,20 @@ export class ProfileComponent implements OnInit {
           title: service.title,
           description: service.description,
           price: service.price,
+          grade: service.service_grade,
+          state: service.state,
           user: {
             email: this.user.email,
             username: this.user.username,
+            grade: this.user.grade,
           },
         };
         this.offers.push(auxService);
       });
     });
+  }
+
+  uploadPhoto(): void{    
+    this.router.navigate([`/upload/`]);
   }
 }

@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
-
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MainComponent } from './pages/main/main.component';
+import { AdminViewComponent } from './pages/admin-view/admin-view.component';
 import { HeaderComponent } from './components/header/header.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 
@@ -33,6 +34,16 @@ import { ForgotModalComponent } from './components/forgot-modal/forgot-modal.com
 import { OrdersComponent } from './pages/orders/orders.component';
 import { CardContractComponent } from './components/card-contract/card-contract.component';
 import { FiltersComponent } from './components/filters/filters.component';
+import { CardUserComponent } from './components/card-user/card-user.component';
+import { ChatComponent } from './pages/chat/chat.component';
+import * as Cloudinary from "cloudinary-core";
+import {
+  CloudinaryModule,
+  CloudinaryConfiguration
+} from "@cloudinary/angular-5.x";
+import { ServiceImageComponent } from './pages/service-image/service-image.component';
+import {IvyCarouselModule} from 'angular-responsive-carousel';
+
 
 @NgModule({
   declarations: [
@@ -47,10 +58,14 @@ import { FiltersComponent } from './components/filters/filters.component';
     ServiceDetailComponent,
     SpinnerComponent,
     ForgotComponent,
+    AdminViewComponent,
     ForgotModalComponent,
     OrdersComponent,
     CardContractComponent,
     FiltersComponent,
+    CardUserComponent,
+    ChatComponent,
+    ServiceImageComponent,
   ],
   imports: [
     BrowserModule,
@@ -63,9 +78,14 @@ import { FiltersComponent } from './components/filters/filters.component';
     MatInputModule,
     MatSnackBarModule,
     BrowserAnimationsModule,
+    IvyCarouselModule,
+    CloudinaryModule.forRoot(Cloudinary, {
+      cloud_name: "dvjk7umra" //specify cloud_name
+    } as CloudinaryConfiguration)
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true },
+    { provide: LocationStrategy, useClass: HashLocationStrategy },
   ],
   bootstrap: [AppComponent],
 })

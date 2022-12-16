@@ -34,5 +34,16 @@ export class ContractedServicesService {
   getAllContracts(): Observable<any> {
     return this.http.get(this.baseUrl);
   }
-
+  acceptContract(contractId: number): Observable<any> {
+    const url = this.baseUrl + '/' + contractId + `/accept`;
+    return this.http.post(url, {});
+  }
+  validateContract(contractId: number): Observable<any> {
+    const url = this.baseUrl + '/' + contractId + `/validate`;
+    return this.http.post(url, {});
+  }
+  cancelContract(contractId: number): Observable<any> {
+    const url = this.baseUrl + '/' + contractId;
+    return this.http.delete(url);
+  }
 }

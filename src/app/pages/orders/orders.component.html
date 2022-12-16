@@ -1,29 +1,38 @@
-<app-header></app-header>
-<div class="text-center">
-    <h4 class="mb-3 mt-1">My contracted services</h4>
-</div>
-
-<div class="container mt-5 mb-5">
+<div class="contracts">
+  <h4 class="mb-3 mt-1">My orders</h4>
+  <div class="container mt-5 mb-5">
     <div class="d-flex justify-content-center row">
-        <!--  a cambiar a this.contractsClient -->
-        <div *ngIf="this.noClientService">
-            <h5>Currently you have no contracts...</h5>
-        </div>
-        <app-card-contract *ngFor="let service of this.contractsClient" [id]="service.id" [title]="service.title" [description]="service.description" [price]="service.price">
-        </app-card-contract>
+      <div
+        class="d-flex justify-content-center"
+        *ngIf="this.contractsContractor.length === 0"
+      >
+        <p>Currently you have no contracts</p>
+      </div>
+      <app-card-contract
+        *ngFor="let contract of this.contractsContractor"
+        [contract]="contract"
+      >
+      </app-card-contract>
     </div>
+  </div>
 </div>
 
-<div class="text-center">
-    <h4 class="mb-3 mt-1">My requested services</h4>
-</div>
-
-<div class="container mt-5 mb-5">
+<div class="contracts">
+  <h4 class="mb-3 mt-1">Requested orders</h4>
+  <div class="container mt-5 mb-5">
     <div class="d-flex justify-content-center row">
-        <div *ngIf="this.noContractorService">
-            <h5>Currently you have no contracts...</h5>
-        </div>
-        <app-card-contract *ngFor="let service of this.contractsConstractor" [id]="service.id" [title]="service.title" [description]="service.description" [price]="service.price">
-        </app-card-contract>
+      <!--  a cambiar a this.contractsClient -->
+      <div
+        class="d-flex justify-content-center"
+        *ngIf="this.contractsClient.length === 0"
+      >
+        <p>Currently you have no contracts</p>
+      </div>
+      <app-card-contract
+        *ngFor="let contract of this.contractsClient"
+        [contract]="contract"
+      >
+      </app-card-contract>
     </div>
+  </div>
 </div>

@@ -1,60 +1,115 @@
-<div
-  class="service-detail d-flex flex-row justify-content-center align-items-center gap-4"
->
-  <div class="service-info">
-    <h2 class="title-lg">{{ this?.serviceInfo?.title }}</h2>
-    <img class="img" src="../../assets/img/pexels-ylanite-koppens-776654.jpg" />
-    <p class="description">{{ this?.serviceInfo?.description }}</p>
-  </div>
-  <div class="d-flex flex-column align-items-center">
-    <div class="buttons-wrapper mb-4">
-      <button
+<app-header></app-header>
+<div class="service-detail d-flex flex-row justify-content-center align-items-center gap-4">
+    <div class="service-info">
+        <h2 class="title-lg">{{ this?.serviceInfo?.title }}</h2>
+        <img *ngIf="!this.image1" class="img" src="../../assets/img/pexels-ylanite-koppens-776654.jpg" />
+        <div class="carousel-service">
+            <carousel *ngIf="this.image1" [cellWidth]=400 [height]="450" [width]="600" [cellsToShow]="1">
+                <div class="carousel-cell" *ngIf="this.image1">
+                    <img [src]="this.image1">
+                </div>
+                <div class="carousel-cell" *ngIf="this.image2">
+                    <img [src]="this.image2">
+                </div>
+                <div class="carousel-cell" *ngIf="this.image3">
+                    <img [src]="this.image3">
+                </div>
+                <div class="carousel-cell" *ngIf="this.image4">
+                    <img [src]="this.image4">
+                </div>
+                <div class="carousel-cell" *ngIf="this.image5">
+                    <img [src]="this.image5">
+                </div>
+            </carousel>
+        </div>
+
+        <p class="description">{{ this?.serviceInfo?.description }}</p>
+    </div>
+    <div class="d-flex flex-column align-items-center">
+        <div class="buttons-wrapper mb-4">
+          <button
         *ngIf="myService"
+        class="button button--warning"
+        (click)="delete()"
+      >
+        Delete service
+      </button>
+      <button
+        *ngIf="myService && serviceInfo.state == 0"
         class="button button--warning"
         (click)="deactivate()"
       >
         Deactivate service
       </button>
       <button
-        *ngIf="myService"
+        *ngIf="myService && serviceInfo.state == 1"
         class="button button--primary"
-        (click)="openEditService()"
+        (click)="deactivate()"
       >
+        Activate service
+      </button>
+            <button *ngIf="myService" class="button button--primary" (click)="openEditService()">
         Edit service
       </button>
-    </div>
-    <div class="price-info d-flex flex-column justify-content-between">
-      <h3 class="price">{{ this?.serviceInfo?.price }}$</h3>
+            <button *ngIf="myService" class="button button--primary" (click)="openWidget()">
+        Upload image
+      </button>
+            <div>
+            </div>
 
-      <textarea
-        *ngIf="loginService.isLogged() && !myService"
-        class="area-input"
-        name="username"
-        type="text"
-        placeholder="Explain your needs for this service"
-      ></textarea>
+        </div>
+        <div class="right-wrapper price-info d-flex flex-column justify-content-between">
+            <h3 class="price">{{ this?.serviceInfo?.price }}$</h3>
 
-      <div
-        class="contact-wrapper d-flex flex-column justify-content-center gap-4"
-      >
-        <button
-          *ngIf="loginService.isLogged() && !myService"
-          class="button button--primary"
-          (click)="submitContact()"
-        >
+            <textarea *ngIf="loginService.isLogged() && !myService" class="area-input" name="username" type="text" placeholder="Explain your needs for this service"></textarea>
+
+            <div class="contact-wrapper d-flex flex-column justify-content-center gap-4">
+                <button *ngIf="loginService.isLogged() && !myService" class="button button--primary" (click)="submitContact()">
           Contact with customer
         </button>
-        <div class="contact-info d-flex flex-row justify-content-between">
-          <p (click)="navigateToProfile($event)" class="user-email">
-            {{ this?.serviceInfo?.user }}
-          </p>
-          <div
-            class="icon-wrapper d-flex flex-row justify-content-center align-items-center"
-          >
-            <mat-icon class="icon">chat</mat-icon>
-          </div>
+                <div class="contact-info d-flex flex-row justify-content-between">
+                    <p (click)="navigateToProfile($event)" class="user-email">
+                        {{ this?.serviceInfo?.user }}
+                    </p>
+                    <div class="icon-wrapper d-flex flex-row justify-content-center align-items-center">
+                        <mat-icon class="icon">chat</mat-icon>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
+        <app-service-image *ngIf="this.showUpload" [id]="this.serviceId"></app-service-image>
     </div>
-  </div>
+</div>
+<div class="review-maker d-flex flex-column mb-2">
+    <div class="d-flex flex-row justify-content-between align-items-center">
+        <div class="d-flex flex-column">
+            <h2>Post a review for this product</h2>
+            <div>
+                <mat-icon class="star" *ngFor="let n of [1, 2, 3, 4, 5]" [ngClass]="{
+            g: n <= starLevel || (starLevel === 0 && n <= starLevelT)
+          }" (mouseenter)="changeStar(n)" (mouseleave)="changeStar(0)" (click)="changeTStar(n)">star</mat-icon>
+            </div>
+        </div>
+        <button (click)="postReview()" type="submit" class="button button--primary">
+      Send
+    </button>
+    </div>
+    <div class="input-container sm-input mb-2">
+        <input name="priceMin" class="sm-input" type="text" placeholder="Title" [(ngModel)]="title" />
+    </div>
+    <textarea *ngIf="loginService.isLogged() && !myService" class="area-input" name="username" type="text" placeholder="Post your opinion about this product" [(ngModel)]="review"></textarea>
+</div>
+<div class="reviews d-flex flex-column">
+    <h2>Reviews</h2>
+    <div *ngFor="let review of reviews" class="card-review d-flex flex-row">
+        <div class="d-flex flex-column">
+            <h5 class="title">{{ review.title }}</h5>
+            <div class="stars g">
+                <mat-icon *ngFor="let n of [1, 2, 3, 4, 5]" class="star-view" [ngClass]="{ g: n <= review.stars }">
+                    star
+                </mat-icon>
+            </div>
+            <p class="text">{{ review.text }}</p>
+        </div>
+    </div>
 </div>

@@ -9,6 +9,8 @@ import { SearchBarService } from 'src/app/services/search-bar/search-bar.service
 import { ServiceService } from 'src/app/services/service/service.service';
 import { SessionService } from 'src/app/services/session/session.service';
 import { UserService } from 'src/app/services/user/user.service';
+import { environment } from 'src/environments/environment';
+import { HttpClient } from '@angular/common/http';
 import { ServiceDetailTO } from '../service-detail/service-detail.component';
 @Component({
   selector: 'app-main',
@@ -18,16 +20,19 @@ export class MainComponent implements OnInit {
   services: ServiceTO[] = [];
   searchText: string = '';
   filters: FiltersTO;
+  hashtags: string[]
   constructor(
     private userService: UserService,
     private serviceService: ServiceService,
     protected sessionService: SessionService,
     private modalService: NgbModal,
     private searchBarService: SearchBarService,
-    protected loginService: LoginService
+    protected loginService: LoginService,
+    private http: HttpClient
   ) {}
 
   ngOnInit(): void {
+    this.getHashtags()
     this.searchBarService.currentSearch.subscribe((filters: any) => {
       this.filters = filters;
       this.serviceService.getServicesFilt(this.filters).subscribe((data) => {
@@ -38,21 +43,19 @@ export class MainComponent implements OnInit {
             title: service.title,
             description: service.description,
             price: service.price,
+            grade: service.service_grade,
+            state: service.state,
             user: {
-              email: '',
+              username: service.user_name,
+              email: service.user_email,
+              grade: service.user_grade,
             },
           };
           this.services.push(auxService);
-
-          this.userService.getUser(service.user).subscribe((res: any) => {
-            auxService.user = {
-              username: res.name,
-              email: res.email,
-            };
-          });
         });
       });
     });
+
   }
   openCreateService() {
     const modalRef = this.modalService.open(FormServiceComponent, {
@@ -61,5 +64,11 @@ export class MainComponent implements OnInit {
   }
   openLogin() {
     const modalRef = this.modalService.open(LoginComponent, { centered: true });
+  }
+  getHashtags(){
+    const url = environment.backurl + 'hashtags/10'
+    return this.http.get<string[]>(url).subscribe(data =>{
+      this.hashtags = data
+    })
   }
 }

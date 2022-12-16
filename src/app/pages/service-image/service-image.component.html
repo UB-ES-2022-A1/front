@@ -1,0 +1,13 @@
+<div class="mt-5 mr-5" *ngIf="this.showWidget">
+    <h2>
+        Select image to upload!
+    </h2>
+    <button class="button button--primary" (click)="uploadWidget()">
+    Select...
+    </button>
+    <carousel *ngFor="let image of this.images">
+        <div class="carousel-cell">
+            <img [src]="image">
+        </div>
+    </carousel>
+</div>

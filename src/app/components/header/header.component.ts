@@ -42,15 +42,22 @@ export class HeaderComponent implements OnInit {
     const modalRef = this.modalService.open(FiltersComponent, {
       centered: true,
       size: 'sm',
+      backdrop: 'static',
     });
     if (this.filters !== undefined) {
       modalRef.componentInstance.filters = this.filters;
     }
-    modalRef.result.then((result) => {
-      if (result[0] === 1) {
-        this.filters.search = this.enteredSearchValue;
-      }
-    });
+    modalRef.result
+      .then((result) => {
+        if (result[0] === 1) {
+          this.filters = result[1];
+          this.filters.search = this.enteredSearchValue;
+          this.onSearch();
+        }
+      })
+      .catch((res) => {
+        this.filters;
+      });
   }
 
   onSearch() {
@@ -63,6 +70,12 @@ export class HeaderComponent implements OnInit {
   }
   navigateOrders() {
     this.router.navigate([`/orders/`]);
+  }
+  navigateAdmin() {
+    this.router.navigate([`/admin/`]);
+  }
+  navigateChat() {
+    this.router.navigate([`/chat/`]);
   }
   goHome() {
     this.router.navigate([`/`]);

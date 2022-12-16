@@ -22,8 +22,12 @@
       </button>
     </div>
     <div class="right-header d-flex justify-content-center align-items-center">
-      <h1>
-        <div class="typing-demo"><h2>Visible en el Sprint 3! 🐱</h2></div>
+      <h1>Popular #hashtags</h1>
+      
+      <h1 class="card-wrapper">
+        <div *ngFor="let item of hashtags;let indice=index">
+          <h1 class="hashtag">{{item}}</h1>
+        </div>
       </h1>
     </div>
   </div>
@@ -35,7 +39,9 @@
       [title]="service.title"
       [description]="service.description"
       [price]="service.price"
+      [grade]="service.grade"
       [user]="service.user"
+      [state]="service.state"
     ></app-card-anuncio>
   </div>
 </div>

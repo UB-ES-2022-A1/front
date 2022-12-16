@@ -1,0 +1,14 @@
+.card-user {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  border: 1px solid var(--color-gray-1);
+  &--data {
+    margin: 0;
+  }
+}
+
+.contractImg {
+  width: 320px;
+  height: 200px;
+}

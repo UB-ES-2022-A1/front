@@ -7,9 +7,9 @@ import { FiltersTO } from 'src/app/entities/FiltersTO';
 export class SearchBarService {
   filters: FiltersTO = {
     search: '',
-    priceMin: undefined,
-    priceMax: undefined,
-    priceOrd: 1,
+    filters: {},
+    sort_by: '',
+    reverse: false
   };
   private searchSource: BehaviorSubject<FiltersTO> = new BehaviorSubject(
     this.filters

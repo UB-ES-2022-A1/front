@@ -1,25 +1,49 @@
-<div class="contract">
-    <div class="row">
-        <div class="col">
-            <img class="contractImg mt-2" (click)="seeDetail()" src="../../assets/img/pexels-ylanite-koppens-776654.jpg" alt="Card image cap">
-        </div>
+<div class="card-contract">
+  <img
+    class="contractImg"
+    src="../../assets/img/pexels-ylanite-koppens-776654.jpg"
+    alt="Card image cap"
+  />
 
-        <div class="col-6">
-            <h5 class="contract--title mt-4 ml-3">{{ this.service.title }}</h5>
-            <p class="contract--description mt-4 ml-3">{{ this.service.description }}</p>
-        </div>
+  <div class="col-6 d-flex flex-column justify-content-between p-4">
+    <h5 class="card-contract--data">
+      {{ this.contract.title }}
+    </h5>
+    <p class="card-contract--data">
+      {{ this.contract.description }}
+    </p>
+    <p class="card-contract--data">Seller: {{ this.contract.seller }}</p>
+    <p class="card-contract--data">Costumer: {{ this.contract.user }}</p>
+  </div>
 
-        <div class="col">
-            <h4 class="mt-4">State: sold</h4>
-            <div *ngIf="!this.isActivated">
-                <button (click)="activateService()" class="button button--primary mt-4">
-                        Activate</button>&nbsp;
-            </div>
-            <div *ngIf="this.isActivated">
-                <button (click)="activateService()" class="button button--primary mt-4">
-                        Deactivate</button>&nbsp;
-            </div>
-            <h4 class="contract--price">{{ this.service.price }}$</h4>
-        </div>
+  <div class="d-flex flex-row p-2 align-items-center gap-4">
+    <div class="d-flex flex-column">
+      <h4>{{ statusString(this.contract.status, false) }}</h4>
+      <h4>{{ this.contract.price }}$</h4>
     </div>
+
+    <div>
+      <button
+        *ngIf="this.contract.status === 0 && this.contract.seller === userEmail"
+        (click)="acceptService()"
+        class="button button--primary mt-4"
+      >
+        Accept</button
+      >&nbsp;
+      <button
+        *ngIf="this.contract.status === 1 && ((this.contract.seller === userEmail && this.contract.validate_s === 0) || (this.contract.seller !== userEmail && this.contract.validate_c === 0))"
+        (click)="validateService()"
+        class="button button--primary mt-4"
+      >
+        Validate</button>
+        &nbsp;
+      <button
+      *ngIf="this.contract.status === 1"
+      (click)="cancelService()"
+      class="button button--warning mt-4"
+    >
+      Cancel</button>
+      &nbsp;
+    </div>
+  </div>
 </div>

@@ -19,9 +19,15 @@ export class ServiceService {
   getServices(): Observable<any> {
     return this.http.get(this.baseUrl);
   }
-  deactivateService(id: string): Observable<any> {
+
+  deleteService(id: string): Observable<any> {
     const url = this.baseUrl + '/' + id;
     return this.http.delete(url);
+  }
+
+  deactivateService(id: string): Observable<any> {
+    const url = this.baseUrl + '/' + id;
+    return this.http.post(url, {});
   }
   putService(
     id: string,
@@ -45,15 +51,9 @@ export class ServiceService {
       search_text: undefined,
     };
     filters?.search ? (body.search_text = filters.search) : null;
-    body.filters = {
-      price: { min: filters?.priceMin, max: filters?.priceMax },
-    };
-    if (filters.priceOrd !== 1) {
-      let reversed = filters.priceOrd === 2;
-      body.sort = {
-        by: 'price',
-        reverse: reversed,
-      };
+    body.filters = filters.filters;
+    if (filters.sort_by != ''){
+      body.sort = {'by': filters.sort_by, 'reverse': filters.reverse}
     }
     return this.http.post(url, body);
   }
@@ -77,5 +77,49 @@ export class ServiceService {
     const url = this.baseUrl + '/' + email + '/service';
 
     return this.http.get(url);
+  }
+
+  postServiceImage(id: string, image1:string, image2:string, image3:string, image4:string, image5:string ): Observable<any> {
+    const url = this.baseUrl + '/' + id + '/image';
+    let body: any = {};
+    if(image1){
+      body={
+        image1:image1,
+      }
+    }
+    if(image2){
+        body={
+          image1:image1,
+          image2:image2,
+        }
+      }
+    if(image3){
+      body={
+            image1:image1,
+            image2:image2,
+            image3:image3,
+
+          }
+    }
+    if(image4){
+      body={
+            image1:image1,
+            image2:image2,
+            image3:image3,
+            image4:image4,
+
+          }
+    }
+    if(image5){
+      body={
+            image1:image1,
+            image2:image2,
+            image3:image3,
+            image4:image4,
+            image5:image5,
+      }
+    }
+
+    return this.http.post(url, body);
   }
 }
