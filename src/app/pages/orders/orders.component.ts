@@ -41,6 +41,8 @@ export class OrdersComponent implements OnInit {
             price: contract.price,
             seller: contract.user_seller_email,
             contract_id: contract.contract_id,
+            validate_c: contract.validate_c,
+            validate_s: contract.validate_s
           };
           this.contractsClient.push(auxContract);
         });
@@ -61,6 +63,8 @@ export class OrdersComponent implements OnInit {
             price: contract.price,
             seller: contract.user_seller_email,
             contract_id: contract.contract_id,
+            validate_c: contract.validate_c,
+            validate_s: contract.validate_s
           };
           this.contractsContractor.push(auxContract);
         });

@@ -50,6 +50,7 @@ export class ServiceDetailComponent implements OnInit {
         price: data.price,
         requiresPlace: data.requiresPlace,
         user: data.user_email,
+        state: data.state
       };
       if (this.serviceInfo.user === this.sessionService.get('email')) {
         this.myService = true;
@@ -94,7 +95,20 @@ export class ServiceDetailComponent implements OnInit {
   }
   deactivate() {
     this.serviceService.deactivateService(this.serviceId).subscribe((data) => {
-      this.utils.openSnackBar('This service is no longer visible', 'Ok', 2);
+      this.serviceInfo.state = 1 - this.serviceInfo.state
+      let visible = ''
+      if (this.serviceInfo.state == 0){
+        visible = 'now visible'
+      }else{
+        visible = 'no longer visible'
+      }
+      this.utils.openSnackBar('This service is ' + visible, 'Ok', 2);
+    });
+  }
+
+  delete() {
+    this.serviceService.deleteService(this.serviceId).subscribe((data) => {
+      this.utils.openSnackBar('This service has been deleted', 'Ok', 2);
       this.router.navigate([`/`]);
     });
   }

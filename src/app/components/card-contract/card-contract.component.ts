@@ -38,6 +38,15 @@ export class CardContractComponent implements OnInit {
         window.location.reload();
       });
   }
+  cancelService(): void{
+    this.contractService
+      .cancelContract(this.contract.contract_id)
+      .subscribe((res: any) => {
+        console.log(res);
+        window.location.reload();
+      });
+
+  }
   statusString(status: number, verb: boolean) {
     if (!verb) {
       switch (status) {

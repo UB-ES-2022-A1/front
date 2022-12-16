@@ -3,7 +3,9 @@
     class="card--img"
     src="../../assets/img/pexels-ylanite-koppens-776654.jpg"
   />
-  <div class="card--body">
+  <div class="cardBody" 
+    [ngClass]="{cardBody: state==0, cardBodyYellow: state==1, cardBodyRed: state==2}">
+
     <p class="card--title">{{ this.title }}</p>
     <div class="card--rating d-flex align-items-center mb-1">
       <mat-icon>star</mat-icon>

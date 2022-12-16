@@ -94,7 +94,7 @@ export class ProfileComponent implements OnInit {
           description: service.description,
           price: service.price,
           grade: service.service_grade,
-
+          state: service.state,
           user: {
             email: this.user.email,
             username: this.user.username,

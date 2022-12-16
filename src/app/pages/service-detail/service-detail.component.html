@@ -11,9 +11,23 @@
       <button
         *ngIf="myService"
         class="button button--warning"
+        (click)="delete()"
+      >
+        Delete service
+      </button>
+      <button
+        *ngIf="myService && serviceInfo.state == 0"
+        class="button button--warning"
         (click)="deactivate()"
       >
         Deactivate service
+      </button>
+      <button
+        *ngIf="myService && serviceInfo.state == 1"
+        class="button button--primary"
+        (click)="deactivate()"
+      >
+        Activate service
       </button>
       <button
         *ngIf="myService"
