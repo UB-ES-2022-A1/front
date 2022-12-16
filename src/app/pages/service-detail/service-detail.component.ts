@@ -21,6 +21,13 @@ export class ServiceDetailComponent implements OnInit {
   contractButton: boolean = false;
   description: string = '';
   myService: boolean = false;
+  showUpload: boolean = false;
+  image1: string ;
+  image2: string ;
+  image3: string ;
+  image4: string ;
+  image5: string ;
+  images: string[]=[];
   constructor(
     public router: Router,
     private sessionService: SessionService,
@@ -48,7 +55,31 @@ export class ServiceDetailComponent implements OnInit {
         this.myService = true;
       }
     });
+
+    this.serviceService.getService(this.serviceId).subscribe((data: any) => {
+      this.image1 = data.image1;
+      this.images.push(data.image1);
+
+      this.image2 = data.image2;
+      this.images.push(data.image2);
+
+      this.image3 = data.image3;
+      this.images.push(data.image3);
+
+      this.image4 = data.image4;
+      this.images.push(data.image4);
+
+      this.image5 = data.image5;
+      this.images.push(data.image5);
+
+      console.log(data);
+    });
   }
+
+  countChangedHandler(count: number) {
+    console.log(count);
+  }
+
 
   submitContact() {
     this.contractService
@@ -94,5 +125,9 @@ export class ServiceDetailComponent implements OnInit {
   navigateToProfile(event: Event): void {
     event.stopPropagation();
     this.router.navigate([`/profile/${this.serviceInfo?.user}`]);
+  }
+
+  openWidget(): void{
+    this.showUpload = true;
   }
 }

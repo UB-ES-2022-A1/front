@@ -78,4 +78,48 @@ export class ServiceService {
 
     return this.http.get(url);
   }
+
+  postServiceImage(id: string, image1:string, image2:string, image3:string, image4:string, image5:string ): Observable<any> {
+    const url = this.baseUrl + '/' + id + '/image';
+    let body: any = {};
+    if(image1){
+      body={
+        image1:image1,
+      }
+    }
+    if(image2){
+        body={
+          image1:image1,
+          image2:image2,
+        }
+      }
+    if(image3){
+      body={
+            image1:image1,
+            image2:image2,
+            image3:image3,
+
+          }
+    }
+    if(image4){
+      body={
+            image1:image1,
+            image2:image2,
+            image3:image3,
+            image4:image4,
+
+          }
+    }
+    if(image5){
+      body={
+            image1:image1,
+            image2:image2,
+            image3:image3,
+            image4:image4,
+            image5:image5,
+      }
+    }
+
+    return this.http.post(url, body);
+  }
 }
