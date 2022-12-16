@@ -36,7 +36,7 @@
             </div>
 
         </div>
-        <div class="price-info d-flex flex-column justify-content-between">
+        <div class="right-wrapper price-info d-flex flex-column justify-content-between">
             <h3 class="price">{{ this?.serviceInfo?.price }}$</h3>
 
             <textarea *ngIf="loginService.isLogged() && !myService" class="area-input" name="username" type="text" placeholder="Explain your needs for this service"></textarea>
@@ -56,5 +56,38 @@
             </div>
         </div>
         <app-service-image *ngIf="this.showUpload" [id]="this.serviceId"></app-service-image>
+    </div>
+</div>
+<div class="review-maker d-flex flex-column mb-2">
+    <div class="d-flex flex-row justify-content-between align-items-center">
+        <div class="d-flex flex-column">
+            <h2>Post a review for this product</h2>
+            <div>
+                <mat-icon class="star" *ngFor="let n of [1, 2, 3, 4, 5]" [ngClass]="{
+            g: n <= starLevel || (starLevel === 0 && n <= starLevelT)
+          }" (mouseenter)="changeStar(n)" (mouseleave)="changeStar(0)" (click)="changeTStar(n)">star</mat-icon>
+            </div>
+        </div>
+        <button (click)="postReview()" type="submit" class="button button--primary">
+      Send
+    </button>
+    </div>
+    <div class="input-container sm-input mb-2">
+        <input name="priceMin" class="sm-input" type="text" placeholder="Title" [(ngModel)]="title" />
+    </div>
+    <textarea *ngIf="loginService.isLogged() && !myService" class="area-input" name="username" type="text" placeholder="Post your opinion about this product" [(ngModel)]="review"></textarea>
+</div>
+<div class="reviews d-flex flex-column">
+    <h2>Reviews</h2>
+    <div *ngFor="let review of reviews" class="card-review d-flex flex-row">
+        <div class="d-flex flex-column">
+            <h5 class="title">{{ review.title }}</h5>
+            <div class="stars g">
+                <mat-icon *ngFor="let n of [1, 2, 3, 4, 5]" class="star-view" [ngClass]="{ g: n <= review.stars }">
+                    star
+                </mat-icon>
+            </div>
+            <p class="text">{{ review.text }}</p>
+        </div>
     </div>
 </div>

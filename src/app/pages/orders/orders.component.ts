@@ -35,20 +35,13 @@ export class OrdersComponent implements OnInit {
           let auxContract: any = {
             serviceId: contract.service,
             status: contract.state,
-            user: contract.user,
+            user: contract.user_buyer_email,
+            title: contract.title,
+            description: contract.description,
+            price: contract.price,
+            seller: contract.user_seller_email,
+            contract_id: contract.contract_id,
           };
-          this.serviceService
-            .getService(auxContract.serviceId)
-            .subscribe((service: any) => {
-              let auxService: ServiceTO = {
-                id: service.id,
-                title: service.title,
-                description: service.description,
-                price: service.price,
-                user: service.user,
-              };
-              auxContract.service = auxService;
-            });
           this.contractsClient.push(auxContract);
         });
       });
@@ -62,20 +55,13 @@ export class OrdersComponent implements OnInit {
           let auxContract: any = {
             serviceId: contract.service,
             status: contract.state,
-            user: contract.user,
+            user: contract.user_buyer_email,
+            title: contract.title,
+            description: contract.description,
+            price: contract.price,
+            seller: contract.user_seller_email,
+            contract_id: contract.contract_id,
           };
-          this.serviceService
-            .getService(auxContract.serviceId)
-            .subscribe((service: any) => {
-              let auxService: ServiceTO = {
-                id: service.id,
-                title: service.title,
-                description: service.description,
-                price: service.price,
-                user: service.user,
-              };
-              auxContract.service = auxService;
-            });
           this.contractsContractor.push(auxContract);
         });
       });

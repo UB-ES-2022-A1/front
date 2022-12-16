@@ -9,19 +9,26 @@ import { MainComponent } from './pages/main/main.component';
 import { OrdersComponent } from './pages/orders/orders.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { ServiceDetailComponent } from './pages/service-detail/service-detail.component';
+import { AuthGuard } from './services/login/auth.guard';
 
 const routes: Routes = [
   { path: '', component: MainComponent },
   { path: 'update_password/:token', component: ForgotComponent },
   { path: 'profile/:email', component: ProfileComponent },
-  { path: 'admin', component: AdminViewComponent },
+  {
+    path: 'admin',
+    component: AdminViewComponent,
+    canActivate: [AuthGuard],
+    data: {
+      role: 'admin_max',
+    },
+  },
 
   { path: 'orders', component: OrdersComponent },
   { path: 'chat', component: ChatComponent },
   { path: 'service/:id', component: ServiceDetailComponent },
 
   { path: 'upload', component: UploadComponent },
-
 ];
 
 @NgModule({

@@ -40,6 +40,10 @@
     <div class="d-flex flex-row gap-4">
       <h5 (click)="navigateProfile()">Profile</h5>
       <h5 (click)="navigateOrders()">Orders</h5>
+      <h5 *ngIf="this.loginService.isAdmin()" (click)="navigateAdmin()">
+        Admin
+      </h5>
+      <h5 (click)="navigateChat()"><mat-icon>chat</mat-icon></h5>
     </div>
     <!-- <div class="d-flex flex-column align-items-center">
       <div>
