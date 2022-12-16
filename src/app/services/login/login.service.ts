@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { SessionService } from '../session/session.service';
@@ -9,6 +8,7 @@ import { SessionService } from '../session/session.service';
 })
 export class LoginService {
   baseUrl: string = environment.backurl + 'login';
+  redirectUrl = '';
 
   constructor(
     private http: HttpClient,
@@ -30,6 +30,9 @@ export class LoginService {
     } else {
       return false;
     }
+  }
+  isAdmin() {
+    return this.sessionService.get('rol') === 'admin_max';
   }
   logout() {
     this.sessionService.clear();

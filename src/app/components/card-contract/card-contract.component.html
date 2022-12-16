@@ -7,18 +7,18 @@
 
   <div class="col-6 d-flex flex-column justify-content-between p-4">
     <h5 class="card-contract--data">
-      {{ this.contract.service?.title }}
+      {{ this.contract.title }}
     </h5>
     <p class="card-contract--data">
-      {{ this.contract.service?.description }}
+      {{ this.contract.description }}
     </p>
-    <p class="card-contract--data">Seller: {{ this.contract.service?.user }}</p>
+    <p class="card-contract--data">Seller: {{ this.contract.seller }}</p>
     <p class="card-contract--data">Costumer: {{ this.contract.user }}</p>
   </div>
 
   <div class="d-flex flex-column p-2 justify-content-center">
     <h4>{{ this.contract.status }}</h4>
-    <h4>{{ this.contract.service?.price }}$</h4>
+    <h4>{{ this.contract.price }}$</h4>
 
     <!-- <div *ngIf="!this.isActivated">
       <button (click)="activateService()" class="button button--primary mt-4">

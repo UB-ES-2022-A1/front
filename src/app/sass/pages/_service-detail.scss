@@ -1,4 +1,7 @@
 .service-detail {
+  .right-wrapper {
+    background-color: var(--color-accent-light);
+  }
   .service-info {
     border-radius: 20px;
     padding: 20px;
@@ -52,11 +55,45 @@
       border-radius: 8px;
     }
   }
-  .user-email{
-    margin: 0; 
+  .user-email {
+    margin: 0;
     cursor: pointer;
-    &:hover{
+    &:hover {
       text-decoration: underline;
     }
   }
+}
+.review-maker {
+  width: 100%;
+  border: 1px solid var(--color-gray-3);
+  height: fit-content;
+  padding: 10px;
+  background-color: var(--color-accent-light);
+  border-radius: 5px;
+}
+.reviews {
+  width: 100%;
+  border: 1px solid var(--color-gray-3);
+  height: fit-content;
+  padding: 10px;
+  background-color: var(--color-accent-light);
+  border-radius: 5px;
+}
+.star {
+  color: var(--color-gray-3);
+  &:hover {
+    color: var(--color-contrast);
+  }
+}
+.star-view {
+  color: var(--color-gray-3);
+}
+.g {
+  color: var(--color-contrast);
+}
+.card-review {
+  background-color: var(--color-white);
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 10px;
 }

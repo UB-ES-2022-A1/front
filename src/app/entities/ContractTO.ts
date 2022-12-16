@@ -5,4 +5,8 @@ export interface ContractTO {
   status: string;
   user: string;
   service?: ServiceTO;
+  price: number;
+  seller: string;
+  title: string;
+  description: string;
 }

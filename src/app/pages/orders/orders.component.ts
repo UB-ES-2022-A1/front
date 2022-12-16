@@ -35,20 +35,11 @@ export class OrdersComponent implements OnInit {
           let auxContract: any = {
             serviceId: contract.service,
             status: contract.state,
-            user: contract.user,
+            user: contract.user_buyer_email,
+            title: contract.title,
+            description: contract.description,
+            seller: contract.user_seller_email,
           };
-          this.serviceService
-            .getService(auxContract.serviceId)
-            .subscribe((service: any) => {
-              let auxService: ServiceTO = {
-                id: service.id,
-                title: service.title,
-                description: service.description,
-                price: service.price,
-                user: service.user,
-              };
-              auxContract.service = auxService;
-            });
           this.contractsClient.push(auxContract);
         });
       });
