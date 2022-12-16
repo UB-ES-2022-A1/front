@@ -14,6 +14,7 @@ export class CardAnuncioComponent implements OnInit {
   @Input() grade?: number;
   @Input() user?: UserTO;
   @Input() state: number;
+  @Input() image?: string; 
   constructor(public router: Router) {}
 
   ngOnInit(): void {}

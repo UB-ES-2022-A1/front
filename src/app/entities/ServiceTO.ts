@@ -9,4 +9,5 @@ export interface ServiceTO {
   user?: UserTO;
   grade?: number;
   state: number;
+  image?: string;
 }

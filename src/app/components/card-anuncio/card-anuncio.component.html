@@ -1,5 +1,7 @@
 <div (click)="seeDetail()" class="card d-flex flex-column">
-  <img
+  <img *ngIf="this.image!=null" src="{{image}}">
+
+  <img *ngIf="this.image==null"
     class="card--img"
     src="../../assets/img/pexels-ylanite-koppens-776654.jpg"
   />
