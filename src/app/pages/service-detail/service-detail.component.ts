@@ -8,6 +8,7 @@ import { UtilsService } from 'src/app/services/utils/utils.service';
 import { LoginService } from 'src/app/services/login/login.service';
 import { FormServiceComponent } from 'src/app/components/form-service/form-service.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ReviewService } from 'src/app/services/reviews/review.service';
 export interface ServiceDetailTO {
   id: string;
 }
@@ -21,6 +22,11 @@ export class ServiceDetailComponent implements OnInit {
   contractButton: boolean = false;
   description: string = '';
   myService: boolean = false;
+  starLevel: number = 0;
+  starLevelT: number = 0;
+  title: string = '';
+  review: string = '';
+  reviews: any[] = [];
   constructor(
     public router: Router,
     private sessionService: SessionService,
@@ -28,7 +34,8 @@ export class ServiceDetailComponent implements OnInit {
     private contractService: ContractedServicesService,
     private utils: UtilsService,
     protected loginService: LoginService,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private reviewService: ReviewService
   ) {}
 
   ngOnInit(): void {
@@ -42,11 +49,22 @@ export class ServiceDetailComponent implements OnInit {
         description: data.description,
         price: data.price,
         requiresPlace: data.requiresPlace,
-        user: data.user,
+        user: data.user_email,
       };
       if (this.serviceInfo.user === this.sessionService.get('email')) {
         this.myService = true;
       }
+    });
+    this.reviewService.getReviews(this.serviceId).subscribe((reviews: any) => {
+      console.log(reviews);
+      reviews.forEach((review: any) => {
+        let newReview = {
+          title: review.title,
+          text: review.text,
+          stars: 4,
+        };
+        this.reviews.push(newReview);
+      });
     });
   }
 
@@ -94,5 +112,28 @@ export class ServiceDetailComponent implements OnInit {
   navigateToProfile(event: Event): void {
     event.stopPropagation();
     this.router.navigate([`/profile/${this.serviceInfo?.user}`]);
+  }
+  changeStar(n: any) {
+    this.starLevel = n;
+  }
+  changeTStar(n: any) {
+    this.starLevelT = n;
+  }
+  postReview() {
+    this.reviewService
+      .postReview(this.title, this.review, this.starLevelT, this.serviceId)
+      .subscribe(
+        (res: any) => {
+          console.log(res);
+          window.location.reload();
+        },
+        (error) => {
+          this.utils.openSnackBar(
+            'You already have a review for this product',
+            'Ok',
+            1
+          );
+        }
+      );
   }
 }

@@ -3,4 +3,8 @@ export interface UserTO {
   id?: number;
   username?: string;
   grade?: number;
+  wallet?: number;
+  access?: number;
+  edited?: boolean;
+  moneyAdded?: number;
 }

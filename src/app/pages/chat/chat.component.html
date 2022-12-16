@@ -1,5 +1,5 @@
 <div class="chat">
-  <section class="chat--sessions">
+  <section *ngIf="rooms.length > 0" class="chat--sessions">
     <div
       (click)="changeRoom(room.room_id)"
       *ngFor="let room of rooms"
@@ -17,6 +17,12 @@
         <p class="m-0">Last message</p>
       </div>
     </div>
+  </section>
+  <section
+    *ngIf="rooms.length === 0"
+    class="chat--sessions d-flex justify-content-center align-items-center"
+  >
+    You dont have currently any chat room
   </section>
   <section class="chat--area p-2">
     <div class="chat--area-view">
