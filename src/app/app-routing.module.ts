@@ -25,7 +25,7 @@ const routes: Routes = [
   },
 
   { path: 'orders', component: OrdersComponent },
-  { path: 'chat', component: ChatComponent, canActivate: [AuthGuard] },
+  { path: 'chat', component: ChatComponent },
   { path: 'service/:id', component: ServiceDetailComponent },
 
   { path: 'upload', component: UploadComponent },
