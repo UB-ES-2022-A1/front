@@ -41,6 +41,9 @@ import {
   CloudinaryModule,
   CloudinaryConfiguration
 } from "@cloudinary/angular-5.x";
+import { ServiceImageComponent } from './pages/service-image/service-image.component';
+import {IvyCarouselModule} from 'angular-responsive-carousel';
+
 
 @NgModule({
   declarations: [
@@ -62,6 +65,7 @@ import {
     FiltersComponent,
     CardUserComponent,
     ChatComponent,
+    ServiceImageComponent,
   ],
   imports: [
     BrowserModule,
@@ -74,6 +78,7 @@ import {
     MatInputModule,
     MatSnackBarModule,
     BrowserAnimationsModule,
+    IvyCarouselModule,
     CloudinaryModule.forRoot(Cloudinary, {
       cloud_name: "dvjk7umra" //specify cloud_name
     } as CloudinaryConfiguration)

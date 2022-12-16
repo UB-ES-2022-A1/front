@@ -1,99 +1,109 @@
 .service-detail {
-  .right-wrapper {
-    background-color: var(--color-accent-light);
-  }
-  .service-info {
-    border-radius: 20px;
-    padding: 20px;
-  }
-  img {
-    width: 800px;
-  }
-  button {
-    font-size: 20px;
-    font-weight: 600;
-    background: var(main-accent-color);
-    height: 3em;
-    border: 0;
-    color: var(main-primary-color);
-    border-radius: 15px;
-    cursor: pointer;
-  }
-
-  .price-info {
-    width: 400px;
-    gap: 20px;
-    border-radius: 20px;
-    border: 0.5px solid gray;
-    padding: 15px;
-  }
-  .description {
-    height: 200px;
-    border-radius: 10px;
-    margin-top: 20px;
-    padding: 10px;
-    border: 1px solid gray;
-  }
-  .icon-wrapper {
-    width: 35px;
-    height: 35px;
-    border: solid 1px var(main-accent-color);
-    border-radius: 10px;
-  }
-  .icon {
-    margin: auto;
-  }
-  .contract-form {
-    display: none;
-  }
-  .buttons-wrapper {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+    .right-wrapper {
+        background-color: var(--color-accent-light);
+    }
+    .service-info {
+        border-radius: 20px;
+        padding: 20px;
+    }
+    .carousel-service {
+        position: sticky;
+        top: 200;
+        z-index: 99;
+    }
+    img {
+        width: 800px;
+    }
     button {
-      width: 280px;
-      border-radius: 8px;
+        font-size: 20px;
+        font-weight: 600;
+        background: var(main-accent-color);
+        height: 3em;
+        border: 0;
+        color: var(main-primary-color);
+        border-radius: 15px;
+        cursor: pointer;
     }
-  }
-  .user-email {
-    margin: 0;
-    cursor: pointer;
-    &:hover {
-      text-decoration: underline;
+    .price-info {
+        width: 400px;
+        gap: 20px;
+        border-radius: 20px;
+        border: 0.5px solid gray;
+        padding: 15px;
     }
-  }
+    .description {
+        height: 200px;
+        border-radius: 10px;
+        margin-top: 20px;
+        padding: 10px;
+        border: 1px solid gray;
+    }
+    .icon-wrapper {
+        width: 35px;
+        height: 35px;
+        border: solid 1px var(main-accent-color);
+        border-radius: 10px;
+    }
+    .icon {
+        margin: auto;
+    }
+    .contract-form {
+        display: none;
+    }
+    .buttons-wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        button {
+            width: 280px;
+            border-radius: 8px;
+        }
+    }
+    .user-email {
+        margin: 0;
+        cursor: pointer;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
 }
+
 .review-maker {
-  width: 100%;
-  border: 1px solid var(--color-gray-3);
-  height: fit-content;
-  padding: 10px;
-  background-color: var(--color-accent-light);
-  border-radius: 5px;
+    width: 100%;
+    border: 1px solid var(--color-gray-3);
+    height: fit-content;
+    padding: 10px;
+    background-color: var(--color-accent-light);
+    border-radius: 5px;
 }
+
 .reviews {
-  width: 100%;
-  border: 1px solid var(--color-gray-3);
-  height: fit-content;
-  padding: 10px;
-  background-color: var(--color-accent-light);
-  border-radius: 5px;
+    width: 100%;
+    border: 1px solid var(--color-gray-3);
+    height: fit-content;
+    padding: 10px;
+    background-color: var(--color-accent-light);
+    border-radius: 5px;
 }
+
 .star {
-  color: var(--color-gray-3);
-  &:hover {
-    color: var(--color-contrast);
-  }
+    color: var(--color-gray-3);
+    &:hover {
+        color: var(--color-contrast);
+    }
 }
+
 .star-view {
-  color: var(--color-gray-3);
+    color: var(--color-gray-3);
 }
+
 .g {
-  color: var(--color-contrast);
+    color: var(--color-contrast);
 }
+
 .card-review {
-  background-color: var(--color-white);
-  border: 1px solid black;
-  border-radius: 5px;
-  padding: 10px;
+    background-color: var(--color-white);
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 10px;
 }
