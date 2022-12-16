@@ -71,6 +71,12 @@ export class HeaderComponent implements OnInit {
   navigateOrders() {
     this.router.navigate([`/orders/`]);
   }
+  navigateAdmin() {
+    this.router.navigate([`/admin/`]);
+  }
+  navigateChat() {
+    this.router.navigate([`/chat/`]);
+  }
   goHome() {
     this.router.navigate([`/`]);
   }

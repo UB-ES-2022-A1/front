@@ -16,6 +16,7 @@ export class LoginComponent implements OnInit {
   userLogin: UserLogin = {
     username: '',
     password: '',
+    rol: '',
   };
 
   constructor(
@@ -40,6 +41,7 @@ export class LoginComponent implements OnInit {
         (data: any) => {
           this.sessionService.set('email', this.userLogin.username);
           this.sessionService.set('token', data.token);
+          this.sessionService.set('rol', data.rol);
           this.userService
             .getUser(this.userLogin.username)
             .subscribe((data) => {
@@ -63,4 +65,5 @@ export class LoginComponent implements OnInit {
 export interface UserLogin {
   username: string;
   password: string;
+  rol: string;
 }
